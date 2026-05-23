@@ -33,6 +33,7 @@ This project automates the extraction of Indian stock market data from Screener.
 - **Batch Processing**: Scrapes data for multiple stocks sequentially with polite delays
 - **Data Persistence**: Appends new data to existing records, maintaining historical information
 - **Error Handling**: Gracefully skips companies that fail to load while continuing with others
+- **Company Name Enrichment**: Adds company names from CSV to each stock record
 - **Dynamic Ticker Management**: Automatically reads ticker list from CSV configuration
 - **Manual Trigger**: Supports manual workflow execution through GitHub UI
 
@@ -87,7 +88,7 @@ node scrape.js
 1. Reads the `eligible.csv` file containing company codes and names
 2. Iterates through each ticker code
 3. Fetches data from `https://www.screener.in/company/{ticker}/`
-4. Enriches the data with company information from the CSV
+4. Enriches the data with company name from the CSV
 5. Merges with existing data in `master_data.json`
 6. Saves the updated database
 
@@ -135,17 +136,45 @@ To modify the schedule, edit the cron expression. [Cron syntax reference](https:
 ### master_data.json (Output)
 
 The primary output file containing aggregated stock data:
-- **Format**: JSON object with ticker codes as keys
-- **Contents**: Complete stock information scraped from Screener.in including:
-  - Financial metrics (P/E ratio, market cap, dividend yield, etc.)
-  - Stock details (sector, industry, market cap range, etc.)
-  - Performance data (52-week high/low, returns, volatility, etc.)
-  - Company metadata (ticker code, exchange listing info, etc.)
-- **Size**: ~40+ MB (grows with each update as new data is appended)
-- **Auto-Updated**: Yes, by the GitHub Actions workflow
-- **Update Pattern**: Existing ticker data is replaced with latest values, historical changes are visible through git history
 
-**Structure:** Each ticker entry contains the data returned by the Screener.in API via the `screener-scraper-pro` library. Review actual file contents to see specific fields available.
+**Format**: JSON object with ticker codes as keys
+
+**Structure for each ticker:**
+```json
+{
+  "500002": {
+    "analysis": {
+      "pros": [...],
+      "cons": [...]
+    },
+    "quarters": {...},
+    "profitLoss": {...},
+    "balanceSheet": {...},
+    "cashFlow": {...},
+    "ratios": {...},
+    "shareholding": {...},
+    "documents": {...},
+    "CAGRs": {...},
+    "CompanyName": "Company Name from CSV"
+  }
+}
+```
+
+**Contents**: Complete stock information from Screener.in including:
+- **analysis**: Pro and con points about the company
+- **quarters**: Quarterly financial data (Sales, Expenses, Profit, EPS, etc.)
+- **profitLoss**: Profit & loss statement data (multi-year)
+- **balanceSheet**: Balance sheet data (assets, liabilities, equity)
+- **cashFlow**: Cash flow statement data
+- **ratios**: Key financial ratios (Debtor Days, ROCE %, etc.)
+- **shareholding**: Promoter, FII, DII, Public ownership percentages
+- **documents**: Links to announcements, annual reports, credit ratings, conference call transcripts
+- **CAGRs**: Compound annual growth rates for sales, profit, stock price, ROE
+- **CompanyName**: Company name added from CSV configuration
+
+**Size**: ~40+ MB (grows as new data is appended)
+**Auto-Updated**: Yes, by the GitHub Actions workflow
+**Update Pattern**: New daily data is added/updated, previous data is overwritten with latest values
 
 ### eligible.csv (Configuration)
 
@@ -200,6 +229,8 @@ scrape.js (Node.js)
 Screener.in API
   (via screener-scraper-pro)
      ↓
+Enrich with CompanyName
+     ↓
 master_data.json (Output)
      ↓
 Git Commit & Push
@@ -210,10 +241,10 @@ Git Commit & Push
 **scrape.js** handles:
 1. **CSV Parsing**: Reads `eligible.csv` and extracts ticker codes and company names
 2. **Data Fetching**: Uses `screener-scraper-pro` to query Screener.in
-3. **Data Enrichment**: Adds company information to scraped data
-4. **Data Merging**: Appends/updates ticker data in existing `master_data.json`
-5. **Error Handling**: Catches and logs errors for individual stocks (with 2-second delays between requests)
-6. **Persistence**: Saves complete dataset as formatted JSON
+3. **Data Enrichment**: Adds company name field to each ticker's data (`data["CompanyName"] = nameMap[ticker]`)
+4. **Data Merging**: Updates/appends ticker data in existing `master_data.json`
+5. **Error Handling**: Catches and logs errors for individual stocks
+6. **Persistence**: Saves complete dataset as formatted JSON with 2-second delays between requests
 
 ## 🐛 Troubleshooting
 
@@ -240,8 +271,8 @@ Git Commit & Push
 **Issue**: Some tickers fail to load while others succeed
 - **Solution**: This is expected behavior. The script logs warnings for failed tickers and continues with others. Check workflow logs to see which tickers failed.
 
-**Issue**: Unexpected data in master_data.json or missing fields
-- **Solution**: The data structure depends on what the `screener-scraper-pro` library returns from Screener.in. Review the actual JSON file to understand available fields for your use case.
+**Issue**: CompanyName field appears at the end of the data object
+- **Solution**: This is normal. The script adds the CompanyName field after the API data is received. The field position doesn't affect functionality.
 
 ### Checking Workflow Logs
 
