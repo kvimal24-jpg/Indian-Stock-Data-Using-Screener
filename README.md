@@ -45,9 +45,8 @@ Indian-Stock-Data-Using-Screener/
 │       └── update.yml              # GitHub Actions workflow for daily automation
 ├── scrape.js                        # Main scraping script
 ├── package.json                     # Node.js dependencies and project metadata
-├── tickers.json                     # List of stock ticker codes to scrape
-├── eligible.csv                     # CSV file with company codes and names
-├── master_data.json                 # Generated JSON database with all stock data
+├── eligible.csv                     # CSV file with company codes and names (configuration)
+├── master_data.json                 # Generated JSON database with all stock data (output)
 └── README.md                        # This file
 ```
 
@@ -99,34 +98,26 @@ node scrape.js
 
 ## ⚙️ Configuration
 
-### Tickers List
+### Managing Stock Tickers
 
-Edit `tickers.json` to add or remove stock ticker codes:
+The `eligible.csv` file is the **single source of truth** for all stock tickers and company information. To add or remove stocks:
 
-```json
-[
-  "500325",
-  "500180",
-  "532454",
-  "532540",
-  "532174"
-]
-```
+1. **Edit `eligible.csv`** with the following format:
+   - **Column 1**: Index number
+   - **Column 2**: Scrip Code (numeric ticker from Screener.in)
+   - **Column 3+**: Company Name
 
-### Company Data
-
-The `eligible.csv` file should contain:
-- **Column 1**: Index
-- **Column 2**: Scrip Code (numeric ticker)
-- **Column 3+**: Company Name
-
-Example:
+**Example:**
 ```csv
 Index,Scrip Code,Company Name
 1,500325,Reliance Industries
 2,500180,HDFC Bank
-...
+3,532454,HDFC Life Insurance
+4,532540,Maruti Suzuki
+5,532174,SBI Card
 ```
+
+The script automatically parses this file and scrapes data for all companies listed.
 
 ### Schedule Configuration
 
@@ -141,7 +132,7 @@ To modify the schedule, edit the cron expression. [Cron syntax reference](https:
 
 ## 📊 Data Files
 
-### master_data.json
+### master_data.json (Output)
 
 The primary output file containing aggregated stock data:
 - **Format**: JSON object with ticker codes as keys
@@ -153,22 +144,28 @@ The primary output file containing aggregated stock data:
 - **Size**: ~40+ MB (grows with each update)
 - **Auto-Updated**: Yes, by the GitHub Actions workflow
 
-### eligible.csv
-
-Input file containing:
-- List of companies to scrape
-- Mapping of numeric codes to company names
-- Manually maintained; add new companies here to include them in daily scrapes
-
-### tickers.json
-
-Simple array of numeric ticker codes for quick reference:
+**Example structure:**
 ```json
-[
-  "500325",
-  "500180"
-]
+{
+  "500325": {
+    "CompanyName": "Reliance Industries",
+    "financialMetrics": { ... },
+    "stockDetails": { ... }
+  },
+  "500180": {
+    "CompanyName": "HDFC Bank",
+    ...
+  }
+}
 ```
+
+### eligible.csv (Configuration)
+
+The configuration file that controls which stocks are scraped:
+- **Format**: CSV with headers (Index, Scrip Code, Company Name)
+- **Purpose**: Defines all stocks to be included in daily scraping
+- **Manually maintained**: Add, remove, or update entries as needed
+- **Single source of truth**: The script dynamically reads all tickers from this file
 
 ## 🤖 Automation
 
@@ -206,13 +203,15 @@ To manually run the workflow:
 ### Data Flow
 
 ```
-eligible.csv
+eligible.csv (Configuration)
      ↓
 scrape.js (Node.js)
-     ↓
+  - Parse CSV
+  - Extract tickers & names
+  ↓
 Screener.in API
      ↓
-master_data.json
+master_data.json (Output)
      ↓
 Git Commit & Push
 ```
@@ -220,10 +219,10 @@ Git Commit & Push
 ### Key Script Components
 
 **scrape.js** handles:
-1. **CSV Parsing**: Reads eligible.csv and extracts ticker codes and company names
+1. **CSV Parsing**: Reads `eligible.csv` and extracts ticker codes and company names
 2. **Data Fetching**: Uses `screener-scraper-pro` to query Screener.in
 3. **Data Enrichment**: Adds company names to scraped data
-4. **Data Merging**: Appends new data to existing master_data.json
+4. **Data Merging**: Appends new data to existing `master_data.json`
 5. **Error Handling**: Catches and logs errors for individual stocks
 6. **Rate Limiting**: 2-second delay between requests (polite scraping)
 
@@ -232,7 +231,7 @@ Git Commit & Push
 ### Common Issues
 
 **Issue**: `Error: Could not find 'eligible.csv'`
-- **Solution**: Ensure `eligible.csv` exists in the repository root
+- **Solution**: Ensure `eligible.csv` exists in the repository root with proper formatting
 
 **Issue**: Script hangs or times out
 - **Solution**: 
@@ -248,6 +247,9 @@ Git Commit & Push
 
 **Issue**: Git commit fails in workflow
 - **Solution**: The workflow includes `|| exit 0` to ignore commit failures if there are no changes
+
+**Issue**: Some tickers fail to load while others succeed
+- **Solution**: This is expected behavior. The script logs warnings for failed tickers and continues with others. Check workflow logs to see which tickers failed.
 
 ### Checking Workflow Logs
 
@@ -276,6 +278,7 @@ Contributions are welcome! To contribute:
 - Support filtering by sector/industry
 - Add data export formats (CSV, Excel)
 - Implement incremental updates instead of full rewrites
+- Add progress tracking and notifications
 
 ## 📄 License
 
