@@ -33,7 +33,7 @@ This project automates the extraction of Indian stock market data from Screener.
 - **Batch Processing**: Scrapes data for multiple stocks sequentially with polite delays
 - **Data Persistence**: Appends new data to existing records, maintaining historical information
 - **Error Handling**: Gracefully skips companies that fail to load while continuing with others
-- **Company Name Mapping**: Associates numeric ticker codes with company names from CSV
+- **Dynamic Ticker Management**: Automatically reads ticker list from CSV configuration
 - **Manual Trigger**: Supports manual workflow execution through GitHub UI
 
 ## 📁 Project Structure
@@ -87,7 +87,7 @@ node scrape.js
 1. Reads the `eligible.csv` file containing company codes and names
 2. Iterates through each ticker code
 3. Fetches data from `https://www.screener.in/company/{ticker}/`
-4. Enriches the data with company names from the CSV
+4. Enriches the data with company information from the CSV
 5. Merges with existing data in `master_data.json`
 6. Saves the updated database
 
@@ -136,28 +136,16 @@ To modify the schedule, edit the cron expression. [Cron syntax reference](https:
 
 The primary output file containing aggregated stock data:
 - **Format**: JSON object with ticker codes as keys
-- **Contents**: Complete stock information from Screener.in including:
-  - Financial metrics (P/E ratio, market cap, etc.)
-  - Stock details (sector, industry, etc.)
-  - Company information (name, headquarters, etc.)
-  - Historical performance data
-- **Size**: ~40+ MB (grows with each update)
+- **Contents**: Complete stock information scraped from Screener.in including:
+  - Financial metrics (P/E ratio, market cap, dividend yield, etc.)
+  - Stock details (sector, industry, market cap range, etc.)
+  - Performance data (52-week high/low, returns, volatility, etc.)
+  - Company metadata (ticker code, exchange listing info, etc.)
+- **Size**: ~40+ MB (grows with each update as new data is appended)
 - **Auto-Updated**: Yes, by the GitHub Actions workflow
+- **Update Pattern**: Existing ticker data is replaced with latest values, historical changes are visible through git history
 
-**Example structure:**
-```json
-{
-  "500325": {
-    "CompanyName": "Reliance Industries",
-    "financialMetrics": { ... },
-    "stockDetails": { ... }
-  },
-  "500180": {
-    "CompanyName": "HDFC Bank",
-    ...
-  }
-}
-```
+**Structure:** Each ticker entry contains the data returned by the Screener.in API via the `screener-scraper-pro` library. Review actual file contents to see specific fields available.
 
 ### eligible.csv (Configuration)
 
@@ -210,6 +198,7 @@ scrape.js (Node.js)
   - Extract tickers & names
   ↓
 Screener.in API
+  (via screener-scraper-pro)
      ↓
 master_data.json (Output)
      ↓
@@ -221,17 +210,17 @@ Git Commit & Push
 **scrape.js** handles:
 1. **CSV Parsing**: Reads `eligible.csv` and extracts ticker codes and company names
 2. **Data Fetching**: Uses `screener-scraper-pro` to query Screener.in
-3. **Data Enrichment**: Adds company names to scraped data
-4. **Data Merging**: Appends new data to existing `master_data.json`
-5. **Error Handling**: Catches and logs errors for individual stocks
-6. **Rate Limiting**: 2-second delay between requests (polite scraping)
+3. **Data Enrichment**: Adds company information to scraped data
+4. **Data Merging**: Appends/updates ticker data in existing `master_data.json`
+5. **Error Handling**: Catches and logs errors for individual stocks (with 2-second delays between requests)
+6. **Persistence**: Saves complete dataset as formatted JSON
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
 **Issue**: `Error: Could not find 'eligible.csv'`
-- **Solution**: Ensure `eligible.csv` exists in the repository root with proper formatting
+- **Solution**: Ensure `eligible.csv` exists in the repository root with proper CSV formatting
 
 **Issue**: Script hangs or times out
 - **Solution**: 
@@ -250,6 +239,9 @@ Git Commit & Push
 
 **Issue**: Some tickers fail to load while others succeed
 - **Solution**: This is expected behavior. The script logs warnings for failed tickers and continues with others. Check workflow logs to see which tickers failed.
+
+**Issue**: Unexpected data in master_data.json or missing fields
+- **Solution**: The data structure depends on what the `screener-scraper-pro` library returns from Screener.in. Review the actual JSON file to understand available fields for your use case.
 
 ### Checking Workflow Logs
 
@@ -273,12 +265,13 @@ Contributions are welcome! To contribute:
 ### Areas for Improvement
 
 - Add error retry logic with exponential backoff
-- Store historical snapshots instead of just latest data
+- Store historical snapshots separately instead of overwriting
 - Add data validation and quality checks
 - Support filtering by sector/industry
 - Add data export formats (CSV, Excel)
-- Implement incremental updates instead of full rewrites
+- Implement incremental updates with change tracking
 - Add progress tracking and notifications
+- Improve logging and debugging capabilities
 
 ## 📄 License
 
@@ -287,7 +280,7 @@ This project is currently unlicensed. Consider adding a LICENSE file (e.g., MIT,
 ## 🔗 Resources
 
 - [Screener.in](https://www.screener.in) - Indian stock market data platform
-- [screener-scraper-pro](https://www.npmjs.com/package/screener-scraper-pro) - NPM package
+- [screener-scraper-pro](https://www.npmjs.com/package/screener-scraper-pro) - NPM package documentation
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [Node.js Documentation](https://nodejs.org/docs/)
 
