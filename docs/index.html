@@ -203,7 +203,7 @@ const PER_PAGE = 50;
 async function boot() {
   setMsg('Fetching universe data...');
   try {
-    const resp = await fetch('./data/index.json');
+    const resp = await fetch('./data/index.json?' + Date.now());
     INDEX = await resp.json();
     COS_LIST = Object.values(INDEX).sort((a,b) => b.ccs - a.ccs);
     setMsg(`Loaded ${COS_LIST.length} companies`);
