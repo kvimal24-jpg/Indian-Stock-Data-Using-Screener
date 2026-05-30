@@ -1,26 +1,39 @@
 name: Update Stock Data
 
 on:
-  workflow_dispatch: # Allows manual button click
   schedule:
-    - cron: '0 14 * * *' # Runs daily at 7:30 PM IST
+    - cron: '0 14 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: npm install
-      - run: node scrape.js
-      - run: |
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Scrape stock data
+        run: node scrape.js
+
+      - name: Split data into individual files
+        run: node split.js
+
+      - name: Commit and push
+        run: |
           git config user.name "DataBot"
-          git config user.email "bot@example.com"
-          git add master_data.json
-          git commit -m "Daily Data Update" || exit 0
+          git config user.email "bot@nivesify.in"
+          git add master_data.json docs/
+          git commit -m "Daily data update $(date +'%Y-%m-%d')" || exit 0
           git push
