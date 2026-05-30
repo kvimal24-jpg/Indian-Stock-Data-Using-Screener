@@ -28,7 +28,7 @@ jobs:
         run: node scrape.js
 
       - name: Split data into individual files
-        run: node split.js
+        run: node split.cjs
 
       - name: Commit and push
         run: |
