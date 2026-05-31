@@ -1764,6 +1764,16 @@
       "avoid": 730,
       "avgCCS": 44,
       "activeCalls": 17
+    },
+    {
+      "date": "2026-05-31",
+      "totalCompanies": 1433,
+      "buy": 19,
+      "hold": 100,
+      "watch": 584,
+      "avoid": 730,
+      "avgCCS": 44,
+      "activeCalls": 17
     }
   ],
   "stats": {
