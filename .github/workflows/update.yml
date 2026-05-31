@@ -7,8 +7,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   update:
@@ -27,13 +25,16 @@ jobs:
       - name: Scrape stock data
         run: node scrape.js
 
-      - name: Split data into individual files
+      - name: Split into per-company files + build index
         run: node split.cjs
 
-      - name: Commit and push
+      - name: Score changes and update history
+        run: node score_and_log.cjs
+
+      - name: Commit and push all outputs
         run: |
-          git config user.name "DataBot"
+          git config user.name "NivesifyBot"
           git config user.email "bot@nivesify.in"
-          git add master_data.json docs/
-          git commit -m "Daily data update $(date +'%Y-%m-%d')" || exit 0
+          git add master_data.json docs/data/ docs/history.json
+          git commit -m "Data refresh $(date +'%Y-%m-%d')" || echo "No changes"
           git push

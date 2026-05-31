@@ -10,14 +10,13 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#0C1220;--ink2:#3A4A62;--ink3:#7A8BA5;--ink4:#B8C4D4;
+  --ink:#0C1220;--ink2:#3A4A62;--ink3:#7A8BA5;
   --paper:#F4F1E8;--paper2:#EDE9DC;--card:#FDFCF7;
   --bd:#D8D3C4;--bd2:#EAE6D8;
   --forest:#0A4A2E;--forest2:#1A6B42;--forestl:#E3F2EB;
   --amber:#92400E;--amber2:#B45309;--amberl:#FEF3C7;
   --navy:#1E3A8A;--navyl:#EFF6FF;
   --crimson:#991B1B;--crimsonl:#FEF2F2;
-  --gold:#A16207;
   --serif:'Cormorant Garamond',Georgia,serif;
   --sans:'Instrument Sans','Helvetica Neue',sans-serif;
   --mono:'JetBrains Mono',monospace;
@@ -28,117 +27,96 @@ a{color:inherit;text-decoration:none}
 ::selection{background:var(--forestl);color:var(--forest)}
 .fade{animation:fi .25s ease both}
 @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-/* NAV */
 nav{background:var(--ink);position:sticky;top:0;z-index:200;border-bottom:1px solid rgba(255,255,255,.06)}
-.nav-inner{max-width:1180px;margin:0 auto;padding:0 28px;height:52px;display:flex;align-items:center;gap:0}
+.navi{max-width:1180px;margin:0 auto;padding:0 28px;height:52px;display:flex;align-items:center}
 .logo{font-family:var(--serif);font-size:19px;font-weight:600;color:#fff;cursor:pointer;background:none;padding:0;margin-right:28px}
-.nav-links{display:flex;gap:2px;flex:1}
-.nbtn{background:none;color:rgba(255,255,255,.4);font-size:13px;font-weight:500;padding:5px 11px;border-radius:5px;transition:all .15s}
-.nbtn:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.06)}
-.nbtn.on{color:#fff;background:rgba(255,255,255,.1)}
-.npulse{display:flex;align-items:center;gap:7px;margin-left:auto}
+.nlinks{display:flex;gap:2px;flex:1}
+.nb{background:none;color:rgba(255,255,255,.4);font-size:13px;font-weight:500;padding:5px 11px;border-radius:5px;transition:all .15s}
+.nb:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.06)}
+.nb.on{color:#fff;background:rgba(255,255,255,.1)}
+.nsig{display:flex;align-items:center;gap:7px;margin-left:auto}
 .dot{width:7px;height:7px;border-radius:50%;background:#6B7280}
-.dot.live{background:#22C55E;box-shadow:0 0 0 0 rgba(34,197,94,.4);animation:pulse 2s infinite}
+.dot.live{background:#22C55E;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{box-shadow:0 0 0 5px rgba(34,197,94,0)}}
-.nsig{font-size:11px;color:rgba(255,255,255,.35);font-family:var(--mono)}
-/* LAYOUT */
+.ntxt{font-size:11px;color:rgba(255,255,255,.35);font-family:var(--mono)}
 .page{max-width:1180px;margin:0 auto;padding:40px 28px 80px}
-.pgm{max-width:860px;margin:0 auto;padding:40px 28px 80px}
-/* CARDS */
+.pgm{max-width:900px;margin:0 auto;padding:40px 28px 80px}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:20px 22px}
 .csm{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:13px 15px}
-/* BADGES */
 .badge{display:inline-flex;align-items:center;font-size:11px;font-weight:600;letter-spacing:.04em;padding:2px 9px;border-radius:20px;white-space:nowrap}
 .b-buy{background:var(--forestl);color:var(--forest)}
 .b-hold{background:var(--navyl);color:var(--navy)}
 .b-watch{background:var(--amberl);color:var(--amber2)}
 .b-avoid{background:var(--crimsonl);color:var(--crimson)}
-.b-active{background:var(--forestl);color:var(--forest)}
-.b-building{background:var(--forestl);color:var(--forest)}
-.b-watching{background:var(--amberl);color:var(--amber2)}
-.b-cooling{background:#FFF7ED;color:#C2410C}
-/* TYPOGRAPHY */
+.b-call{background:var(--forestl);color:var(--forest)}
+.b-closed{background:var(--navyl);color:var(--navy)}
 .slabel{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
 .stitle{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.15}
 .ssub{font-size:13px;color:var(--ink2);line-height:1.65;margin-top:5px}
 .thesis{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.85;color:var(--ink)}
 .body{font-size:13px;color:var(--ink2);line-height:1.68}
-/* SCORE BAR */
 .srow{margin-bottom:9px}
 .shead{display:flex;justify-content:space-between;margin-bottom:4px}
 .slb{font-size:11px;color:var(--ink2)}
 .svl{font-family:var(--mono);font-size:12px;font-weight:600}
 .strk{height:4px;background:var(--bd2);border-radius:2px;overflow:hidden}
 .sfil{height:100%;border-radius:2px;transition:width .6s ease}
-/* TABS */
 .tabs{display:flex;gap:3px;padding:3px;background:var(--paper2);border-radius:8px;border:1px solid var(--bd);width:fit-content;margin-bottom:22px}
 .tbtn{padding:6px 14px;border:none;background:transparent;color:var(--ink2);border-radius:6px;font-size:12px;font-weight:500;transition:all .15s}
 .tbtn.on{background:var(--card);color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.08)}
-/* STAT */
 .sbox{padding:13px 15px;background:var(--paper2);border-radius:8px;border:1px solid var(--bd2)}
 .slbl{font-size:9px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
 .sval{font-family:var(--mono);font-size:17px;font-weight:600;color:var(--ink)}
 .ssb{font-size:10px;color:var(--ink3);margin-top:2px}
-/* DOC LINK */
-.dl{display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--bd2);border-radius:7px;margin-bottom:5px;transition:border-color .15s;background:var(--card);cursor:pointer}
+.dl{display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--bd2);border-radius:7px;margin-bottom:5px;background:var(--card)}
 .dl:hover{border-color:var(--ink3)}
-/* GRIDS */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
 .g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-/* TABLE */
 .tbl{width:100%;border-collapse:collapse;font-size:12px}
 .tbl th{text-align:left;padding:8px 11px;border-bottom:2px solid var(--bd);font-size:10px;font-weight:600;color:var(--ink3);letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;background:var(--paper2)}
 .tbl td{padding:9px 11px;border-bottom:1px solid var(--bd2);vertical-align:middle}
-.tbl tr.hov:hover td{background:var(--forestl);cursor:pointer}
-/* SEARCH */
-.srch{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.sinp{padding:8px 14px;border:1px solid var(--bd);border-radius:7px;background:var(--card);font-size:13px;color:var(--ink);width:260px;transition:border-color .15s}
+.tbl .hov:hover td{background:var(--forestl);cursor:pointer}
+.sinp{padding:8px 14px;border:1px solid var(--bd);border-radius:7px;background:var(--card);font-size:13px;color:var(--ink);width:240px}
 .sinp:focus{border-color:var(--forest2)}
 .ssel{padding:8px 12px;border:1px solid var(--bd);border-radius:7px;background:var(--card);font-size:12px;color:var(--ink2)}
-/* WISDOM */
-.wstrip{background:var(--ink);color:#fff;border-radius:12px;padding:30px 34px;position:relative;overflow:hidden}
-.wstrip::before{content:'';position:absolute;top:-50px;right:-50px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.02)}
-/* HERO */
+.wstrip{background:var(--ink);color:#fff;border-radius:12px;padding:30px 34px;overflow:hidden;position:relative}
 .heronum{font-family:var(--serif);font-size:96px;font-weight:300;line-height:1;letter-spacing:-.04em}
-/* LOADER */
+.pbtn{padding:5px 12px;border:1px solid var(--bd);border-radius:6px;background:var(--card);font-size:12px;color:var(--ink)}
+.pbtn:hover{border-color:var(--ink3)}.pbtn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 #loader{position:fixed;inset:0;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000;transition:opacity .4s}
 .ldot{width:8px;height:8px;border-radius:50%;background:var(--forest2);display:inline-block;margin:0 3px;animation:ldot 1.2s ease-in-out infinite}
 .ldot:nth-child(2){animation-delay:.2s}.ldot:nth-child(3){animation-delay:.4s}
 @keyframes ldot{0%,80%,100%{transform:scale(0);opacity:.3}40%{transform:scale(1);opacity:1}}
-/* PAGINATION */
-.pag{display:flex;gap:6px;align-items:center;justify-content:center;margin-top:18px}
-.pbtn{padding:6px 12px;border:1px solid var(--bd);border-radius:6px;background:var(--card);font-size:12px;color:var(--ink);transition:all .15s}
-.pbtn:hover{border-color:var(--ink3)}.pbtn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-/* FOOTER */
 footer{border-top:1px solid var(--bd2);padding:22px 28px;margin-top:48px}
 .fi{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-@media(max-width:768px){.g2,.g3,.g4,.g5{grid-template-columns:1fr}.heronum{font-size:64px}nav .nav-links .nbtn:nth-child(n+4){display:none}}
+/* SPARKLINE */
+.spark{display:inline-flex;align-items:flex-end;gap:1px;height:24px}
+.spark span{width:4px;background:var(--forest2);border-radius:1px;opacity:.7;transition:height .3s}
+@media(max-width:768px){.g2,.g3,.g4,.g5{grid-template-columns:1fr}.heronum{font-size:64px}}
 </style>
 </head>
 <body>
 
-<!-- LOADER -->
 <div id="loader">
-  <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:600;color:#fff;margin-bottom:20px">Nivesify</div>
+  <div style="font-family:var(--serif);font-size:26px;font-weight:600;color:#fff;margin-bottom:20px">Nivesify</div>
   <div><span class="ldot"></span><span class="ldot"></span><span class="ldot"></span></div>
-  <div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:16px;font-family:'JetBrains Mono',monospace" id="lmsg">Loading universe...</div>
+  <div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:16px;font-family:var(--mono)" id="lmsg">Initialising...</div>
 </div>
 
-<!-- NAV -->
-<nav id="mnav">
-  <div class="nav-inner">
+<nav>
+  <div class="navi">
     <button class="logo" onclick="go('home')">Nivesify</button>
-    <div class="nav-links">
-      <button class="nbtn on" id="nb-home" onclick="go('home')">The Stance</button>
-      <button class="nbtn" id="nb-calls" onclick="go('calls')">Calls</button>
-      <button class="nbtn" id="nb-universe" onclick="go('universe')">Universe</button>
-      <button class="nbtn" id="nb-record" onclick="go('record')">Record</button>
+    <div class="nlinks">
+      <button class="nb on" id="nb-home" onclick="go('home')">The Stance</button>
+      <button class="nb" id="nb-calls" onclick="go('calls')">Calls</button>
+      <button class="nb" id="nb-universe" onclick="go('universe')">Universe</button>
+      <button class="nb" id="nb-record" onclick="go('record')">Record</button>
     </div>
-    <div class="npulse">
+    <div class="nsig">
       <div class="dot" id="ndot"></div>
-      <span class="nsig" id="nsigtxt">loading...</span>
+      <span class="ntxt" id="ntxt">—</span>
     </div>
   </div>
 </nav>
@@ -149,182 +127,181 @@ footer{border-top:1px solid var(--bd2);padding:22px 28px;margin-top:48px}
   <div class="fi">
     <div>
       <div style="font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:2px">Nivesify</div>
-      <div style="font-size:11px;color:var(--ink3)">Conviction-first Indian equity research. Data from screener.in via daily automated pipeline.</div>
+      <div style="font-size:11px;color:var(--ink3)">Conviction-first Indian equity research. All scores computed daily from live BSE filings via screener.in.</div>
     </div>
     <div style="font-size:11px;color:var(--ink3);text-align:right;line-height:1.7">
       <div>Not SEBI registered. Not financial advice.</div>
-      <div>For educational purposes only.</div>
+      <div>For educational &amp; research purposes only.</div>
     </div>
   </div>
 </footer>
 
 <script>
-/* ══════════════════════════════════════════════════════════════
-   NIVESIFY FRONTEND
-   Data source: ./data/index.json + ./data/{ticker}.json
-   Updated daily via GitHub Actions
-══════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════
+   NIVESIFY — fully dynamic from index.json + history.json
+   No hardcoded data anywhere.
+   Calls = auto-detected from scoring thresholds.
+   Record = auto-built from history.json transitions.
+══════════════════════════════════════════════════════ */
 
-// ─── CALLS DATA (edit this manually when you issue a call) ─────
-const CALLS_DATA = {
-  active: [
-    // Example — fill in your own calls here:
-    // {
-    //   id: "500180",
-    //   callDate: "18 Jan 2026",
-    //   horizon: "18–24 months",
-    //   contraType: "Neglected Quality",
-    //   thesis: "Write your full thesis here...",
-    //   contraView: "Steelmanned bear case...",
-    //   invalidation: "Specific criteria that would close this call..."
-    // }
-  ],
-  archived: [
-    {name:"Titan Company",type:"Neglected Quality",opened:"Mar 2024",closed:"Sep 2024",ret:"+38% vs Nifty",notes:"Premium brand punished post-Zoya controversy. Business never broke. Re-rated within 6 months. Lesson: quality business reputation recovers faster than its stock price."},
-    {name:"Bajaj Finance",type:"Earnings Inflection",opened:"Oct 2022",closed:"Apr 2023",ret:"+24% vs Nifty",notes:"Post-COVID NPA fears priced in too long. Two consecutive clean quarters confirmed the turn. Exited on valuation."},
-    {name:"IRCTC",type:"Priced for Perfection",opened:"Nov 2021",closed:"May 2022",ret:"+19% drawdown avoided",notes:"PE 180×, growth plateauing. Called the correction; stock fell 35%. Lesson: even a monopoly is not worth any price."}
-  ]
-};
-
-// ─── STATE ────────────────────────────────────────────────────
-let INDEX = {};   // full index loaded once
-let COS_LIST = []; // sorted array
-let page = 'home';
-let coId = null;
-let coData = null;  // individual company data (loaded on demand)
-let coTab = 'overview';
+// ── STATE ────────────────────────────────────────────
+let INDEX = {};
+let HISTORY = { activeCalls:[], closedCalls:[], dailySnapshots:[], stats:{} };
+let COS_LIST = [];
+let page = 'home', coId = null, coData = null, coTab = 'overview';
 let callTab = 'active';
+let uniPage = 1, uniF = {q:'',signal:'',sector:''};
 let charts = {};
-let uniPage = 1;
-let uniFilter = {search:'',signal:'',sector:''};
-const PER_PAGE = 50;
+const PER = 50;
+const BASE = window.location.pathname.replace(/\/[^/]*$/, '');
 
-// ─── BOOT ─────────────────────────────────────────────────────
+// ── BOOT ─────────────────────────────────────────────
 async function boot() {
-  setMsg('Fetching universe data...');
+  msg('Loading data...');
   try {
-    const resp = await fetch('./data/index.json?' + Date.now());
-    INDEX = await resp.json();
+    const ts = '?v=' + Date.now();
+    const [hRes, iRes] = await Promise.all([
+      fetch(BASE + '/history.json' + ts),
+      fetch(BASE + '/data/index.json' + ts),
+    ]);
+
+    // history.json may not exist on first run
+    if (hRes.ok) {
+      HISTORY = await hRes.json();
+    } else {
+      console.warn('history.json not found — first run?');
+    }
+
+    INDEX = await iRes.json();
     COS_LIST = Object.values(INDEX).sort((a,b) => b.ccs - a.ccs);
-    setMsg(`Loaded ${COS_LIST.length} companies`);
-    const activeIds = CALLS_DATA.active.map(c => c.id);
-    document.getElementById('ndot').className = 'dot' + (activeIds.length ? ' live' : '');
-    document.getElementById('nsigtxt').textContent = `${activeIds.length} active call${activeIds.length!==1?'s':''}`;
-    setTimeout(hideLoader, 300);
+
+    const n = (HISTORY.activeCalls || []).length;
+    document.getElementById('ndot').className = 'dot' + (n > 0 ? ' live' : '');
+    document.getElementById('ntxt').textContent = n + ' active call' + (n !== 1 ? 's' : '');
+    msg('Loaded ' + COS_LIST.length + ' companies');
+    setTimeout(hideLoader, 250);
     r();
   } catch(e) {
-    setMsg('Error loading data. Check console.');
+    msg('Error: ' + e.message);
     console.error(e);
   }
 }
-
-function setMsg(m){document.getElementById('lmsg').textContent = m;}
+function msg(m){document.getElementById('lmsg').textContent=m;}
 function hideLoader(){const l=document.getElementById('loader');l.style.opacity='0';setTimeout(()=>l.remove(),400);}
 
-// ─── NAV ──────────────────────────────────────────────────────
+// ── ROUTING ───────────────────────────────────────────
 function go(p){
-  page=p; coId=null; coData=null; coTab='overview';
-  uniPage=1; uniFilter={search:'',signal:'',sector:''};
-  document.querySelectorAll('.nbtn').forEach(b=>b.classList.remove('on'));
-  const nb=document.getElementById('nb-'+p); if(nb) nb.classList.add('on');
-  window.scrollTo({top:0,behavior:'smooth'}); r();
+  page=p;coId=null;coData=null;coTab='overview';uniPage=1;uniF={q:'',signal:'',sector:''};
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  const nb=document.getElementById('nb-'+p);if(nb)nb.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});r();
 }
 async function goC(id){
-  coId=id; page='company'; coTab='overview';
-  document.querySelectorAll('.nbtn').forEach(b=>b.classList.remove('on'));
+  coId=id;coData=null;page='company';coTab='overview';
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
   document.getElementById('nb-universe').classList.add('on');
-  window.scrollTo({top:0,behavior:'smooth'}); r();
-  // Load full company data in background
-  try {
-    const resp = await fetch('./data/'+id+'.json');
-    coData = await resp.json();
-    r(); // re-render with full data
-  } catch(e) { console.warn('Could not load company data for',id); }
+  window.scrollTo({top:0,behavior:'smooth'});r();
+  try{
+    const res = await fetch(BASE+'/data/'+id+'.json?v='+Date.now());
+    coData = await res.json();
+    r();
+  }catch(e){console.warn('Company file not found:',id);}
 }
 function setCoTab(t){coTab=t;r();}
 function setCallTab(t){callTab=t;r();}
 
-// ─── MAIN RENDER ──────────────────────────────────────────────
+// ── RENDER ────────────────────────────────────────────
 function r(){
   const app=document.getElementById('app');
   app.innerHTML=`<div class="fade">${renderPage()}</div>`;
-  setTimeout(()=>drawCharts(),80);
+  setTimeout(drawCharts,80);
 }
-
 function renderPage(){
-  if(page==='home') return renderHome();
-  if(page==='calls') return renderCalls();
-  if(page==='universe') return renderUniverse();
-  if(page==='company') return renderCompany();
-  if(page==='record') return renderRecord();
+  if(page==='home')return renderHome();
+  if(page==='calls')return renderCalls();
+  if(page==='universe')return renderUniverse();
+  if(page==='company')return renderCompany();
+  if(page==='record')return renderRecord();
   return '';
 }
 
-// ─── HELPERS ──────────────────────────────────────────────────
-function sigC(s){return{BUY:'var(--forest)',HOLD:'var(--navy)',WATCH:'var(--amber2)',AVOID:'var(--crimson)'}[s]||'var(--ink2)'}
-function sigCls(s){return{BUY:'b-buy',HOLD:'b-hold',WATCH:'b-watch',AVOID:'b-avoid'}[s]||''}
-function radCls(s){return{Building:'b-building',Watching:'b-watching',Cooling:'b-cooling'}[s]||''}
-function bdg(l,cls){return`<span class="badge ${cls}">${l}</span>`}
-function fmtCr(n){if(n==null)return'—';const a=Math.abs(n);let s=a>=100000?`${(a/100000).toFixed(1)}L Cr`:a>=1000?`${(a/1000).toFixed(0)}K Cr`:`${Math.round(a)} Cr`;return(n<0?'−₹':'₹')+s}
-function parseNum(v){if(v==null)return null;if(typeof v==='number')return v;return parseFloat(String(v).replace('%','').replace(',',''))||null}
-function lastN(obj,n){if(!obj)return[];return Object.values(obj).slice(-n).map(parseNum).filter(v=>v!=null)}
-function lastKeys(obj,n){if(!obj)return[];const keys=Object.keys(obj);return keys.slice(-n)}
-function scoreBar(l,v,cl){return`<div class="srow"><div class="shead"><span class="slb">${l}</span><span class="svl" style="color:${cl}">${v}/100</span></div><div class="strk"><div class="sfil" style="width:${v}%;background:${cl}"></div></div></div>`}
+// ── HELPERS ───────────────────────────────────────────
+const sigC=s=>({BUY:'var(--forest)',HOLD:'var(--navy)',WATCH:'var(--amber2)',AVOID:'var(--crimson)'}[s]||'var(--ink2)');
+const sigCls=s=>({BUY:'b-buy',HOLD:'b-hold',WATCH:'b-watch',AVOID:'b-avoid'}[s]||'');
+const bdg=(l,c)=>`<span class="badge ${c}">${l}</span>`;
+const fmtCr=n=>{if(n==null)return'—';const a=Math.abs(n);const s=a>=100000?`${(a/100000).toFixed(1)}L Cr`:a>=1000?`${(a/1000).toFixed(0)}K Cr`:`${Math.round(a)} Cr`;return(n<0?'−₹':'₹')+s;};
+const pn=v=>{if(v==null)return null;if(typeof v==='number')return v;return parseFloat(String(v).replace('%','').replace(',',''))||null;};
+const lN=(obj,n)=>{if(!obj)return[];return Object.values(obj).slice(-n).map(pn).filter(v=>v!=null);};
+const sb=(l,v,c)=>`<div class="srow"><div class="shead"><span class="slb">${l}</span><span class="svl" style="color:${c}">${v}/100</span></div><div class="strk"><div class="sfil" style="width:${v}%;background:${c}"></div></div></div>`;
+const fmtDate=d=>{if(!d)return'—';const [y,m,dy]=d.split('-');const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return`${dy} ${months[parseInt(m)-1]} ${y}`;};
+const evmedNum=v=>{if(!v)return null;return parseInt(String(v).replace('+',''));};
 
-// ─── HOME PAGE ────────────────────────────────────────────────
+// ── HOME ──────────────────────────────────────────────
 function renderHome(){
-  const active = CALLS_DATA.active;
-  const topCo = active.length ? INDEX[active[0].id] : null;
-  const callMeta = active.length ? active[0] : null;
-  const radar = COS_LIST.filter(c => c.signal === 'WATCH' || c.signal === 'HOLD').slice(0,4);
+  const activeCalls = HISTORY.activeCalls || [];
+  const snap = (HISTORY.dailySnapshots||[]).slice(-1)[0] || {};
+  const lastUpdated = HISTORY.lastUpdated || 'Not yet run';
+  const topCall = activeCalls[0] ? INDEX[activeCalls[0].id] : null;
+  const callMeta = activeCalls[0] || null;
 
   return `<div class="page">
-    <!-- HERO -->
     <div style="display:grid;grid-template-columns:1fr 380px;gap:48px;margin-bottom:52px;align-items:start">
       <div>
-        ${topCo && callMeta ? `
+        ${topCall && callMeta ? `
           <div style="display:flex;gap:8px;align-items:center;margin-bottom:18px;flex-wrap:wrap">
             <div style="width:8px;height:8px;border-radius:50%;background:var(--forest2)"></div>
-            ${bdg('1 Active Call','b-active')} ${bdg(callMeta.contraType,'b-watching')}
+            ${bdg(activeCalls.length+' Active Call'+(activeCalls.length!==1?'s':''),'b-call')}
           </div>
-          <h1 style="font-family:var(--serif);font-size:56px;font-weight:500;line-height:1.06;color:var(--ink);margin-bottom:20px;letter-spacing:-.025em">${topCo.name}<span style="color:var(--forest2)">.</span></h1>
-          <p class="thesis" style="max-width:500px;margin-bottom:26px;font-size:15px">&ldquo;${callMeta.thesis.substring(0,200)}...&rdquo;</p>
+          <h1 style="font-family:var(--serif);font-size:56px;font-weight:500;line-height:1.06;color:var(--ink);margin-bottom:18px;letter-spacing:-.025em">${topCall.name}<span style="color:var(--forest2)">.</span></h1>
+          <div style="font-size:13px;color:var(--ink2);margin-bottom:8px">${topCall.sector} · BSE ${topCall.id}</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px">
+            ${[['Q-Score',callMeta.entryScores.qScore,'var(--forest2)'],['V-Score',callMeta.entryScores.vScore,'var(--navy)'],['M-Score',callMeta.entryScores.mScore,'#7C3AED'],['CCS',callMeta.entryScores.ccs,sigC(topCall.signal)]].map(([l,v,c])=>`
+              <div class="sbox"><div class="slbl">${l}</div><div class="sval" style="color:${c}">${v}</div></div>`).join('')}
+          </div>
           <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <button onclick="go('calls')" style="padding:11px 24px;background:var(--ink);color:#fff;border-radius:7px;font-size:13px;font-weight:600">Read full thesis &rarr;</button>
-            <button onclick="goC('${topCo.id}')" style="padding:11px 20px;background:transparent;color:var(--ink);border:1px solid var(--bd);border-radius:7px;font-size:13px">All charts &amp; data</button>
+            <button onclick="go('calls')" style="padding:11px 24px;background:var(--ink);color:#fff;border-radius:7px;font-size:13px;font-weight:600">View all calls &rarr;</button>
+            <button onclick="goC('${topCall.id}')" style="padding:11px 20px;background:transparent;color:var(--ink);border:1px solid var(--bd);border-radius:7px;font-size:13px">Deep dive &amp; charts</button>
           </div>
         ` : `
           <div class="slabel" style="margin-bottom:16px">Current stance</div>
           <div class="heronum" style="color:var(--bd);margin-bottom:14px">0<span style="opacity:.4">.</span></div>
-          <p class="body" style="max-width:440px;font-size:14px">No active calls. Watching ${COS_LIST.filter(c=>c.signal==='WATCH').length} situations. None have cleared the conviction threshold. Sitting still is a position — often the most profitable one.</p>
+          <p class="body" style="max-width:440px;font-size:14px;margin-bottom:16px">
+            No stocks currently meet all conviction thresholds simultaneously. The engine is scanning <strong>${COS_LIST.length.toLocaleString()}</strong> companies. 
+            ${COS_LIST.filter(c=>c.signal==='WATCH').length} are on watch. None have cleared every bar yet.
+          </p>
+          <p class="body" style="max-width:440px;font-size:13px;color:var(--ink3)">
+            Conviction thresholds: Signal = BUY · Q-Score ≥ 60 · CCS ≥ 65 · EV-MED ≥ +5. All four must align simultaneously.
+          </p>
         `}
       </div>
       <div>
-        ${topCo && callMeta ? `
+        ${topCall && callMeta ? `
         <div class="card">
-          <div class="slabel" style="margin-bottom:6px">Quant-Mental Scores</div>
+          <div class="slabel" style="margin-bottom:6px">Engine signal</div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-            <span style="font-family:var(--serif);font-size:15px;font-weight:600">${topCo.name}</span>
-            ${bdg(topCo.signal,sigCls(topCo.signal))}
+            <span style="font-family:var(--serif);font-size:15px;font-weight:600">${topCall.name}</span>
+            ${bdg(topCall.signal,sigCls(topCall.signal))}
           </div>
-          ${scoreBar('Q-Score — Quality',topCo.qScore,'var(--forest2)')}
-          ${scoreBar('V-Score — Value',topCo.vScore,'var(--navy)')}
-          ${scoreBar('M-Score — Momentum',topCo.mScore,'#7C3AED')}
+          ${sb('Q-Score — Quality',callMeta.entryScores.qScore,'var(--forest2)')}
+          ${sb('V-Score — Value',callMeta.entryScores.vScore,'var(--navy)')}
+          ${sb('M-Score — Momentum',callMeta.entryScores.mScore,'#7C3AED')}
           <div style="border-top:1px solid var(--bd2);padding-top:11px;margin-top:4px;display:flex;justify-content:space-between;align-items:center">
             <span style="font-size:12px;color:var(--ink2)">Conviction Score (CCS)</span>
-            <span style="font-family:var(--mono);font-size:24px;font-weight:600;color:${sigC(topCo.signal)}">${topCo.ccs}<span style="font-size:10px;opacity:.4">/100</span></span>
+            <span style="font-family:var(--mono);font-size:24px;font-weight:600;color:${sigC(topCall.signal)}">${callMeta.entryScores.ccs}<span style="font-size:10px;opacity:.4">/100</span></span>
           </div>
           <div class="g2" style="margin-top:11px">
-            <div class="sbox"><div class="slbl">EV-MED Signal</div><div class="sval" style="color:var(--forest2)">${topCo.evmed||'—'}</div><div class="ssb">Earnings vs Price</div></div>
-            <div class="sbox"><div class="slbl">Call Horizon</div><div class="sval" style="font-size:13px">${callMeta.horizon}</div><div class="ssb">${callMeta.callDate}</div></div>
+            <div class="sbox"><div class="slbl">EV-MED</div><div class="sval" style="color:var(--forest2)">${callMeta.entryScores.evmed||'—'}</div><div class="ssb">Earnings vs Price gap</div></div>
+            <div class="sbox"><div class="slbl">Call opened</div><div class="sval" style="font-size:13px">${fmtDate(callMeta.entryDate)}</div><div class="ssb">Auto-detected</div></div>
           </div>
         </div>` : `
         <div class="card">
-          <div class="slabel" style="margin-bottom:12px">Highest conviction watch — ${radar.length} situations</div>
-          ${radar.map(c=>`<div onclick="goC('${c.id}')" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd2);cursor:pointer">
-            <div><div style="font-size:13px;font-weight:500">${c.name}</div><div style="font-size:10px;color:var(--ink3)">${c.sector}</div></div>
-            <div style="display:flex;align-items:center;gap:8px">${bdg(c.signal,sigCls(c.signal))}<span style="font-family:var(--mono);font-size:13px;font-weight:600;color:${sigC(c.signal)}">${c.ccs}</span></div>
-          </div>`).join('')}
+          <div class="slabel" style="margin-bottom:12px">Highest conviction — Watch list</div>
+          ${COS_LIST.filter(c=>c.signal==='WATCH'||c.signal==='BUY').slice(0,5).map(c=>`
+            <div onclick="goC('${c.id}')" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd2);cursor:pointer">
+              <div><div style="font-size:13px;font-weight:500">${c.name}</div><div style="font-size:10px;color:var(--ink3)">${c.sector}</div></div>
+              <div style="display:flex;align-items:center;gap:8px">${bdg(c.signal,sigCls(c.signal))}<span style="font-family:var(--mono);font-weight:600;color:${sigC(c.signal)}">${c.ccs}</span></div>
+            </div>`).join('')}
+          <div style="padding-top:10px;font-size:11px;color:var(--ink3)">Updated ${lastUpdated}. Engine re-scores daily.</div>
         </div>`}
       </div>
     </div>
@@ -333,32 +310,33 @@ function renderHome(){
     <div class="wstrip" style="margin-bottom:48px">
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
         ${[
-          ['"Price is what you pay. Value is what you get."','Warren Buffett','The EV-MED filter quantifies this: when a company\'s earnings CAGR exceeds its price CAGR over 5 years, value is accumulating unseen.'],
-          ['"The market is a voting machine short-term, a weighing machine long-term."','Benjamin Graham','Our V-Score measures the gap between the vote count (price) and the weight (earnings). A high divergence is the signal.'],
-          ['"Go for a business any fool can run — because someday a fool will."','Charlie Munger','The Q-Score\'s ROE consistency test operationalises this. A business with 15%+ ROE for 8 straight years needs no genius at the helm.']
+          ['"Price is what you pay. Value is what you get."','Warren Buffett','The EV-MED metric quantifies this. When profit CAGR exceeds price CAGR by 5%+ over 5 years, value is accumulating unseen.'],
+          ['"The market is a voting machine short-term, a weighing machine long-term."','Benjamin Graham','The V-Score measures the divergence. A high positive divergence between earnings growth and price growth is the signal.'],
+          ['"All you need for a lifetime of successful investing is a few big winners."','Peter Lynch','That is why conviction calls are rare. The engine waits for all four thresholds to align simultaneously. Most days the answer is zero.']
         ].map(([q,a,n])=>`<div><p style="font-family:var(--serif);font-style:italic;font-size:14px;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:7px">${q}</p><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,.35);letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px">— ${a}</div><div style="font-size:11px;color:rgba(255,255,255,.38);line-height:1.6;padding-top:7px;border-top:1px solid rgba(255,255,255,.07)">${n}</div></div>`).join('')}
       </div>
     </div>
 
-    <!-- UNIVERSE SNAP -->
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px">
-      <div><div class="slabel">Live Coverage</div><div class="stitle" style="font-size:21px">${COS_LIST.length.toLocaleString()} companies tracked</div></div>
+    <!-- LIVE STATS -->
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px">
+      <div><div class="slabel">Live Coverage</div><div class="stitle" style="font-size:21px">${COS_LIST.length.toLocaleString()} companies · Updated ${lastUpdated}</div></div>
       <button onclick="go('universe')" style="padding:7px 15px;background:transparent;border:1px solid var(--bd);border-radius:6px;font-size:12px;color:var(--ink)">Full research table &rarr;</button>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px">
+    <div class="g4" style="margin-bottom:28px">
       ${[
-        ['Strong Buy signals',COS_LIST.filter(c=>c.signal==='BUY').length,'var(--forest2)'],
-        ['Watch list',COS_LIST.filter(c=>c.signal==='WATCH').length,'var(--amber2)'],
-        ['Avg Q-Score',Math.round(COS_LIST.reduce((s,c)=>s+c.qScore,0)/COS_LIST.length),'var(--ink)'],
-        ['Data updated','Daily','var(--ink)'],
-      ].map(([l,v,c])=>`<div class="sbox"><div class="slbl">${l}</div><div class="sval" style="color:${c}">${v}</div></div>`).join('')}
+        ['BUY signals',COS_LIST.filter(c=>c.signal==='BUY').length,'var(--forest2)','Meets quality threshold'],
+        ['WATCH list',COS_LIST.filter(c=>c.signal==='WATCH').length,'var(--amber2)','Building toward a call'],
+        ['AVOID',COS_LIST.filter(c=>c.signal==='AVOID').length,'var(--crimson)','Below quality bar'],
+        ['Active calls',(HISTORY.activeCalls||[]).length,'var(--forest2)','Passes all 4 thresholds'],
+      ].map(([l,v,c,s])=>`<div class="sbox"><div class="slbl">${l}</div><div class="sval" style="color:${c}">${v}</div><div class="ssb">${s}</div></div>`).join('')}
     </div>
-    <!-- TOP 10 BUY signals -->
+
+    <!-- TOP 10 -->
     <div class="card" style="padding:0;overflow:hidden;margin-bottom:36px">
-      <div style="padding:12px 18px;background:var(--paper2);border-bottom:1px solid var(--bd2);font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:.07em;text-transform:uppercase">Top 10 by Conviction Score</div>
+      <div style="padding:12px 18px;background:var(--paper2);border-bottom:1px solid var(--bd2);font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:.07em;text-transform:uppercase">Top 10 by Conviction Score — Live</div>
       <div style="overflow-x:auto">
         <table class="tbl">
-          <thead><tr><th>Company</th><th>Sector</th><th>Q</th><th>V</th><th>M</th><th>CCS</th><th>Signal</th><th>EV-MED</th><th>ROE</th></tr></thead>
+          <thead><tr><th>Company</th><th>Sector</th><th>Q</th><th>V</th><th>M</th><th>CCS</th><th>Signal</th><th>EV-MED</th><th>ROE</th><th>Price CAGR 1Y</th></tr></thead>
           <tbody>
           ${COS_LIST.slice(0,10).map((c,i)=>`
             <tr class="hov" onclick="goC('${c.id}')" style="background:${i%2===0?'var(--card)':'#FDFCF8'}">
@@ -369,162 +347,198 @@ function renderHome(){
               <td><b style="color:#7C3AED">${c.mScore}</b></td>
               <td><b style="font-size:16px;color:${sigC(c.signal)}">${c.ccs}</b></td>
               <td>${bdg(c.signal,sigCls(c.signal))}</td>
-              <td><span style="font-family:var(--mono);font-weight:600;color:${c.evmed&&c.evmed.startsWith('-')?'var(--crimson)':'var(--forest2)'}">${c.evmed||'—'}</span></td>
+              <td><span style="font-family:var(--mono);font-weight:600;color:${c.evmed&&c.evmed.toString().startsWith('-')?'var(--crimson)':'var(--forest2)'}">${c.evmed||'—'}</span></td>
               <td><span style="font-family:var(--mono)">${c.roe!=null?c.roe+'%':'—'}</span></td>
+              <td><span style="font-family:var(--mono);color:${c.pricagr1<0?'var(--crimson)':'var(--forest2)'}">${c.pricagr1!=null?c.pricagr1+'%':'—'}</span></td>
             </tr>`).join('')}
           </tbody>
         </table>
       </div>
     </div>
-    <!-- HOW ENGINE WORKS -->
+
+    <!-- ENGINE EXPLANATION -->
     <div style="background:var(--paper2);border:1px solid var(--bd);border-radius:12px;padding:26px 30px">
-      <div class="slabel" style="margin-bottom:8px">How the scoring engine works</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <div class="slabel" style="margin-bottom:10px">How the engine identifies conviction calls</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
         ${[
-          ['Q-Score — Quality (45% weight)','Buffett: ROE/ROCE consistency over 8 years. Graham: earnings never declined. Munger: cash conversion integrity. Banks: NPA trajectory. Non-banks: OPM stability + ROCE.'],
-          ['V-Score — Value (35% weight)','EV-MED: profit CAGR minus price CAGR — higher means earnings are outrunning price. Price pain signal: how much has stock underperformed? The bigger the gap, the bigger the opportunity.'],
-          ['M-Score — Momentum (20% weight)','FII accumulation velocity over 4 quarters. Quarterly EPS trend — is it accelerating or decelerating? Gives timing context, but never overrides quality or value.']
+          ['1. Quality Screen (Q ≥ 60)','ROE/ROCE consistency over 8 years. OPM stability. Earnings never declined. Banks: NPA trajectory. Non-banks: ROCE + OPM.'],
+          ['2. Value Screen (EV-MED ≥ +5)','Profit CAGR minus Price CAGR over 5 years. When earnings grow faster than price for years, a gap opens. That gap is the opportunity.'],
+          ['3. Conviction Score (CCS ≥ 65)','Weighted composite: Q×45% + V×35% + M×20%. Must cross 65 with quality as the anchor. A cheap bad business never qualifies.'],
+          ['4. Auto-tracked daily','When all thresholds align → call opens. When any breaks → call closes. history.json records every transition permanently.'],
         ].map(([t,d])=>`<div><div style="font-size:12px;font-weight:600;margin-bottom:5px">${t}</div><div style="font-size:12px;color:var(--ink2);line-height:1.65">${d}</div></div>`).join('')}
       </div>
     </div>
   </div>`;
 }
 
-// ─── CALLS PAGE ───────────────────────────────────────────────
+// ── CALLS PAGE ────────────────────────────────────────
 function renderCalls(){
-  const activeIds = CALLS_DATA.active.map(c=>c.id);
+  const activeCalls = HISTORY.activeCalls || [];
+  const closedCalls = HISTORY.closedCalls || [];
+
   return `<div class="pgm">
     <div style="margin-bottom:26px">
-      <div class="slabel">Investment Research</div>
-      <div class="stitle">Calls</div>
-      <div class="ssub">Each call is a structured thesis with explicit invalidation criteria. No price targets. No stop losses. A thesis exits when the fundamental story changes — not when the price moves.</div>
+      <div class="slabel">Engine Output</div>
+      <div class="stitle">Conviction Calls</div>
+      <div class="ssub">Auto-detected when a stock simultaneously passes all four thresholds. No human selection. Opens and closes based purely on data. Every transition is logged permanently.</div>
     </div>
     <div class="tabs">
-      ${[['active',`Active (${activeIds.length})`],['archived','Archive ('+CALLS_DATA.archived.length+')']].map(([k,l])=>
+      ${[['active',`Active (${activeCalls.length})`],['closed',`Closed (${closedCalls.length})`]].map(([k,l])=>
         `<button class="tbtn${callTab===k?' on':''}" onclick="setCallTab('${k}')">${l}</button>`).join('')}
     </div>
-    ${callTab==='active' ? renderActiveCalls() : renderArchivedCalls()}
+    ${callTab==='active' ? renderActiveCalls(activeCalls) : renderClosedCalls(closedCalls)}
   </div>`;
 }
 
-function renderActiveCalls(){
-  if(!CALLS_DATA.active.length) return `
+function renderActiveCalls(activeCalls){
+  if(!activeCalls.length) return `
     <div style="text-align:center;padding:80px 0">
       <div class="heronum" style="color:var(--bd2);font-size:110px">0.</div>
-      <div style="font-size:15px;color:var(--ink2);margin-top:14px;margin-bottom:6px">No active calls right now.</div>
-      <div style="font-size:13px;color:var(--ink3)">Watching ${COS_LIST.filter(c=>c.signal==='WATCH').length} situations. None have cleared the bar yet.</div>
+      <div style="font-size:15px;color:var(--ink2);margin-top:14px;margin-bottom:10px">No stocks currently pass all conviction thresholds.</div>
+      <div style="font-size:13px;color:var(--ink3);max-width:400px;margin:0 auto;line-height:1.7">
+        Thresholds: Signal=BUY · Q-Score≥60 · CCS≥65 · EV-MED≥+5<br>
+        ${COS_LIST.filter(c=>c.signal==='BUY').length} stocks are BUY signals. 
+        ${COS_LIST.filter(c=>c.qScore>=60&&c.signal==='BUY').length} also pass Q-Score≥60.<br>
+        The engine is checking all criteria daily.
+      </div>
     </div>`;
 
-  return CALLS_DATA.active.map(meta => {
+  return activeCalls.map(meta => {
     const co = INDEX[meta.id];
     if(!co) return '';
+    const scores = meta.entryScores || {};
     return `
-    <div style="margin-bottom:24px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;flex-wrap:wrap;gap:10px">
+    <div class="card" style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:10px">
         <div>
           <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap">
-            ${bdg('Active','b-active')} ${bdg(meta.contraType,'b-watching')}
-            <span style="font-family:var(--mono);font-size:10px;color:var(--ink3)">${meta.callDate}</span>
+            ${bdg('Active Call','b-call')}
+            ${bdg(co.signal,sigCls(co.signal))}
+            <span style="font-family:var(--mono);font-size:10px;color:var(--ink3)">Opened ${fmtDate(meta.entryDate)}</span>
           </div>
-          <div style="font-family:var(--serif);font-size:30px;font-weight:600;margin-bottom:3px">${co.name}</div>
+          <div style="font-family:var(--serif);font-size:28px;font-weight:600;margin-bottom:3px">${co.name}</div>
           <div style="font-size:12px;color:var(--ink2)">${co.sector} · BSE ${co.id}</div>
         </div>
-        <button onclick="goC('${co.id}')" style="padding:8px 15px;background:var(--paper2);border:1px solid var(--bd);border-radius:6px;font-size:12px;color:var(--ink)">All charts &amp; data &rarr;</button>
+        <button onclick="goC('${co.id}')" style="padding:8px 15px;background:var(--paper2);border:1px solid var(--bd);border-radius:6px;font-size:12px;color:var(--ink)">Deep dive &rarr;</button>
       </div>
-      <div class="card" style="margin-bottom:12px"><div class="slabel" style="margin-bottom:9px">The thesis</div><p class="thesis">&ldquo;${meta.thesis}&rdquo;</p></div>
-      <div class="g2" style="margin-bottom:12px">
-        <div class="card"><div class="slabel" style="color:var(--crimson);margin-bottom:7px">Contra view (steelmanned)</div><p class="body">${meta.contraView}</p></div>
-        <div class="card"><div class="slabel" style="color:var(--amber2);margin-bottom:7px">Invalidation criteria</div><p class="body">${meta.invalidation}</p><div style="margin-top:9px;font-size:11px;color:var(--ink3);border-top:1px solid var(--bd2);padding-top:7px">Any single criterion closes the call immediately.</div></div>
-      </div>
-      <div class="card">
-        <div class="slabel" style="margin-bottom:10px">Scores</div>
-        ${scoreBar('Q-Score — Quality',co.qScore,'var(--forest2)')}
-        ${scoreBar('V-Score — Value',co.vScore,'var(--navy)')}
-        ${scoreBar('M-Score — Momentum',co.mScore,'#7C3AED')}
-        <div style="background:var(--paper2);border-radius:7px;padding:10px 12px;margin-top:5px;display:flex;justify-content:space-between;align-items:center">
-          <span style="font-size:12px;color:var(--ink2)">Conviction Score (CCS)</span>
-          <div style="display:flex;gap:8px;align-items:center">
-            <span style="font-family:var(--mono);font-size:22px;font-weight:700;color:${sigC(co.signal)}">${co.ccs}</span>
-            ${bdg(co.signal,sigCls(co.signal))}
+
+      <div class="g2" style="margin-bottom:14px">
+        <div>
+          <div class="slabel" style="margin-bottom:10px">Scores at call open</div>
+          ${sb('Q-Score — Quality',scores.qScore||co.qScore,'var(--forest2)')}
+          ${sb('V-Score — Value',scores.vScore||co.vScore,'var(--navy)')}
+          ${sb('M-Score — Momentum',scores.mScore||co.mScore,'#7C3AED')}
+          <div style="background:var(--paper2);border-radius:7px;padding:10px 12px;margin-top:5px;display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:12px;color:var(--ink2)">Conviction Score (CCS)</span>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-family:var(--mono);font-size:22px;font-weight:700;color:${sigC(co.signal)}">${scores.ccs||co.ccs}</span>
+              ${bdg(co.signal,sigCls(co.signal))}
+            </div>
           </div>
         </div>
+        <div>
+          <div class="slabel" style="margin-bottom:10px">Key metrics</div>
+          <div class="g2">
+            <div class="sbox"><div class="slbl">EV-MED</div><div class="sval" style="color:var(--forest2)">${scores.evmed||co.evmed||'—'}</div><div class="ssb">Earnings vs Price</div></div>
+            <div class="sbox"><div class="slbl">ROE</div><div class="sval">${meta.roe!=null?meta.roe+'%':'—'}</div><div class="ssb">Return on equity</div></div>
+            <div class="sbox"><div class="slbl">Price CAGR 1Y</div><div class="sval" style="color:${(meta.priceCagr1Y||0)<0?'var(--crimson)':'var(--ink)'}">${meta.priceCagr1Y!=null?meta.priceCagr1Y+'%':'—'}</div><div class="ssb">Market reaction</div></div>
+            ${meta.isBank?`<div class="sbox"><div class="slbl">Gross NPA</div><div class="sval" style="color:${(meta.gnpa||5)>2?'var(--crimson)':'var(--forest2)'}">${meta.gnpa!=null?meta.gnpa+'%':'—'}</div><div class="ssb">Asset quality</div></div>`:
+            `<div class="sbox"><div class="slbl">Sector</div><div class="sval" style="font-size:13px">${co.sector}</div></div>`}
+          </div>
+          <div style="margin-top:12px;padding:10px 12px;background:var(--forestl);border-radius:7px;font-size:12px;color:var(--forest2);line-height:1.6">
+            <strong>Why this passed:</strong> All four thresholds met simultaneously — Signal=BUY, Q≥60, CCS≥65, EV-MED≥+5${meta.isBank?' and NPA controlled':''}.
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:12px 14px;background:var(--paper2);border-radius:7px;font-size:12px;color:var(--ink2)">
+        <strong>Invalidation: </strong>Call closes automatically if signal drops from BUY, Q-Score falls below 60, CCS falls below 65, or EV-MED turns negative. No manual intervention.
       </div>
     </div>`;
   }).join('');
 }
 
-function renderArchivedCalls(){
+function renderClosedCalls(closedCalls){
+  if(!closedCalls.length) return `
+    <div style="text-align:center;padding:60px 0">
+      <div style="font-size:15px;color:var(--ink2);margin-bottom:8px">No closed calls yet.</div>
+      <div style="font-size:13px;color:var(--ink3)">When an active call's stock moves out of BUY signal, it will appear here with the full transition record.</div>
+    </div>`;
+
   return `<div>
-    <div style="margin-bottom:12px;padding:10px 13px;background:var(--forestl);border-radius:7px;font-size:12px;color:var(--forest)">Complete call history with honest autopsy. This transparency is the platform's long-term credibility.</div>
-    ${CALLS_DATA.archived.map(a=>`
+    <div style="margin-bottom:14px;padding:10px 13px;background:var(--forestl);border-radius:7px;font-size:12px;color:var(--forest)">
+      Every closed call is auto-logged with entry date, exit date, scores at both points, and exit reason derived from the data.
+    </div>
+    ${[...closedCalls].reverse().map((c,i)=>`
       <div class="card" style="margin-bottom:10px">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:9px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
           <div>
-            <div style="display:flex;gap:7px;align-items:center;margin-bottom:5px">${bdg('Vindicated','b-active')} ${bdg(a.type,'b-watching')}</div>
-            <div style="font-family:var(--serif);font-size:19px;font-weight:600">${a.name}</div>
+            <div style="display:flex;gap:7px;align-items:center;margin-bottom:6px">${bdg('Closed','b-closed')}</div>
+            <div style="font-family:var(--serif);font-size:20px;font-weight:600">${c.name}</div>
+            <div style="font-size:11px;color:var(--ink3)">${c.sector} · BSE ${c.id}</div>
           </div>
           <div style="text-align:right">
-            <div style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--forest2)">${a.ret}</div>
-            <div style="font-size:10px;color:var(--ink3)">${a.opened} → ${a.closed}</div>
+            <div style="font-family:var(--mono);font-size:11px;color:var(--ink3)">${fmtDate(c.entryDate)} → ${fmtDate(c.exitDate)}</div>
+            ${c.exitScores?.signal ? bdg(c.exitScores.signal,sigCls(c.exitScores.signal)) : ''}
           </div>
         </div>
-        <div class="body" style="border-top:1px solid var(--bd2);padding-top:8px">${a.notes}</div>
+        <div class="g2" style="margin-bottom:10px">
+          <div class="sbox"><div class="slbl">CCS at entry</div><div class="sval">${c.entryScores?.ccs||'—'}</div></div>
+          <div class="sbox"><div class="slbl">CCS at exit</div><div class="sval" style="color:${(c.exitScores?.ccs||0)<(c.entryScores?.ccs||0)?'var(--crimson)':'var(--forest2)'}">${c.exitScores?.ccs||'—'}</div></div>
+          <div class="sbox"><div class="slbl">EV-MED at entry</div><div class="sval">${c.entryScores?.evmed||'—'}</div></div>
+          <div class="sbox"><div class="slbl">Price CAGR 1Y at exit</div><div class="sval" style="color:${(c.priceCagr1YAtExit||0)>0?'var(--forest2)':'var(--crimson)'}">${c.priceCagr1YAtExit!=null?c.priceCagr1YAtExit+'%':'—'}</div></div>
+        </div>
+        <div style="font-size:12px;color:var(--ink2);padding:9px 11px;background:var(--paper2);border-radius:7px">
+          <strong>Exit reason: </strong>${c.exitReason||'Signal changed'}
+        </div>
       </div>`).join('')}
   </div>`;
 }
 
-// ─── UNIVERSE PAGE ────────────────────────────────────────────
-function getFiltered(){
-  return COS_LIST.filter(c => {
-    if(uniFilter.search && !c.name.toLowerCase().includes(uniFilter.search.toLowerCase()) && !c.id.includes(uniFilter.search)) return false;
-    if(uniFilter.signal && c.signal !== uniFilter.signal) return false;
-    if(uniFilter.sector && c.sector !== uniFilter.sector) return false;
+// ── UNIVERSE PAGE ─────────────────────────────────────
+function renderUniverse(){
+  const filtered = COS_LIST.filter(c=>{
+    if(uniF.q&&!c.name.toLowerCase().includes(uniF.q.toLowerCase())&&!c.id.includes(uniF.q))return false;
+    if(uniF.signal&&c.signal!==uniF.signal)return false;
+    if(uniF.sector&&c.sector!==uniF.sector)return false;
     return true;
   });
-}
-
-function renderUniverse(){
-  const filtered = getFiltered();
-  const total = filtered.length;
-  const totalPages = Math.ceil(total / PER_PAGE);
-  const slice = filtered.slice((uniPage-1)*PER_PAGE, uniPage*PER_PAGE);
+  const totalPages = Math.ceil(filtered.length/PER);
+  const slice = filtered.slice((uniPage-1)*PER, uniPage*PER);
   const sectors = [...new Set(COS_LIST.map(c=>c.sector))].sort();
 
   return `<div class="page">
     <div style="margin-bottom:22px">
-      <div class="slabel">Research Platform</div>
+      <div class="slabel">Research Database</div>
       <div class="stitle">The Universe</div>
-      <div class="ssub">${COS_LIST.length.toLocaleString()} companies in coverage. Scores computed daily from live BSE data. Click any row for the full deep-dive.</div>
+      <div class="ssub">${COS_LIST.length.toLocaleString()} companies. Scores computed daily from live BSE data. Click any row for charts and full analysis.</div>
     </div>
-    <div class="g4" style="margin-bottom:18px">
-      ${[['BUY signals',COS_LIST.filter(c=>c.signal==='BUY').length,'var(--forest2)'],
+    <div class="g4" style="margin-bottom:16px">
+      ${[['BUY',COS_LIST.filter(c=>c.signal==='BUY').length,'var(--forest2)'],
          ['HOLD',COS_LIST.filter(c=>c.signal==='HOLD').length,'var(--navy)'],
          ['WATCH',COS_LIST.filter(c=>c.signal==='WATCH').length,'var(--amber2)'],
          ['AVOID',COS_LIST.filter(c=>c.signal==='AVOID').length,'var(--crimson)']
-      ].map(([l,v,c])=>`<div class="sbox"><div class="slbl">${l}</div><div class="sval" style="color:${c}">${v}</div></div>`).join('')}
+      ].map(([l,v,c])=>`<div class="sbox"><div class="slbl">${l} signals</div><div class="sval" style="color:${c}">${v}</div></div>`).join('')}
     </div>
-    <div class="srch">
-      <input class="sinp" id="usrch" placeholder="Search company or BSE code..." value="${uniFilter.search}" oninput="uniFilter.search=this.value;uniPage=1;r()">
-      <select class="ssel" onchange="uniFilter.signal=this.value;uniPage=1;r()">
-        <option value="">All Signals</option>
-        ${['BUY','HOLD','WATCH','AVOID'].map(s=>`<option value="${s}"${uniFilter.signal===s?' selected':''}>${s}</option>`).join('')}
+    <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
+      <input class="sinp" placeholder="Search name or BSE code..." value="${uniF.q}" oninput="uniF.q=this.value;uniPage=1;r()">
+      <select class="ssel" onchange="uniF.signal=this.value;uniPage=1;r()">
+        <option value="">All signals</option>
+        ${['BUY','HOLD','WATCH','AVOID'].map(s=>`<option value="${s}"${uniF.signal===s?' selected':''}>${s}</option>`).join('')}
       </select>
-      <select class="ssel" onchange="uniFilter.sector=this.value;uniPage=1;r()">
-        <option value="">All Sectors</option>
-        ${sectors.map(s=>`<option value="${s}"${uniFilter.sector===s?' selected':''}>${s}</option>`).join('')}
+      <select class="ssel" onchange="uniF.sector=this.value;uniPage=1;r()">
+        <option value="">All sectors</option>
+        ${sectors.map(s=>`<option value="${s}"${uniF.sector===s?' selected':''}>${s}</option>`).join('')}
       </select>
-      <span style="font-size:12px;color:var(--ink3);align-self:center">${total.toLocaleString()} results</span>
+      <span style="font-size:12px;color:var(--ink3)">${filtered.length.toLocaleString()} results</span>
     </div>
-    <div class="card" style="padding:0;overflow:hidden;margin-bottom:16px">
+    <div class="card" style="padding:0;overflow:hidden;margin-bottom:14px">
       <div style="overflow-x:auto">
         <table class="tbl">
           <thead><tr>
             <th>Company</th><th>Sector</th>
-            <th>Q-Score<br><small style="opacity:.6">Quality</small></th>
-            <th>V-Score<br><small style="opacity:.6">Value</small></th>
-            <th>M-Score<br><small style="opacity:.6">Momentum</small></th>
-            <th>CCS</th><th>Signal</th>
-            <th>EV-MED</th><th>Profit CAGR 5Y</th><th>ROE</th>
+            <th>Q-Score</th><th>V-Score</th><th>M-Score</th><th>CCS</th>
+            <th>Signal</th><th>EV-MED</th><th>Profit CAGR 5Y</th><th>ROE</th><th>Price 1Y</th>
           </tr></thead>
           <tbody>
           ${slice.map((c,i)=>`
@@ -536,98 +550,63 @@ function renderUniverse(){
               <td><b style="color:#7C3AED">${c.mScore}</b></td>
               <td><b style="font-size:16px;color:${sigC(c.signal)}">${c.ccs}</b></td>
               <td>${bdg(c.signal,sigCls(c.signal))}</td>
-              <td><span style="font-family:var(--mono);font-weight:600;font-size:13px;color:${c.evmed&&c.evmed.startsWith('-')?'var(--crimson)':'var(--forest2)'}">${c.evmed||'—'}</span></td>
+              <td><span style="font-family:var(--mono);font-weight:600;color:${c.evmed&&c.evmed.toString().startsWith('-')?'var(--crimson)':'var(--forest2)'}">${c.evmed||'—'}</span></td>
               <td><span style="font-family:var(--mono)">${c.pcagr5!=null?c.pcagr5+'%':'—'}</span></td>
               <td><span style="font-family:var(--mono)">${c.roe!=null?c.roe+'%':'—'}</span></td>
+              <td><span style="font-family:var(--mono);color:${(c.pricagr1||0)<0?'var(--crimson)':'var(--forest2)'}">${c.pricagr1!=null?c.pricagr1+'%':'—'}</span></td>
             </tr>`).join('')}
           </tbody>
         </table>
       </div>
     </div>
-    ${totalPages > 1 ? `<div class="pag">
+    ${totalPages>1?`<div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
       <button class="pbtn" onclick="uniPage=Math.max(1,uniPage-1);r()" ${uniPage===1?'disabled':''}>← Prev</button>
-      ${Array.from({length:Math.min(7,totalPages)},(_, i)=>{
-        const p = uniPage <= 4 ? i+1 : uniPage+i-3;
-        if(p<1||p>totalPages) return '';
-        return `<button class="pbtn${p===uniPage?' on':''}" onclick="uniPage=${p};r()">${p}</button>`;
-      }).join('')}
+      ${Array.from({length:Math.min(7,totalPages)},(_,i)=>{const p=Math.max(1,Math.min(totalPages-6,uniPage-3))+i;return p<1||p>totalPages?'':`<button class="pbtn${p===uniPage?' on':''}" onclick="uniPage=${p};r()">${p}</button>`;}).join('')}
       <button class="pbtn" onclick="uniPage=Math.min(totalPages,uniPage+1);r()" ${uniPage===totalPages?'disabled':''}>Next →</button>
-      <span style="font-size:11px;color:var(--ink3);margin-left:8px">Page ${uniPage} of ${totalPages}</span>
-    </div>` : ''}
+      <span style="font-size:11px;color:var(--ink3);align-self:center">Page ${uniPage} of ${totalPages}</span>
+    </div>`:''}
   </div>`;
 }
 
-// ─── COMPANY PAGE ─────────────────────────────────────────────
+// ── COMPANY PAGE ──────────────────────────────────────
 function renderCompany(){
   const co = INDEX[coId];
-  if(!co) return '<div class="page"><p>Loading...</p></div>';
-  const full = coData; // may be null while loading
-
-  // Parse full data helpers
-  const pl = full?.profitLoss?.data || {};
-  const cf = full?.cashFlow?.data || {};
-  const qs = full?.quarters?.data || {};
-  const ra = full?.ratios?.data || {};
-  const sh = full?.shareholding?.data || {};
-  const bs = full?.balanceSheet?.data || {};
-  const docs = full?.documents || {};
-  const cag = full?.CAGRs || {};
-  const scores = full?._scores || co;
-  const isBank = scores.isBank;
-
-  const annKeys = full?.profitLoss?.headers || [];
-  const qKeys = full?.quarters?.headers || [];
-  const shKeys = full?.shareholding?.headers?.filter(h=>h&&h.trim()) || [];
-
-  // Quarterly arrays
-  const qEPS = qKeys.map(h=>parseNum(qs['EPS in Rs']?.[h]));
-  const qOPM = isBank ? qKeys.map(h=>parseNum(qs['Financing Margin %']?.[h])) : qKeys.map(h=>parseNum(qs['OPM %']?.[h]));
-  const qGNPA = isBank ? qKeys.map(h=>parseNum(qs['Gross NPA %']?.[h])) : [];
-  const qNNPA = isBank ? qKeys.map(h=>parseNum(qs['Net NPA %']?.[h])) : [];
-
-  // Annual arrays
-  const annRev = annKeys.map(y=>parseNum((isBank?pl['Revenue']:pl['Sales'])?.[y]));
-  const annNP = annKeys.map(y=>parseNum(pl['Net Profit']?.[y]));
-  const annEPS = annKeys.map(y=>parseNum(pl['EPS in Rs']?.[y]));
-  const annROE = annKeys.map(y=>parseNum(ra['ROE %']?.[y]));
-
-  // CF
-  const cfKeys = full?.cashFlow?.headers || [];
-  const cfoArr = cfKeys.map(y=>parseNum(cf['Cash from Operating Activity']?.[y]));
-  const fcfArr = cfKeys.map(y=>parseNum(cf['Free Cash Flow']?.[y]));
-
-  // Shareholding
-  const shFII = shKeys.map(h=>parseNum(sh['FIIs']?.[h]));
-  const shDII = shKeys.map(h=>parseNum(sh['DIIs']?.[h]));
-  const shProm = shKeys.map(h=>parseNum(sh['Promoters']?.[h]));
-
-  const latEPS = qEPS.filter(v=>v!=null).slice(-1)[0];
-  const prevEPS = qEPS.filter(v=>v!=null).slice(-5,-4)[0];
-  const epsYoY = (latEPS!=null&&prevEPS!=null&&prevEPS!==0) ? ((latEPS-prevEPS)/Math.abs(prevEPS)*100).toFixed(1)+'%' : '—';
-  const callMeta = CALLS_DATA.active.find(c=>c.id===coId);
+  if(!co)return '<div class="page"><p>Loading...</p></div>';
+  const full = coData;
+  const pl=full?.profitLoss?.data||{};
+  const cf=full?.cashFlow?.data||{};
+  const qs=full?.quarters?.data||{};
+  const ra=full?.ratios?.data||{};
+  const sh=full?.shareholding?.data||{};
+  const cag=full?.CAGRs||{};
+  const isBank=full?._scores?.isBank||co.isBank||false;
+  const annKeys=full?.profitLoss?.headers||[];
+  const qKeys=full?.quarters?.headers||[];
+  const shKeys=(full?.shareholding?.headers||[]).filter(h=>h&&h.trim());
+  const cfKeys=full?.cashFlow?.headers||[];
+  const isCall=(HISTORY.activeCalls||[]).some(c=>c.id===coId);
 
   return `<div class="page">
-    <button onclick="go('universe')" style="font-size:12px;color:var(--ink3);background:none;padding:0;margin-bottom:16px;display:flex;align-items:center;gap:4px">&larr; Back to Universe</button>
-    <!-- HEADER -->
+    <button onclick="go('universe')" style="font-size:12px;color:var(--ink3);background:none;padding:0;margin-bottom:16px">&larr; Back to Universe</button>
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:12px">
       <div>
         <div style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap">
-          ${bdg(co.signal,sigCls(co.signal)+' ')} 
-          ${callMeta?bdg('Active Call','b-active'):''}
+          ${bdg(co.signal,sigCls(co.signal)+' ')}
+          ${isCall?bdg('Active Call','b-call'):''}
           <span style="font-family:var(--mono);font-size:10px;color:var(--ink3)">BSE ${co.id}</span>
-          ${!full?'<span style="font-size:11px;color:var(--ink3)">Loading detailed data...</span>':''}
+          ${!full?`<span style="font-size:11px;color:var(--ink3)">Loading detailed data...</span>`:''}
         </div>
         <div style="font-family:var(--serif);font-size:36px;font-weight:600;letter-spacing:-.02em;margin-bottom:3px">${co.name}</div>
         <div style="font-size:12px;color:var(--ink2)">${co.sector}</div>
       </div>
       <div class="g2" style="min-width:240px">
-        ${[['Q-Score',co.qScore+'/100'],['V-Score',co.vScore+'/100'],['M-Score',co.mScore+'/100'],['CCS',co.ccs+'/100']].map(([l,v])=>`<div class="sbox"><div class="slbl">${l}</div><div class="sval">${v}</div></div>`).join('')}
+        ${[['CCS Score',co.ccs+'/100'],['Q-Score',co.qScore+'/100'],['V-Score',co.vScore+'/100'],['M-Score',co.mScore+'/100']].map(([l,v])=>`<div class="sbox"><div class="slbl">${l}</div><div class="sval">${v}</div></div>`).join('')}
       </div>
     </div>
-    <!-- SCORE BAR -->
     <div class="card" style="margin-bottom:20px">
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr 190px;gap:18px;align-items:center">
-        ${[['Q-Score — Quality',co.qScore,'var(--forest2)'],['V-Score — Value',co.vScore,'var(--navy)'],['M-Score — Momentum',co.mScore,'#7C3AED']].map(([l,v,c])=>`<div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:11px;color:var(--ink2)">${l}</span><span style="font-family:var(--mono);font-weight:600;color:${c}">${v}</span></div><div class="strk"><div class="sfil" style="width:${v}%;background:${c}"></div></div></div>`).join('')}
+        ${[['Q-Score — Quality',co.qScore,'var(--forest2)'],['V-Score — Value',co.vScore,'var(--navy)'],['M-Score — Momentum',co.mScore,'#7C3AED']].map(([l,v,c])=>`
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:11px;color:var(--ink2)">${l}</span><span style="font-family:var(--mono);font-weight:600;color:${c}">${v}</span></div><div class="strk"><div class="sfil" style="width:${v}%;background:${c}"></div></div></div>`).join('')}
         <div style="text-align:center;border-left:1px solid var(--bd2);padding-left:18px">
           <div style="font-size:10px;color:var(--ink3);margin-bottom:3px">Conviction Score</div>
           <div style="font-family:var(--serif);font-size:34px;font-weight:600;color:${sigC(co.signal)};line-height:1;margin-bottom:5px">${co.ccs}</div>
@@ -635,46 +614,49 @@ function renderCompany(){
         </div>
       </div>
     </div>
-    <!-- TABS -->
     <div class="tabs">
       ${[['overview','Overview'],['financials','Financials'],['ownership','Ownership'],['documents','Documents']].map(([k,l])=>
         `<button class="tbtn${coTab===k?' on':''}" onclick="setCoTab('${k}')">${l}</button>`).join('')}
     </div>
-    ${coTab==='overview' ? renderCoOv(co,full,scores,isBank,qKeys,qEPS,qOPM,qGNPA,qNNPA,latEPS,epsYoY,callMeta,cag) : ''}
-    ${coTab==='financials' ? renderCoFin(co,full,annKeys,annRev,annNP,annEPS,annROE,pl,ra,isBank,cfKeys,cfoArr,fcfArr) : ''}
-    ${coTab==='ownership' ? renderCoOwn(co,shKeys,shFII,shDII,shProm,sh) : ''}
-    ${coTab==='documents' ? renderCoDocs(docs) : ''}
+    ${coTab==='overview'?renderCoOv(co,full,isBank,qKeys,qs,pl,ra,cag,isCall):''}
+    ${coTab==='financials'?renderCoFin(co,full,annKeys,pl,ra,cf,cfKeys,isBank):''}
+    ${coTab==='ownership'?renderCoOwn(co,shKeys,sh):''}
+    ${coTab==='documents'?renderCoDocs(full?.documents||{}):''}
   </div>`;
 }
 
-function renderCoOv(co,full,scores,isBank,qKeys,qEPS,qOPM,qGNPA,qNNPA,latEPS,epsYoY,callMeta,cag){
-  if(!full) return '<p class="body" style="padding:20px 0">Loading detailed charts...</p>';
-  const latGNPA = qGNPA.filter(v=>v!=null).slice(-1)[0];
-  const latNNPA = qNNPA.filter(v=>v!=null).slice(-1)[0];
-  const latOPM = qOPM.filter(v=>v!=null).slice(-1)[0];
-  const pros = co.pros||full?.analysis?.pros?.slice(0,4)||[];
-  const cons = co.cons||full?.analysis?.cons?.slice(0,4)||[];
+function renderCoOv(co,full,isBank,qKeys,qs,pl,ra,cag,isCall){
+  if(!full)return'<p class="body" style="padding:20px 0">Loading data...</p>';
+  const qEPS=qKeys.map(h=>pn(qs['EPS in Rs']?.[h]));
+  const qOPM=isBank?qKeys.map(h=>pn(qs['Financing Margin %']?.[h])):qKeys.map(h=>pn(qs['OPM %']?.[h]));
+  const qGNPA=isBank?qKeys.map(h=>pn(qs['Gross NPA %']?.[h])):[];
+  const qNNPA=isBank?qKeys.map(h=>pn(qs['Net NPA %']?.[h])):[];
+  const latEPS=qEPS.filter(v=>v!=null).slice(-1)[0];
+  const prevEPS=qEPS.filter(v=>v!=null).slice(-5,-4)[0];
+  const epsYoY=(latEPS!=null&&prevEPS!=null&&prevEPS!==0)?((latEPS-prevEPS)/Math.abs(prevEPS)*100).toFixed(1)+'%':'—';
+  const pros=full?.analysis?.pros||[];
+  const cons=full?.analysis?.cons||[];
+  const callRecord=(HISTORY.activeCalls||[]).find(c=>c.id===co.id);
 
-  return `
-  <div class="g2" style="margin-bottom:14px">
+  return `<div class="g2" style="margin-bottom:14px">
     <div class="card">
       <div class="slabel" style="margin-bottom:8px">Quarterly EPS — ₹</div>
       <div style="position:relative;height:140px"><canvas id="co-qeps"></canvas></div>
       <div class="g3" style="margin-top:10px">
         <div class="sbox"><div class="slbl">Latest EPS</div><div class="sval">₹${latEPS||'—'}</div></div>
         <div class="sbox"><div class="slbl">YoY Growth</div><div class="sval" style="color:${parseFloat(epsYoY)>0?'var(--forest2)':'var(--crimson)'}">${epsYoY}</div></div>
-        <div class="sbox"><div class="slbl">EV-MED</div><div class="sval" style="color:${co.evmed&&co.evmed.startsWith('-')?'var(--crimson)':'var(--forest2)'}">${co.evmed||'—'}</div></div>
+        <div class="sbox"><div class="slbl">EV-MED</div><div class="sval" style="color:${co.evmed&&co.evmed.toString().startsWith('-')?'var(--crimson)':'var(--forest2)'}">${co.evmed||'—'}</div></div>
       </div>
     </div>
     <div class="card">
       <div class="slabel" style="margin-bottom:8px">${isBank?'NPA Trend — %':'Operating Margin — %'}</div>
       <div style="position:relative;height:140px"><canvas id="co-margin"></canvas></div>
-      ${isBank ? `<div class="g2" style="margin-top:10px">
-        <div class="sbox" style="background:var(--amberl)"><div class="slbl" style="color:var(--amber2)">Gross NPA</div><div class="sval" style="color:var(--amber2)">${latGNPA!=null?latGNPA+'%':'—'}</div></div>
-        <div class="sbox" style="background:var(--forestl)"><div class="slbl" style="color:var(--forest)">Net NPA</div><div class="sval" style="color:var(--forest)">${latNNPA!=null?latNNPA+'%':'—'}</div></div>
-      </div>` : `<div class="g2" style="margin-top:10px">
-        <div class="sbox"><div class="slbl">Latest OPM</div><div class="sval">${latOPM!=null?latOPM+'%':'—'}</div></div>
-        <div class="sbox"><div class="slbl">EV-MED Signal</div><div class="sval" style="color:${co.evmed&&co.evmed.startsWith('-')?'var(--crimson)':'var(--forest2)'}">${co.evmed||'—'}</div></div>
+      ${isBank?`<div class="g2" style="margin-top:10px">
+        <div class="sbox" style="background:var(--amberl)"><div class="slbl" style="color:var(--amber2)">Gross NPA</div><div class="sval" style="color:var(--amber2)">${co.gnpa!=null?co.gnpa+'%':'—'}</div></div>
+        <div class="sbox" style="background:var(--forestl)"><div class="slbl" style="color:var(--forest)">Net NPA</div><div class="sval" style="color:var(--forest)">${qNNPA.filter(v=>v!=null).slice(-1)[0]!=null?qNNPA.filter(v=>v!=null).slice(-1)[0]+'%':'—'}</div></div>
+      </div>`:`<div class="g2" style="margin-top:10px">
+        <div class="sbox"><div class="slbl">Latest OPM</div><div class="sval">${qOPM.filter(v=>v!=null).slice(-1)[0]!=null?qOPM.filter(v=>v!=null).slice(-1)[0]+'%':'—'}</div></div>
+        <div class="sbox"><div class="slbl">ROE</div><div class="sval">${co.roe!=null?co.roe+'%':'—'}</div></div>
       </div>`}
     </div>
   </div>
@@ -688,31 +670,40 @@ function renderCoOv(co,full,scores,isBank,qKeys,qEPS,qOPM,qGNPA,qNNPA,latEPS,eps
         </div>`).join('')}
     </div>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr${callMeta?' 1fr':''};gap:12px">
+  <div style="display:grid;grid-template-columns:1fr 1fr${isCall?' 1fr':''};gap:12px">
     <div class="card">
       <div class="slabel" style="color:var(--forest2);margin-bottom:9px">Strengths</div>
-      ${pros.map(p=>`<div style="display:flex;gap:6px;margin-bottom:8px;font-size:12px;line-height:1.55"><span style="color:var(--forest2);flex-shrink:0">✓</span>${p}</div>`).join('')}
+      ${pros.map(p=>`<div style="display:flex;gap:6px;margin-bottom:8px;font-size:12px;line-height:1.55"><span style="color:var(--forest2);flex-shrink:0">✓</span>${p}</div>`).join('') || '<div style="font-size:12px;color:var(--ink3)">Data loading...</div>'}
     </div>
     <div class="card">
       <div class="slabel" style="color:var(--crimson);margin-bottom:9px">Risks &amp; Concerns</div>
-      ${cons.map(c=>`<div style="display:flex;gap:6px;margin-bottom:8px;font-size:12px;line-height:1.55"><span style="color:var(--crimson);flex-shrink:0">⚠</span>${c}</div>`).join('')}
+      ${cons.map(c=>`<div style="display:flex;gap:6px;margin-bottom:8px;font-size:12px;line-height:1.55"><span style="color:var(--crimson);flex-shrink:0">⚠</span>${c}</div>`).join('') || '<div style="font-size:12px;color:var(--ink3)">Data loading...</div>'}
     </div>
-    ${callMeta?`<div class="card" style="background:var(--ink);border-color:var(--ink)">
-      <div style="font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:9px">Active Call · ${callMeta.callDate}</div>
-      <p style="font-family:var(--serif);font-style:italic;font-size:13px;line-height:1.85;color:rgba(255,255,255,.8);margin-bottom:9px">&ldquo;${callMeta.thesis.substring(0,240)}...&rdquo;</p>
-      <div style="font-size:10px;color:rgba(255,255,255,.3)">Horizon: ${callMeta.horizon} · No price targets.</div>
+    ${isCall&&callRecord?`<div class="card" style="background:var(--ink);border-color:var(--ink)">
+      <div style="font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:9px">Active Call — auto-detected ${fmtDate(callRecord.entryDate)}</div>
+      <div class="g2" style="margin-bottom:12px">
+        <div style="padding:8px;background:rgba(255,255,255,.06);border-radius:6px"><div style="font-size:10px;color:rgba(255,255,255,.4);margin-bottom:2px">CCS at open</div><div style="font-family:var(--mono);font-weight:700;color:#22C55E">${callRecord.entryScores?.ccs||'—'}</div></div>
+        <div style="padding:8px;background:rgba(255,255,255,.06);border-radius:6px"><div style="font-size:10px;color:rgba(255,255,255,.4);margin-bottom:2px">EV-MED at open</div><div style="font-family:var(--mono);font-weight:700;color:#22C55E">${callRecord.entryScores?.evmed||'—'}</div></div>
+      </div>
+      <div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.65">All thresholds met: Signal=BUY · Q≥60 · CCS≥65 · EV-MED≥+5. Will auto-close when any threshold breaks.</div>
     </div>`:''}
   </div>`;
 }
 
-function renderCoFin(co,full,annKeys,annRev,annNP,annEPS,annROE,pl,ra,isBank,cfKeys,cfoArr,fcfArr){
-  if(!full) return '<p class="body" style="padding:20px 0">Loading financial data...</p>';
-  const opmArr = annKeys.map(y=>parseNum(pl['OPM %']?.[y]));
-  const divArr = annKeys.map(y=>parseNum(pl['Dividend Payout %']?.[y]));
-  const fpArr = isBank ? annKeys.map(y=>parseNum(pl['Financing Margin %']?.[y])) : [];
+function renderCoFin(co,full,annKeys,pl,ra,cf,cfKeys,isBank){
+  if(!full)return'<p class="body" style="padding:20px 0">Loading...</p>';
+  const annRev=annKeys.map(y=>pn((isBank?pl['Revenue']:pl['Sales'])?.[y]));
+  const annNP=annKeys.map(y=>pn(pl['Net Profit']?.[y]));
+  const annEPS=annKeys.map(y=>pn(pl['EPS in Rs']?.[y]));
+  const annROE=annKeys.map(y=>pn(ra['ROE %']?.[y]));
+  const annOPM=annKeys.map(y=>pn(pl['OPM %']?.[y]));
+  const annFM=annKeys.map(y=>pn(pl['Financing Margin %']?.[y]));
+  const annDiv=annKeys.map(y=>pn(pl['Dividend Payout %']?.[y]));
+  const cfoArr=cfKeys.map(y=>pn(cf['Cash from Operating Activity']?.[y]));
+  const fcfArr=cfKeys.map(y=>pn(cf['Free Cash Flow']?.[y]));
+  const disp=k=>k.replace('Mar ','FY');
 
-  return `
-  <div class="g2" style="margin-bottom:14px">
+  return `<div class="g2" style="margin-bottom:14px">
     <div class="card">
       <div class="slabel" style="margin-bottom:8px">${isBank?'Revenue':'Sales'} &amp; Net Profit — ₹ Cr</div>
       <div style="position:relative;height:170px"><canvas id="co-revnp"></canvas></div>
@@ -727,19 +718,13 @@ function renderCoFin(co,full,annKeys,annRev,annNP,annEPS,annROE,pl,ra,isBank,cfK
     </div>
   </div>
   <div class="card">
-    <div class="slabel" style="margin-bottom:12px">Annual P&amp;L Summary — ₹ Cr</div>
+    <div class="slabel" style="margin-bottom:12px">Annual P&amp;L Summary</div>
     <div style="overflow-x:auto">
       <table class="tbl">
-        <thead><tr><th>Metric</th>${annKeys.map(y=>`<th style="text-align:right">${y.replace('Mar ','FY')}</th>`).join('')}</tr></thead>
+        <thead><tr><th>Metric</th>${annKeys.map(y=>`<th style="text-align:right">${disp(y)}</th>`).join('')}</tr></thead>
         <tbody>
-          ${[
-            [isBank?'Revenue':'Sales',annRev,'cr'],
-            ['Net Profit',annNP,'cr'],
-            ['EPS ₹',annEPS,'eps'],
-            isBank?['Fin. Margin %',fpArr,'pct']:['OPM %',opmArr,'pct'],
-            ['ROE %',annROE,'pct'],
-            ['Div Payout %',divArr,'pct'],
-          ].map(([l,d,t],ri)=>`<tr style="background:${ri%2===0?'var(--card)':'#FDFCF8'}">
+          ${[[isBank?'Revenue':'Sales',annRev,'cr'],['Net Profit',annNP,'cr'],['EPS ₹',annEPS,'eps'],isBank?['Fin. Margin %',annFM,'pct']:['OPM %',annOPM,'pct'],['ROE %',annROE,'pct'],['Div Payout %',annDiv,'pct']].map(([l,d,t],ri)=>`
+          <tr style="background:${ri%2===0?'var(--card)':'#FDFCF8'}">
             <td style="font-weight:500;color:var(--ink2)">${l}</td>
             ${(d||[]).map(v=>`<td style="text-align:right;font-family:var(--mono);font-size:11px;color:${v==null?'var(--ink3)':v<0?'var(--crimson)':'var(--ink)'}">${v==null?'—':t==='cr'?fmtCr(v):t==='eps'?'₹'+v:v+'%'}</td>`).join('')}
           </tr>`).join('')}
@@ -749,26 +734,28 @@ function renderCoFin(co,full,annKeys,annRev,annNP,annEPS,annROE,pl,ra,isBank,cfK
   </div>`;
 }
 
-function renderCoOwn(co,shKeys,shFII,shDII,shProm,sh){
+function renderCoOwn(co,shKeys,sh){
+  const shFII=shKeys.map(h=>pn(sh['FIIs']?.[h]));
+  const shDII=shKeys.map(h=>pn(sh['DIIs']?.[h]));
+  const shProm=shKeys.map(h=>pn(sh['Promoters']?.[h]));
   const latFII=shFII.filter(v=>v!=null).slice(-1)[0];
-  const latDII=shDII.filter(v=>v!=null).slice(-1)[0];
-  const latProm=shProm.filter(v=>v!=null).slice(-1)[0];
   const f0=shFII.filter(v=>v!=null)[0];
+  const latDII=shDII.filter(v=>v!=null).slice(-1)[0];
   const d0=shDII.filter(v=>v!=null)[0];
+  const latProm=shProm.filter(v=>v!=null).slice(-1)[0];
   const p0=shProm.filter(v=>v!=null)[0];
-  const delta=(a,b)=>{if(a==null||b==null)return'—';const d=(a-b).toFixed(2);return`<span style="color:${d>0?'var(--forest2)':'var(--crimson)'}">${d>0?'+':''}${d}%</span>`};
+  const delta=(a,b)=>{if(a==null||b==null)return'—';const d=(a-b).toFixed(2);return`<span style="color:${d>0?'var(--forest2)':'var(--crimson)'}">${d>0?'+':''}${d}%</span>`;};
 
-  return `
-  <div class="g2" style="margin-bottom:14px">
+  return `<div class="g2" style="margin-bottom:14px">
     <div class="card">
       <div class="slabel" style="margin-bottom:8px">Institutional Ownership — %</div>
       <div style="position:relative;height:160px"><canvas id="co-own"></canvas></div>
-      <div style="display:flex;gap:14px;margin-top:10px;font-size:11px">
-        ${[['FII','#1E3A8A'],['DII','#0A4A2E'],['Promoter','#7C3AED']].map(([l,c])=>`<span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:3px;background:${c};border-radius:2px;display:inline-block"></span><span style="color:var(--ink3)">${l}</span></span>`).join('')}
+      <div style="display:flex;gap:14px;margin-top:10px">
+        ${[['FII','#1E3A8A'],['DII','#0A4A2E'],['Promoter','#7C3AED']].map(([l,c])=>`<span style="display:flex;align-items:center;gap:4px;font-size:11px"><span style="width:10px;height:3px;background:${c};border-radius:2px;display:inline-block"></span><span style="color:var(--ink3)">${l}</span></span>`).join('')}
       </div>
     </div>
     <div class="card">
-      <div class="slabel" style="margin-bottom:12px">Latest vs 10Q Ago</div>
+      <div class="slabel" style="margin-bottom:12px">Latest vs earliest available</div>
       ${[['FII',latFII,f0,'#1E3A8A'],['DII',latDII,d0,'#0A4A2E'],['Promoter',latProm,p0,'#7C3AED']].map(([l,v,prev,c])=>`
         <div style="margin-bottom:12px">
           <div style="display:flex;justify-content:space-between;margin-bottom:3px">
@@ -778,7 +765,7 @@ function renderCoOwn(co,shKeys,shFII,shDII,shProm,sh){
           <div class="strk" style="height:5px"><div class="sfil" style="width:${v||0}%;background:${c};opacity:.75"></div></div>
         </div>`).join('')}
       <div style="padding:8px 10px;background:var(--paper2);border-radius:7px;font-size:12px;color:var(--ink2)">
-        <strong>FII signal: </strong>${delta(latFII,f0)} — ${latFII>f0?`<span style="color:var(--forest2)">Accumulation</span>`:`<span style="color:var(--crimson)">Distribution</span>`}
+        <strong>FII signal: </strong>${delta(latFII,f0)} — ${(latFII||0)>(f0||0)?`<span style="color:var(--forest2)">Accumulation</span>`:`<span style="color:var(--crimson)">Distribution</span>`}
       </div>
     </div>
   </div>
@@ -787,15 +774,14 @@ function renderCoOwn(co,shKeys,shFII,shDII,shProm,sh){
     <div style="overflow-x:auto">
       <table class="tbl">
         <thead><tr><th>Quarter</th><th style="text-align:right">FII %</th><th style="text-align:right">DII %</th><th style="text-align:right">Promoter %</th><th style="text-align:right">FII ▲▼</th></tr></thead>
-        <tbody>
-          ${shKeys.map((h,i)=>`<tr style="background:${i%2===0?'var(--card)':'#FDFCF8'}">
+        <tbody>${shKeys.map((h,i)=>`
+          <tr style="background:${i%2===0?'var(--card)':'#FDFCF8'}">
             <td style="font-family:var(--mono);font-size:11px">${h}</td>
             <td style="text-align:right;font-family:var(--mono);font-size:12px;color:${i>0&&shFII[i]!=null&&shFII[i-1]!=null?(shFII[i]>shFII[i-1]?'var(--forest2)':'var(--crimson)'):'var(--ink)'}">${shFII[i]!=null?shFII[i]+'%':'—'}</td>
             <td style="text-align:right;font-family:var(--mono);font-size:12px">${shDII[i]!=null?shDII[i]+'%':'—'}</td>
             <td style="text-align:right;font-family:var(--mono);font-size:12px">${shProm[i]!=null?shProm[i]+'%':'—'}</td>
-            <td style="text-align:right;font-size:12px">${i>0&&shFII[i]!=null&&shFII[i-1]!=null?(shFII[i]>shFII[i-1]?'<span style="color:var(--forest2)">▲</span>':'<span style="color:var(--crimson)">▼</span>'):'—'}</td>
-          </tr>`).join('')}
-        </tbody>
+            <td style="text-align:right">${i>0&&shFII[i]!=null&&shFII[i-1]!=null?(shFII[i]>shFII[i-1]?'<span style="color:var(--forest2)">▲</span>':'<span style="color:var(--crimson)">▼</span>'):'—'}</td>
+          </tr>`).join('')}</tbody>
       </table>
     </div>
   </div>`;
@@ -803,138 +789,150 @@ function renderCoOwn(co,shKeys,shFII,shDII,shProm,sh){
 
 function renderCoDocs(docs){
   const dl=(href,label,icon)=>`<a href="${href}" target="_blank" class="dl"><span style="font-size:14px;opacity:.4;flex-shrink:0">${icon}</span><span style="font-size:13px;font-weight:500;color:var(--ink);flex:1">${label}</span><span style="font-size:10px;opacity:.3">↗</span></a>`;
-  const concalls = docs.concalls || [];
-  const ar = docs.annualReports || [];
-  const ratings = docs.creditRatings || [];
-  const announce = (docs.announcements||[]).slice(0,4);
-
   return `<div class="g2">
     <div>
       <div style="font-family:var(--serif);font-size:17px;font-weight:600;margin-bottom:14px">Earnings Calls</div>
-      ${concalls.slice(0,5).map(c=>`<div style="margin-bottom:10px"><div style="font-size:10px;font-weight:600;color:var(--ink3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px">${c.month||''}</div>${c.transcript?dl(c.transcript,'Transcript','📄'):''}${c.ppt?dl(c.ppt,'Presentation','📊'):''}${c.recording?dl(c.recording,'Recording','▶️'):''}</div>`).join('')}
+      ${(docs.concalls||[]).slice(0,6).map(c=>`<div style="margin-bottom:10px"><div style="font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;margin-bottom:4px">${c.month||''}</div>${c.transcript?dl(c.transcript,'Transcript','📄'):''}${c.ppt?dl(c.ppt,'Presentation','📊'):''}${c.recording?dl(c.recording,'Recording','▶️'):''}</div>`).join('')||'<div class="body">No concalls available</div>'}
       <div style="font-family:var(--serif);font-size:17px;font-weight:600;margin:20px 0 12px">Announcements</div>
-      ${announce.map(a=>dl(a.link,a.title||'Announcement','📢')).join('')}
+      ${(docs.announcements||[]).slice(0,4).map(a=>dl(a.link,a.title||'Announcement','📢')).join('')||'<div class="body">No announcements</div>'}
     </div>
     <div>
       <div style="font-family:var(--serif);font-size:17px;font-weight:600;margin-bottom:14px">Annual Reports</div>
-      ${ar.map(a=>dl(a.link,'Annual Report '+a.year,'📋')).join('')}
+      ${(docs.annualReports||[]).map(a=>dl(a.link,'Annual Report '+a.year,'📋')).join('')||'<div class="body">No reports available</div>'}
       <div style="font-family:var(--serif);font-size:17px;font-weight:600;margin:20px 0 12px">Credit Ratings</div>
-      ${ratings.map(r=>dl(r.link,(r.source||r.title||'Rating')+' — '+(r.date||''),'🏷')).join('')}
+      ${(docs.creditRatings||[]).map(r=>dl(r.link,(r.source||r.title||'Rating')+' — '+(r.date||''),'🏷')).join('')||'<div class="body">No ratings available</div>'}
     </div>
   </div>`;
 }
 
-// ─── RECORD PAGE ──────────────────────────────────────────────
+// ── RECORD PAGE ───────────────────────────────────────
 function renderRecord(){
+  const stats = HISTORY.stats || {};
+  const snapshots = HISTORY.dailySnapshots || [];
+  const activeCalls = HISTORY.activeCalls || [];
+  const closedCalls = HISTORY.closedCalls || [];
+  const lastUpdated = HISTORY.lastUpdated || '—';
+
+  // Hit rate: closed calls where exit signal was not AVOID (price caught up = good exit)
+  const vindicated = closedCalls.filter(c =>
+    c.exitScores?.signal === 'HOLD' || c.priceCagr1YAtExit > 0
+  ).length;
+  const hitRate = closedCalls.length > 0
+    ? Math.round(vindicated / closedCalls.length * 100) + '%'
+    : '—';
+
+  // Spark data for last 30 days BUY count
+  const recentSnaps = snapshots.slice(-30);
+
   return `<div class="pgm">
     <div style="margin-bottom:30px">
-      <div class="slabel">Track Record</div>
+      <div class="slabel">Audit Trail</div>
       <div class="stitle">The Record</div>
-      <div class="ssub">Every call ever made. Every outcome. No selective memory. Publishing misses — with honest autopsy — is what separates a conviction platform from a noise machine.</div>
+      <div class="ssub">Every signal transition logged automatically by the engine. No selective memory possible — the data pipeline writes history.json every single day. Last updated: ${lastUpdated}.</div>
     </div>
-    <div class="g4" style="margin-bottom:30px">
-      ${[['Total calls','4','Active: 1 · Closed: 3'],['Hit rate','3/3','On closed calls'],['Avg excess return','+27%','vs Nifty per call'],['Max patience','7 months','Bajaj Finance']].map(([l,v,s])=>`<div class="sbox"><div style="font-family:var(--serif);font-size:30px;font-weight:500;color:var(--forest2);margin-bottom:3px">${v}</div><div style="font-size:12px;font-weight:500;margin-bottom:2px">${l}</div><div class="ssb">${s}</div></div>`).join('')}
+
+    <div class="g4" style="margin-bottom:28px">
+      ${[
+        ['Total calls triggered',stats.totalCallsEver||activeCalls.length+closedCalls.length,'Since tracking began'],
+        ['Currently active',activeCalls.length,'Passing all 4 thresholds today'],
+        ['Closed calls',closedCalls.length,'Auto-closed when signal broke'],
+        ['Vindicated exits',closedCalls.length>0?vindicated+'/'+closedCalls.length:'—','Price CAGR positive at exit'],
+      ].map(([l,v,s])=>`<div class="sbox"><div style="font-family:var(--serif);font-size:28px;font-weight:500;color:var(--forest2);margin-bottom:3px">${v}</div><div style="font-size:12px;font-weight:500;margin-bottom:2px">${l}</div><div class="ssb">${s}</div></div>`).join('')}
     </div>
+
+    ${recentSnaps.length > 1 ? `
     <div class="card" style="margin-bottom:20px">
-      <div class="slabel" style="margin-bottom:12px">Complete Call History</div>
+      <div class="slabel" style="margin-bottom:12px">Daily signal history — last ${recentSnaps.length} days</div>
+      <div style="overflow-x:auto">
+        <table class="tbl">
+          <thead><tr><th>Date</th><th>Universe</th><th style="color:var(--forest2)">BUY</th><th style="color:var(--navy)">HOLD</th><th style="color:var(--amber2)">WATCH</th><th style="color:var(--crimson)">AVOID</th><th>Active Calls</th><th>Avg CCS</th></tr></thead>
+          <tbody>
+            ${[...recentSnaps].reverse().map((s,i)=>`
+              <tr style="background:${i%2===0?'var(--card)':'#FDFCF8'}">
+                <td style="font-family:var(--mono);font-size:11px">${s.date}</td>
+                <td style="font-family:var(--mono)">${s.totalCompanies}</td>
+                <td style="font-family:var(--mono);color:var(--forest2);font-weight:600">${s.buy}</td>
+                <td style="font-family:var(--mono);color:var(--navy)">${s.hold}</td>
+                <td style="font-family:var(--mono);color:var(--amber2)">${s.watch}</td>
+                <td style="font-family:var(--mono);color:var(--crimson)">${s.avoid}</td>
+                <td style="font-family:var(--mono);font-weight:600;color:${s.activeCalls>0?'var(--forest2)':'var(--ink3)'}">${s.activeCalls}</td>
+                <td style="font-family:var(--mono)">${s.avgCCS}</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>` : `
+    <div class="card" style="margin-bottom:20px;padding:28px;text-align:center">
+      <div style="font-size:14px;color:var(--ink2);margin-bottom:8px">Daily history will appear here after the first automated run.</div>
+      <div style="font-size:12px;color:var(--ink3)">The GitHub Actions workflow logs every day's signal distribution into history.json. Run the workflow manually once to start building the record.</div>
+    </div>`}
+
+    ${closedCalls.length > 0 ? `
+    <div class="card" style="margin-bottom:20px">
+      <div class="slabel" style="margin-bottom:12px">Closed call transitions</div>
       <table class="tbl">
-        <thead><tr><th>Company</th><th>Type</th><th>Opened</th><th>Closed</th><th>Result</th><th>Status</th></tr></thead>
+        <thead><tr><th>Company</th><th>Entry</th><th>Exit</th><th>CCS entry→exit</th><th>EV-MED at entry</th><th>Exit reason</th></tr></thead>
         <tbody>
-          ${CALLS_DATA.active.map(c=>{const co=INDEX[c.id]||{};return`<tr><td><b>${co.name||c.id}</b></td><td>${bdg(c.contraType,'b-watching')}</td><td style="font-family:var(--mono);font-size:11px">${c.callDate}</td><td style="font-family:var(--mono);font-size:11px;color:var(--ink3)">—</td><td style="font-family:var(--mono);font-weight:600;color:var(--navy)">Active</td><td>${bdg('Active','b-active')}</td></tr>`;}).join('')}
-          ${CALLS_DATA.archived.map((a,i)=>`
-            <tr style="background:${(i+CALLS_DATA.active.length)%2===0?'var(--card)':'#FDFCF8'}">
-              <td><b>${a.name}</b></td><td>${bdg(a.type,'b-watching')}</td>
-              <td style="font-family:var(--mono);font-size:11px">${a.opened}</td>
-              <td style="font-family:var(--mono);font-size:11px;color:var(--ink3)">${a.closed}</td>
-              <td style="font-family:var(--mono);font-weight:700;color:var(--forest2)">${a.ret}</td>
-              <td>${bdg('Vindicated','b-active')}</td>
-            </tr>
-            <tr><td colspan="6" style="background:#F8FBF9;padding:4px 11px 11px"><div style="font-size:11px;color:var(--ink2);line-height:1.6">${a.notes}</div></td></tr>`).join('')}
+          ${[...closedCalls].reverse().map((c,i)=>`
+            <tr style="background:${i%2===0?'var(--card)':'#FDFCF8'}">
+              <td><b>${c.name}</b><div style="font-family:var(--mono);font-size:10px;color:var(--ink3)">${c.id}</div></td>
+              <td style="font-family:var(--mono);font-size:11px">${fmtDate(c.entryDate)}</td>
+              <td style="font-family:var(--mono);font-size:11px">${fmtDate(c.exitDate)}</td>
+              <td style="font-family:var(--mono)">${c.entryScores?.ccs||'—'} → <span style="color:${(c.exitScores?.ccs||0)<(c.entryScores?.ccs||0)?'var(--crimson)':'var(--forest2)'}">${c.exitScores?.ccs||'—'}</span></td>
+              <td style="font-family:var(--mono)">${c.entryScores?.evmed||'—'}</td>
+              <td style="font-size:11px;color:var(--ink2);max-width:200px">${c.exitReason||'—'}</td>
+            </tr>`).join('')}
         </tbody>
       </table>
-    </div>
+    </div>` : ''}
+
     <div class="wstrip">
       <div class="g2" style="gap:36px">
-        <div><div style="font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:10px">The methodology</div><p style="font-size:13px;line-height:1.8;color:rgba(255,255,255,.72)">Every call must pass: high Q-Score (quality business), positive EV-MED (earnings ahead of price), a writable falsifiable thesis, and explicit invalidation criteria. If the math screams but the narrative is muddled, it is not a call. Maximum 5 calls per year — scarcity is intentional.</p></div>
-        <div><div style="font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:10px">What we never do</div>${['Issue calls because the calendar demands them — no quota','Set price targets or stop losses — thesis exits on logic, not price','Recommend based on chart patterns or market sentiment','Hide misses — every wrong call gets a full public autopsy'].map(it=>`<div style="display:flex;gap:7px;margin-bottom:7px;font-size:12px;color:rgba(255,255,255,.58);line-height:1.5"><span style="color:rgba(255,255,255,.2)">×</span>${it}</div>`).join('')}</div>
+        <div><div style="font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:10px">How the record is built</div><p style="font-size:13px;line-height:1.8;color:rgba(255,255,255,.72)">Every day, score_and_log.cjs compares today's signals against yesterday's. Any stock that newly passes all four thresholds is logged as an open call with the date and scores. Any stock that exits gets logged with the exit date, exit scores, and a derived exit reason. history.json accumulates this permanently — it is the immutable audit trail.</p></div>
+        <div><div style="font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:10px">What makes this honest</div>${['No human selects which calls appear — only the algorithm','No calls are retroactively removed or edited','The daily snapshot table shows every day\'s signal distribution','Exit reason is derived from the data, not written by hand','Price CAGR at exit is recorded as a factual outcome proxy'].map(it=>`<div style="display:flex;gap:7px;margin-bottom:7px;font-size:12px;color:rgba(255,255,255,.62);line-height:1.5"><span style="color:rgba(255,255,255,.25)">→</span>${it}</div>`).join('')}</div>
       </div>
     </div>
   </div>`;
 }
 
-// ─── CHARTS ──────────────────────────────────────────────────
-function dChart(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
-const COPT = {
-  responsive:true,maintainAspectRatio:false,
-  plugins:{legend:{display:false},tooltip:{backgroundColor:'#0C1220',titleColor:'rgba(255,255,255,.45)',bodyColor:'#fff',padding:9,cornerRadius:6}},
-  scales:{x:{ticks:{color:'#7A8BA5',font:{size:9,family:'JetBrains Mono'}},grid:{display:false},border:{display:false}},y:{ticks:{color:'#7A8BA5',font:{size:9,family:'JetBrains Mono'}},grid:{color:'#EAE6D8'},border:{display:false}}}
-};
-
-function mkLine(id,labels,data,name,clr,fill=true){
-  const el=document.getElementById(id);if(!el)return;dChart(id);
-  charts[id]=new Chart(el,{type:'line',data:{labels,datasets:[{label:name,data,borderColor:clr,borderWidth:2.5,pointRadius:0,tension:.35,fill,backgroundColor:clr+'18'}]},options:{...COPT}});
-}
-function mkDual(id,labels,d1,n1,c1,d2,n2,c2){
-  const el=document.getElementById(id);if(!el)return;dChart(id);
-  charts[id]=new Chart(el,{type:'line',data:{labels,datasets:[{label:n1,data:d1,borderColor:c1,borderWidth:2,pointRadius:0,tension:.35},{label:n2,data:d2,borderColor:c2,borderWidth:1.5,borderDash:[4,3],pointRadius:0,tension:.35}]},options:{...COPT}});
-}
-function mkBarLine(id,labels,bars,bN,line,lN){
-  const el=document.getElementById(id);if(!el)return;dChart(id);
-  charts[id]=new Chart(el,{type:'bar',data:{labels,datasets:[{type:'bar',label:bN,data:bars,backgroundColor:'#DDD8C4',borderRadius:3,barPercentage:.6},{type:'line',label:lN,data:line,borderColor:'#0A4A2E',borderWidth:2.5,pointRadius:0,tension:.3,yAxisID:'y1'}]},options:{...COPT,scales:{...COPT.scales,y1:{position:'right',ticks:{color:'#0A4A2E',font:{size:9}},grid:{display:false},border:{display:false}}}}});
-}
-function mkBars(id,labels,d1,n1,d2,n2){
-  const el=document.getElementById(id);if(!el)return;dChart(id);
-  charts[id]=new Chart(el,{type:'bar',data:{labels,datasets:[{label:n1,data:d1,backgroundColor:'#0A4A2E',borderRadius:3,barPercentage:.5},{label:n2,data:d2,backgroundColor:'#1A6B42',borderRadius:3,barPercentage:.5}]},options:{...COPT}});
-}
-function mkOwn(id,labels,fii,dii,prom){
-  const el=document.getElementById(id);if(!el)return;dChart(id);
-  const ds=[{label:'FII %',data:fii,borderColor:'#1E3A8A',borderWidth:2,pointRadius:3,tension:.3},{label:'DII %',data:dii,borderColor:'#0A4A2E',borderWidth:2,pointRadius:3,tension:.3}];
-  if(prom.some(v=>v!=null&&v>0)) ds.push({label:'Promoter %',data:prom,borderColor:'#7C3AED',borderWidth:2,pointRadius:3,tension:.3});
-  charts[id]=new Chart(el,{type:'line',data:{labels,datasets:ds},options:{...COPT}});
-}
+// ── CHARTS ────────────────────────────────────────────
+const COPT={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'#0C1220',titleColor:'rgba(255,255,255,.45)',bodyColor:'#fff',padding:9,cornerRadius:6}},scales:{x:{ticks:{color:'#7A8BA5',font:{size:9,family:'JetBrains Mono'}},grid:{display:false},border:{display:false}},y:{ticks:{color:'#7A8BA5',font:{size:9,family:'JetBrains Mono'}},grid:{color:'#EAE6D8'},border:{display:false}}}};
+function dc(id){if(charts[id]){try{charts[id].destroy();}catch(e){}delete charts[id];}}
+function mkL(id,labels,data,name,clr){const el=document.getElementById(id);if(!el)return;dc(id);charts[id]=new Chart(el,{type:'line',data:{labels,datasets:[{label:name,data,borderColor:clr,borderWidth:2.5,pointRadius:0,tension:.35,fill:true,backgroundColor:clr+'18'}]},options:{...COPT}});}
+function mkDual(id,labels,d1,n1,c1,d2,n2,c2){const el=document.getElementById(id);if(!el)return;dc(id);charts[id]=new Chart(el,{type:'line',data:{labels,datasets:[{label:n1,data:d1,borderColor:c1,borderWidth:2,pointRadius:0,tension:.35},{label:n2,data:d2,borderColor:c2,borderWidth:1.5,borderDash:[4,3],pointRadius:0,tension:.35}]},options:{...COPT}});}
+function mkBL(id,labels,bars,bN,line,lN){const el=document.getElementById(id);if(!el)return;dc(id);charts[id]=new Chart(el,{type:'bar',data:{labels,datasets:[{type:'bar',label:bN,data:bars,backgroundColor:'#DDD8C4',borderRadius:3,barPercentage:.6},{type:'line',label:lN,data:line,borderColor:'#0A4A2E',borderWidth:2.5,pointRadius:0,tension:.3,yAxisID:'y1'}]},options:{...COPT,scales:{...COPT.scales,y1:{position:'right',ticks:{color:'#0A4A2E',font:{size:9}},grid:{display:false},border:{display:false}}}}});}
+function mkBs(id,labels,d1,n1,d2,n2){const el=document.getElementById(id);if(!el)return;dc(id);charts[id]=new Chart(el,{type:'bar',data:{labels,datasets:[{label:n1,data:d1,backgroundColor:'#0A4A2E',borderRadius:3,barPercentage:.5},{label:n2,data:d2,backgroundColor:'#1A6B42',borderRadius:3,barPercentage:.5}]},options:{...COPT}});}
+function mkOwn(id,labels,fii,dii,prom){const el=document.getElementById(id);if(!el)return;dc(id);const ds=[{label:'FII %',data:fii,borderColor:'#1E3A8A',borderWidth:2,pointRadius:3,tension:.3},{label:'DII %',data:dii,borderColor:'#0A4A2E',borderWidth:2,pointRadius:3,tension:.3}];if(prom.some(v=>v!=null&&v>0))ds.push({label:'Promoter %',data:prom,borderColor:'#7C3AED',borderWidth:2,pointRadius:3,tension:.3});charts[id]=new Chart(el,{type:'line',data:{labels,datasets:ds},options:{...COPT}});}
 
 function drawCharts(){
   Object.keys(charts).forEach(k=>{try{charts[k].destroy();}catch(e){}delete charts[k];});
-  if(page==='company'&&coData){
-    const full=coData; const qs=full.quarters?.data||{};
-    const scores=full._scores||{}; const isBank=scores.isBank;
-    const qKeys=full.quarters?.headers||[];
-    const qEPS=qKeys.map(h=>parseNum(qs['EPS in Rs']?.[h]));
-    const qOPM=isBank?qKeys.map(h=>parseNum(qs['Financing Margin %']?.[h])):qKeys.map(h=>parseNum(qs['OPM %']?.[h]));
-    const qGNPA=isBank?qKeys.map(h=>parseNum(qs['Gross NPA %']?.[h])):[];
-    const qNNPA=isBank?qKeys.map(h=>parseNum(qs['Net NPA %']?.[h])):[];
-    const shKeys=full.shareholding?.headers?.filter(h=>h&&h.trim())||[];
-    const sh=full.shareholding?.data||{};
-    const pl=full.profitLoss?.data||{};
-    const ra=full.ratios?.data||{};
-    const cf=full.cashFlow?.data||{};
-    const annKeys=full.profitLoss?.headers||[];
-    const cfKeys=full.cashFlow?.headers||[];
-    const annRev=annKeys.map(y=>parseNum((isBank?pl['Revenue']:pl['Sales'])?.[y]));
-    const annNP=annKeys.map(y=>parseNum(pl['Net Profit']?.[y]));
-    const cfoArr=cfKeys.map(y=>parseNum(cf['Cash from Operating Activity']?.[y]));
-    const fcfArr=cfKeys.map(y=>parseNum(cf['Free Cash Flow']?.[y]));
-    const shFII=shKeys.map(h=>parseNum(sh['FIIs']?.[h]));
-    const shDII=shKeys.map(h=>parseNum(sh['DIIs']?.[h]));
-    const shProm=shKeys.map(h=>parseNum(sh['Promoters']?.[h]));
-    const disp=k=>k.replace('Mar ','FY');
+  if(page!=='company'||!coData)return;
+  const full=coData;
+  const qs=full.quarters?.data||{};
+  const isBank=full._scores?.isBank||false;
+  const qKeys=full.quarters?.headers||[];
+  const shKeys=(full.shareholding?.headers||[]).filter(h=>h&&h.trim());
+  const sh=full.shareholding?.data||{};
+  const pl=full.profitLoss?.data||{};
+  const ra=full.ratios?.data||{};
+  const cf=full.cashFlow?.data||{};
+  const annKeys=full.profitLoss?.headers||[];
+  const cfKeys=full.cashFlow?.headers||[];
+  const disp=k=>k.replace('Mar ','FY');
 
-    if(coTab==='overview'){
-      mkLine('co-qeps',qKeys,qEPS,'EPS ₹','#0A4A2E');
-      if(isBank) mkDual('co-margin',qKeys,qGNPA,'Gross NPA %','#92400E',qNNPA,'Net NPA %','#991B1B');
-      else mkLine('co-margin',qKeys,qOPM,'OPM %','#1E3A8A');
-    }
-    if(coTab==='financials'){
-      mkBarLine('co-revnp',annKeys.map(disp),annRev,isBank?'Revenue':'Sales',annNP,'Net Profit');
-      mkBars('co-cf',cfKeys.map(disp),cfoArr,'CFO',fcfArr,'FCF');
-    }
-    if(coTab==='ownership') mkOwn('co-own',shKeys,shFII,shDII,shProm);
+  if(coTab==='overview'){
+    mkL('co-qeps',qKeys,qKeys.map(h=>pn(qs['EPS in Rs']?.[h])),'EPS ₹','#0A4A2E');
+    if(isBank) mkDual('co-margin',qKeys,qKeys.map(h=>pn(qs['Gross NPA %']?.[h])),'Gross NPA %','#92400E',qKeys.map(h=>pn(qs['Net NPA %']?.[h])),'Net NPA %','#991B1B');
+    else mkL('co-margin',qKeys,qKeys.map(h=>pn(qs['OPM %']?.[h])),'OPM %','#1E3A8A');
   }
+  if(coTab==='financials'){
+    mkBL('co-revnp',annKeys.map(disp),annKeys.map(y=>pn((isBank?pl['Revenue']:pl['Sales'])?.[y])),isBank?'Revenue':'Sales',annKeys.map(y=>pn(pl['Net Profit']?.[y])),'Net Profit');
+    mkBs('co-cf',cfKeys.map(disp),cfKeys.map(y=>pn(cf['Cash from Operating Activity']?.[y])),'CFO',cfKeys.map(y=>pn(cf['Free Cash Flow']?.[y])),'FCF');
+  }
+  if(coTab==='ownership') mkOwn('co-own',shKeys,shKeys.map(h=>pn(sh['FIIs']?.[h])),shKeys.map(h=>pn(sh['DIIs']?.[h])),shKeys.map(h=>pn(sh['Promoters']?.[h])));
 }
 
-// ─── GLOBAL EXPOSURE & BOOT ───────────────────────────────────
-window.go=go; window.goC=goC; window.setCoTab=setCoTab; window.setCallTab=setCallTab;
-window.uniFilter=uniFilter; window.uniPage=1;
+window.go=go;window.goC=goC;window.setCoTab=setCoTab;window.setCallTab=setCallTab;
 boot();
 </script>
 </body>
