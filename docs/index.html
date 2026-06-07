@@ -3,120 +3,206 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nivesify — Indian Equity Research</title>
+<title>Nivesify — Indian Stock Research</title>
+<meta name="description" content="Free, data-driven Indian equity research. 1,400+ companies analysed daily on quality, value, momentum and more. No tips. No noise.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#0C1220;--ink2:#3A4A62;--ink3:#7A8BA5;
-  --paper:#F4F1E8;--paper2:#EDE9DC;--card:#FDFCF7;
-  --bd:#D8D3C4;--bd2:#EAE6D8;
-  --forest:#0A4A2E;--forest2:#1A6B42;--forestl:#E3F2EB;
-  --amber:#92400E;--amber2:#B45309;--amberl:#FEF3C7;
-  --navy:#1E3A8A;--navyl:#EFF6FF;
-  --crimson:#991B1B;--crimsonl:#FEF2F2;
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'Instrument Sans','Helvetica Neue',sans-serif;
+  --ink:#0B1D3A;--ink2:#2D4060;--ink3:#7A8FA8;--ink4:#B8CADC;
+  --paper:#F7F4EC;--paper2:#EDE8DC;--paper3:#E4DDD0;--card:#FDFBF6;
+  --bd:#D6CFBF;--bd2:#E8E2D5;
+  --green:#0A4A2C;--green2:#1A6B40;--greenl:#E4F2EB;--greend:#073D22;
+  --amber:#8B3D00;--amber2:#B35000;--amberl:#FEF0E4;
+  --navy:#1A3680;--navyl:#EBF0FF;
+  --red:#8B1A1A;--red2:#B32020;--redl:#FDEAEA;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans','Helvetica Neue',sans-serif;
   --mono:'JetBrains Mono',monospace;
+  --r4:4px;--r6:6px;--r8:8px;--r10:10px;--r12:12px;
 }
-html,body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;font-size:14px;min-height:100vh}
+html,body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;font-size:14px;min-height:100vh;-webkit-font-smoothing:antialiased}
 button,input,select{font-family:var(--sans);cursor:pointer;border:none;outline:none}
 a{color:inherit;text-decoration:none}
-::selection{background:var(--forestl);color:var(--forest)}
-.fade{animation:fi .25s ease both}
-@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-nav{background:var(--ink);position:sticky;top:0;z-index:200;border-bottom:1px solid rgba(255,255,255,.06)}
-.navi{max-width:1180px;margin:0 auto;padding:0 28px;height:52px;display:flex;align-items:center}
-.logo{font-family:var(--serif);font-size:19px;font-weight:600;color:#fff;cursor:pointer;background:none;padding:0;margin-right:28px}
-.nlinks{display:flex;gap:2px;flex:1}
-.nb{background:none;color:rgba(255,255,255,.4);font-size:13px;font-weight:500;padding:5px 11px;border-radius:5px;transition:all .15s}
-.nb:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.06)}
-.nb.on{color:#fff;background:rgba(255,255,255,.1)}
-.nsig{display:flex;align-items:center;gap:7px;margin-left:auto}
-.dot{width:7px;height:7px;border-radius:50%;background:#6B7280}
-.dot.live{background:#22C55E;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{box-shadow:0 0 0 5px rgba(34,197,94,0)}}
-.ntxt{font-size:11px;color:rgba(255,255,255,.35);font-family:var(--mono)}
-.page{max-width:1180px;margin:0 auto;padding:40px 28px 80px}
-.pgm{max-width:900px;margin:0 auto;padding:40px 28px 80px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:20px 22px}
-.csm{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:13px 15px}
-.badge{display:inline-flex;align-items:center;font-size:11px;font-weight:600;letter-spacing:.04em;padding:2px 9px;border-radius:20px;white-space:nowrap}
-.b-buy{background:var(--forestl);color:var(--forest)}
+::selection{background:var(--greenl);color:var(--green)}
+img{display:block}
+
+/* ── ANIMATIONS ─────────────────────────────────── */
+.fade{animation:fadeIn .25s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.slide{animation:slideIn .2s ease both}
+@keyframes slideIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+
+/* ── NAV ─────────────────────────────────────────── */
+nav{background:var(--ink);position:sticky;top:0;z-index:300;box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:54px;display:flex;align-items:center;gap:0}
+.logo{font-family:var(--serif);font-size:18px;font-weight:600;color:#fff;cursor:pointer;background:none;padding:0;margin-right:32px;letter-spacing:.01em;white-space:nowrap}
+.logo span{color:#4ADE80;font-style:italic}
+.navlinks{display:flex;gap:2px;flex:1}
+.nb{background:none;color:rgba(255,255,255,.42);font-size:13px;font-weight:400;padding:6px 12px;border-radius:var(--r6);transition:all .15s;letter-spacing:.01em}
+.nb:hover{color:rgba(255,255,255,.78);background:rgba(255,255,255,.07)}
+.nb.on{color:#fff;background:rgba(255,255,255,.11);font-weight:500}
+.nav-right{display:flex;align-items:center;gap:8px;margin-left:auto}
+.nav-dot{width:7px;height:7px;border-radius:50%;background:#4B5563;transition:all .3s;flex-shrink:0}
+.nav-dot.live{background:#4ADE80;box-shadow:0 0 0 2px rgba(74,222,128,.25);animation:navpulse 2.5s infinite}
+@keyframes navpulse{0%,100%{box-shadow:0 0 0 2px rgba(74,222,128,.25)}50%{box-shadow:0 0 0 5px rgba(74,222,128,0)}}
+.nav-status{font-size:11px;color:rgba(255,255,255,.32);font-family:var(--mono)}
+
+/* ── LAYOUT ──────────────────────────────────────── */
+.page{max-width:1200px;margin:0 auto;padding:44px 24px 80px}
+.pg-narrow{max-width:920px;margin:0 auto;padding:44px 24px 80px}
+
+/* ── CARDS ───────────────────────────────────────── */
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r10);padding:20px 22px}
+.card-sm{background:var(--card);border:1px solid var(--bd);border-radius:var(--r8);padding:14px 16px}
+.card-dark{background:var(--ink);border:1px solid var(--ink);border-radius:var(--r10);padding:24px 26px;color:#fff}
+.card-hover{transition:border-color .15s,box-shadow .15s;cursor:pointer}
+.card-hover:hover{border-color:var(--ink3);box-shadow:0 2px 12px rgba(0,0,0,.06)}
+
+/* ── BADGES ──────────────────────────────────────── */
+.badge{display:inline-flex;align-items:center;font-size:11px;font-weight:600;letter-spacing:.04em;padding:2px 9px;border-radius:20px;white-space:nowrap;line-height:20px}
+.b-buy{background:var(--greenl);color:var(--green)}
 .b-hold{background:var(--navyl);color:var(--navy)}
 .b-watch{background:var(--amberl);color:var(--amber2)}
-.b-avoid{background:var(--crimsonl);color:var(--crimson)}
-.b-call{background:var(--forestl);color:var(--forest)}
+.b-avoid{background:var(--redl);color:var(--red)}
+.b-signal{background:var(--greenl);color:var(--green)}
 .b-closed{background:var(--navyl);color:var(--navy)}
-.slabel{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
-.stitle{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.15}
-.ssub{font-size:13px;color:var(--ink2);line-height:1.65;margin-top:5px}
-.thesis{font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.85;color:var(--ink)}
-.body{font-size:13px;color:var(--ink2);line-height:1.68}
-.srow{margin-bottom:9px}
-.shead{display:flex;justify-content:space-between;margin-bottom:4px}
-.slb{font-size:11px;color:var(--ink2)}
-.svl{font-family:var(--mono);font-size:12px;font-weight:600}
-.strk{height:4px;background:var(--bd2);border-radius:2px;overflow:hidden}
-.sfil{height:100%;border-radius:2px;transition:width .6s ease}
-.tabs{display:flex;gap:3px;padding:3px;background:var(--paper2);border-radius:8px;border:1px solid var(--bd);width:fit-content;margin-bottom:22px}
-.tbtn{padding:6px 14px;border:none;background:transparent;color:var(--ink2);border-radius:6px;font-size:12px;font-weight:500;transition:all .15s}
-.tbtn.on{background:var(--card);color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.08)}
-.sbox{padding:13px 15px;background:var(--paper2);border-radius:8px;border:1px solid var(--bd2)}
-.slbl{font-size:9px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
-.sval{font-family:var(--mono);font-size:17px;font-weight:600;color:var(--ink)}
-.ssb{font-size:10px;color:var(--ink3);margin-top:2px}
-.dl{display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--bd2);border-radius:7px;margin-bottom:5px;background:var(--card)}
-.dl:hover{border-color:var(--ink3)}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
-.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.b-sector{background:var(--paper3);color:var(--ink2);font-weight:500;font-size:10px;padding:2px 8px}
+
+/* ── TYPOGRAPHY ──────────────────────────────────── */
+.label{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px;display:block}
+.heading{font-family:var(--serif);font-weight:600;color:var(--ink);line-height:1.15;letter-spacing:-.01em}
+.sub{font-size:13px;color:var(--ink2);line-height:1.65;margin-top:5px}
+.mono{font-family:var(--mono)}
+
+/* ── SCORE BARS ──────────────────────────────────── */
+.sbar{margin-bottom:10px}
+.sbar-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.sbar-label{font-size:11px;color:var(--ink2)}
+.sbar-val{font-family:var(--mono);font-size:12px;font-weight:600}
+.sbar-track{height:4px;background:var(--bd2);border-radius:2px;overflow:hidden}
+.sbar-fill{height:100%;border-radius:2px;transition:width .8s ease}
+
+/* ── STAT BOXES ──────────────────────────────────── */
+.stat{padding:14px 16px;background:var(--paper2);border-radius:var(--r8);border:1px solid var(--bd2)}
+.stat-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+.stat-val{font-family:var(--mono);font-size:18px;font-weight:600;color:var(--ink);line-height:1}
+.stat-sub{font-size:10px;color:var(--ink3);margin-top:4px;line-height:1.4}
+
+/* ── TABS ────────────────────────────────────────── */
+.tabs{display:flex;gap:2px;padding:3px;background:var(--paper2);border-radius:var(--r8);border:1px solid var(--bd);width:fit-content;margin-bottom:22px}
+.tbtn{padding:6px 15px;border:none;background:transparent;color:var(--ink2);border-radius:var(--r6);font-size:12px;font-weight:500;transition:all .15s;letter-spacing:.01em}
+.tbtn.on{background:var(--card);color:var(--ink);font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+
+/* ── INFO TOOLTIPS ───────────────────────────────── */
+.itip{position:relative;display:inline-flex;align-items:center;cursor:help;margin-left:4px;vertical-align:middle}
+.itip-btn{width:15px;height:15px;border-radius:50%;background:var(--bd);color:var(--ink3);font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
+.itip:hover .itip-btn{background:var(--ink3);color:#fff}
+.itip-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:var(--ink);color:rgba(255,255,255,.9);padding:12px 14px;border-radius:var(--r8);font-size:11px;line-height:1.65;z-index:400;pointer-events:none;font-weight:400;text-transform:none;letter-spacing:0;white-space:normal;font-family:var(--sans);box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.itip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--ink)}
+.itip:hover .itip-box{display:block}
+.itip-box strong{color:#fff;display:block;margin-bottom:4px;font-size:12px}
+.itip-box em{color:rgba(255,255,255,.55);font-style:normal}
+
+/* ── TABLE ───────────────────────────────────────── */
 .tbl{width:100%;border-collapse:collapse;font-size:12px}
-.tbl th{text-align:left;padding:8px 11px;border-bottom:2px solid var(--bd);font-size:10px;font-weight:600;color:var(--ink3);letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;background:var(--paper2)}
-.tbl td{padding:9px 11px;border-bottom:1px solid var(--bd2);vertical-align:middle}
-.tbl .hov:hover td{background:var(--forestl);cursor:pointer}
-.sinp{padding:8px 14px;border:1px solid var(--bd);border-radius:7px;background:var(--card);font-size:13px;color:var(--ink);width:240px}
-.sinp:focus{border-color:var(--forest2)}
-.ssel{padding:8px 12px;border:1px solid var(--bd);border-radius:7px;background:var(--card);font-size:12px;color:var(--ink2)}
-.wstrip{background:var(--ink);color:#fff;border-radius:12px;padding:30px 34px;overflow:hidden;position:relative}
-.heronum{font-family:var(--serif);font-size:96px;font-weight:300;line-height:1;letter-spacing:-.04em}
-.pbtn{padding:5px 12px;border:1px solid var(--bd);border-radius:6px;background:var(--card);font-size:12px;color:var(--ink)}
-.pbtn:hover{border-color:var(--ink3)}.pbtn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-#loader{position:fixed;inset:0;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000;transition:opacity .4s}
-.ldot{width:8px;height:8px;border-radius:50%;background:var(--forest2);display:inline-block;margin:0 3px;animation:ldot 1.2s ease-in-out infinite}
-.ldot:nth-child(2){animation-delay:.2s}.ldot:nth-child(3){animation-delay:.4s}
-@keyframes ldot{0%,80%,100%{transform:scale(0);opacity:.3}40%{transform:scale(1);opacity:1}}
-footer{border-top:1px solid var(--bd2);padding:22px 28px;margin-top:48px}
-.fi{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-/* SPARKLINE */
-.spark{display:inline-flex;align-items:flex-end;gap:1px;height:24px}
-.spark span{width:4px;background:var(--forest2);border-radius:1px;opacity:.7;transition:height .3s}
-@media(max-width:768px){.g2,.g3,.g4,.g5{grid-template-columns:1fr}.heronum{font-size:64px}}
+.tbl th{text-align:left;padding:9px 12px;border-bottom:2px solid var(--bd);font-size:10px;font-weight:600;color:var(--ink3);letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;background:var(--paper2);user-select:none}
+.tbl th.sortable{cursor:pointer}
+.tbl th.sortable:hover{color:var(--ink)}
+.tbl th.sorted{color:var(--green)}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--bd2);vertical-align:middle}
+.tbl .row-hover{cursor:pointer;transition:background .1s}
+.tbl .row-hover:hover td{background:var(--greenl)}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* ── SEARCH / FILTER ─────────────────────────────── */
+.srch-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.srch-inp{padding:9px 14px;border:1px solid var(--bd);border-radius:var(--r8);background:var(--card);font-size:13px;color:var(--ink);width:260px;transition:border-color .15s}
+.srch-inp:focus{border-color:var(--green2);box-shadow:0 0 0 3px rgba(26,107,64,.08)}
+.srch-sel{padding:9px 12px;border:1px solid var(--bd);border-radius:var(--r8);background:var(--card);font-size:12px;color:var(--ink2)}
+.srch-count{font-size:12px;color:var(--ink3);margin-left:4px}
+.clear-btn{font-size:12px;color:var(--red);background:none;padding:0;text-decoration:underline}
+
+/* ── PAGINATION ──────────────────────────────────── */
+.pag{display:flex;gap:5px;justify-content:center;align-items:center;margin-top:18px;flex-wrap:wrap}
+.pbtn{padding:5px 12px;border:1px solid var(--bd);border-radius:var(--r6);background:var(--card);font-size:12px;color:var(--ink);transition:all .15s}
+.pbtn:hover:not(:disabled){border-color:var(--ink3)}
+.pbtn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pbtn:disabled{opacity:.38;cursor:not-allowed}
+
+/* ── DOC LINKS ───────────────────────────────────── */
+.doc-link{display:flex;align-items:center;gap:9px;padding:10px 13px;border:1px solid var(--bd2);border-radius:var(--r8);margin-bottom:6px;background:var(--card);transition:border-color .15s,background .15s}
+.doc-link:hover{border-color:var(--ink3);background:var(--paper2)}
+.doc-link-icon{font-size:16px;opacity:.45;flex-shrink:0}
+.doc-link-text{font-size:13px;font-weight:500;color:var(--ink);flex:1}
+.doc-link-arr{font-size:10px;opacity:.3}
+
+/* ── GRID HELPERS ────────────────────────────────── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+
+/* ── INSIGHT STRIP ───────────────────────────────── */
+.insight{border-left:3px solid;padding:12px 16px;border-radius:0 var(--r6) var(--r6) 0;font-size:13px;line-height:1.65}
+.insight-green{border-color:var(--green2);background:var(--greenl);color:var(--greend)}
+.insight-amber{border-color:var(--amber2);background:var(--amberl);color:var(--amber)}
+.insight-red{border-color:var(--red2);background:var(--redl);color:var(--red)}
+.insight-blue{border-color:var(--navy);background:var(--navyl);color:var(--navy)}
+
+/* ── PHILOSOPHY STRIP ────────────────────────────── */
+.phil{background:var(--ink);border-radius:var(--r12);padding:32px 36px;position:relative;overflow:hidden}
+.phil::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.02);pointer-events:none}
+
+/* ── LOADER ──────────────────────────────────────── */
+#loader{position:fixed;inset:0;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;transition:opacity .4s}
+.ldot{width:8px;height:8px;border-radius:50%;background:#4ADE80;display:inline-block;margin:0 3px;animation:ldot 1.3s ease-in-out infinite}
+.ldot:nth-child(2){animation-delay:.18s}.ldot:nth-child(3){animation-delay:.36s}
+@keyframes ldot{0%,80%,100%{transform:scale(0);opacity:.25}40%{transform:scale(1);opacity:1}}
+
+/* ── FOOTER ──────────────────────────────────────── */
+footer{border-top:1px solid var(--bd2);padding:24px;margin-top:48px}
+.foot-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+
+/* ── CHART CONTAINERS ────────────────────────────── */
+.chart-box{position:relative;width:100%}
+
+/* ── MOBILE ──────────────────────────────────────── */
+@media(max-width:768px){
+  .g2,.g3,.g4,.g5{grid-template-columns:1fr}
+  .page,.pg-narrow{padding:24px 16px 60px}
+  .nav-inner{padding:0 16px}
+  .nb:nth-child(n+4){display:none}
+  .hide-m{display:none}
+  .srch-inp{width:100%}
+  .srch-bar{flex-direction:column;align-items:flex-start}
+  h1.hero-title{font-size:38px!important}
+}
+@media(min-width:769px){.show-m{display:none}}
 </style>
 </head>
 <body>
 
 <div id="loader">
-  <div style="font-family:var(--serif);font-size:26px;font-weight:600;color:#fff;margin-bottom:20px">Nivesify</div>
+  <div style="font-family:var(--serif);font-size:22px;font-weight:600;color:#fff;margin-bottom:22px;letter-spacing:.01em">Nivesify<span style="color:#4ADE80;font-style:italic">.</span></div>
   <div><span class="ldot"></span><span class="ldot"></span><span class="ldot"></span></div>
-  <div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:16px;font-family:var(--mono)" id="lmsg">Initialising...</div>
+  <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:18px;font-family:var(--mono)" id="lmsg">Loading...</div>
 </div>
 
 <nav>
-  <div class="navi">
-    <button class="logo" onclick="go('home')">Nivesify</button>
-    <div class="nlinks">
-      <button class="nb on" id="nb-home" onclick="go('home')">The Stance</button>
-      <button class="nb" id="nb-calls" onclick="go('calls')">Calls</button>
-      <button class="nb" id="nb-universe" onclick="go('universe')">Universe</button>
-      <button class="nb" id="nb-record" onclick="go('record')">Record</button>
+  <div class="nav-inner">
+    <button class="logo" onclick="go('home')">Nivesify<span>.</span></button>
+    <div class="navlinks">
+      <button class="nb on" id="nb-home"   onclick="go('home')">Home</button>
+      <button class="nb"    id="nb-signals" onclick="go('signals')">Signals</button>
+      <button class="nb"    id="nb-research" onclick="go('research')">Research</button>
+      <button class="nb"    id="nb-record"  onclick="go('record')">Track Record</button>
     </div>
-    <div class="nsig">
-      <div class="dot" id="ndot"></div>
-      <span class="ntxt" id="ntxt">—</span>
+    <div class="nav-right">
+      <div class="nav-dot" id="ndot"></div>
+      <span class="nav-status" id="nstatus">—</span>
     </div>
   </div>
 </nav>
@@ -124,493 +210,571 @@ footer{border-top:1px solid var(--bd2);padding:22px 28px;margin-top:48px}
 <div id="app"></div>
 
 <footer>
-  <div class="fi">
+  <div class="foot-inner">
     <div>
-      <div style="font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:2px">Nivesify</div>
-      <div style="font-size:11px;color:var(--ink3)">Conviction-first Indian equity research. All scores computed daily from live BSE filings via screener.in.</div>
+      <div style="font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:3px">Nivesify<span style="color:var(--green2);font-style:italic">.</span></div>
+      <div style="font-size:11px;color:var(--ink3)">Free Indian equity research. 1,400+ companies scored daily from public BSE data. No tips, no noise.</div>
     </div>
-    <div style="font-size:11px;color:var(--ink3);text-align:right;line-height:1.7">
-      <div>Not SEBI registered. Not financial advice.</div>
-      <div>For educational &amp; research purposes only.</div>
+    <div style="font-size:11px;color:var(--ink3);text-align:right;line-height:1.8">
+      <div>Not SEBI registered · Not financial advice</div>
+      <div>For research and educational purposes only</div>
     </div>
   </div>
 </footer>
 
 <script>
-/* ══════════════════════════════════════════════════════
-   NIVESIFY — fully dynamic from index.json + history.json
-   No hardcoded data anywhere.
-   Calls = auto-detected from scoring thresholds.
-   Record = auto-built from history.json transitions.
-══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════════
+   NIVESIFY — Complete frontend
+   Data: ./data/index.json + ./history.json + ./data/{bse}.json
+══════════════════════════════════════════════════════════════ */
 
-// ── STATE ────────────────────────────────────────────
-let INDEX = {};
-let HISTORY = { activeCalls:[], closedCalls:[], dailySnapshots:[], stats:{} };
-let COS_LIST = [];
-let page = 'home', coId = null, coData = null, coTab = 'overview';
-let callTab = 'active';
-let uniPage = 1, uniF = {q:'',signal:'',sector:''};
-let charts = {};
-const PER = 50;
-const BASE = window.location.pathname.replace(/\/[^/]*$/, '');
+// ── STATE ───────────────────────────────────────────
+let IDX={}, HIST={activeCalls:[],closedCalls:[],dailySnapshots:[],stats:{},lastUpdated:null};
+let COS=[], page='home', coId=null, coData=null, coTab='overview';
+let sigTab='active', uP=1, uF={q:'',sig:'',sec:''}, srtK='ccs', srtD=-1;
+let charts={};
+const PER=50;
+const BASE=window.location.pathname.replace(/\/[^\/]*$/,'');
 
-// ── BOOT ─────────────────────────────────────────────
-async function boot() {
-  msg('Loading data...');
-  try {
-    const ts = '?v=' + Date.now();
-    const [hRes, iRes] = await Promise.all([
-      fetch(BASE + '/history.json' + ts),
-      fetch(BASE + '/data/index.json' + ts),
-    ]);
-
-    // history.json may not exist on first run
-    if (hRes.ok) {
-      HISTORY = await hRes.json();
-    } else {
-      console.warn('history.json not found — first run?');
-    }
-
-    INDEX = await iRes.json();
-    COS_LIST = Object.values(INDEX).sort((a,b) => b.ccs - a.ccs);
-
-    const n = (HISTORY.activeCalls || []).length;
-    document.getElementById('ndot').className = 'dot' + (n > 0 ? ' live' : '');
-    document.getElementById('ntxt').textContent = n + ' active call' + (n !== 1 ? 's' : '');
-    msg('Loaded ' + COS_LIST.length + ' companies');
-    setTimeout(hideLoader, 250);
+// ── BOOT ────────────────────────────────────────────
+async function boot(){
+  lmsg('Loading market data...');
+  try{
+    const ts='?t='+Date.now();
+    const [hR,iR]=await Promise.all([fetch(BASE+'/history.json'+ts),fetch(BASE+'/data/index.json'+ts)]);
+    if(hR.ok)HIST=await hR.json();
+    IDX=await iR.json();
+    // Clean names + build list
+    Object.values(IDX).forEach(c=>{
+      c.name=cleanName(c.name)||c.id;
+    });
+    COS=Object.values(IDX).sort((a,b)=>b.ccs-a.ccs);
+    const n=(HIST.activeCalls||[]).length;
+    document.getElementById('ndot').className='nav-dot'+(n?'  live':'');
+    document.getElementById('nstatus').textContent=n+' active signal'+(n!==1?'s':'');
+    lmsg('Loaded '+COS.length.toLocaleString()+' companies');
+    setTimeout(()=>{const l=document.getElementById('loader');l.style.opacity='0';setTimeout(()=>l.remove(),400);},300);
     r();
-  } catch(e) {
-    msg('Error: ' + e.message);
-    console.error(e);
-  }
+  }catch(e){lmsg('Error: '+e.message);console.error(e);}
 }
-function msg(m){document.getElementById('lmsg').textContent=m;}
-function hideLoader(){const l=document.getElementById('loader');l.style.opacity='0';setTimeout(()=>l.remove(),400);}
+function lmsg(m){const el=document.getElementById('lmsg');if(el)el.textContent=m;}
 
-// ── ROUTING ───────────────────────────────────────────
+// ── NAME CLEANER ────────────────────────────────────
+function cleanName(raw){
+  if(!raw)return raw;
+  let n=String(raw).replace(/[,;]+\s*$/,'').trim();
+  if(n===n.toUpperCase()&&n.length>3){
+    n=n.toLowerCase().replace(/\b(\w)/g,c=>c.toUpperCase());
+    n=n.replace(/\bLtd\b(?!\.)/g,'Ltd.').replace(/\bLtd\.\./g,'Ltd.');
+  }
+  return n;
+}
+
+// ── ROUTING ─────────────────────────────────────────
 function go(p){
-  page=p;coId=null;coData=null;coTab='overview';uniPage=1;uniF={q:'',signal:'',sector:''};
+  page=p;coId=null;coData=null;coTab='overview';uP=1;uF={q:'',sig:'',sec:''};srtK='ccs';srtD=-1;
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-  const nb=document.getElementById('nb-'+p);if(nb)nb.classList.add('on');
+  const el=document.getElementById('nb-'+p);if(el)el.classList.add('on');
   window.scrollTo({top:0,behavior:'smooth'});r();
 }
 async function goC(id){
   coId=id;coData=null;page='company';coTab='overview';
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-  document.getElementById('nb-universe').classList.add('on');
+  document.getElementById('nb-research').classList.add('on');
   window.scrollTo({top:0,behavior:'smooth'});r();
-  try{
-    const res = await fetch(BASE+'/data/'+id+'.json?v='+Date.now());
-    coData = await res.json();
-    r();
-  }catch(e){console.warn('Company file not found:',id);}
+  try{const res=await fetch(BASE+'/data/'+id+'.json?t='+Date.now());coData=await res.json();r();}
+  catch(e){console.warn('Could not load company:',id);}
 }
 function setCoTab(t){coTab=t;r();}
-function setCallTab(t){callTab=t;r();}
+function setSigTab(t){sigTab=t;r();}
+function srt(k){srtD=(srtK===k)?-srtD:-1;srtK=k;uP=1;r();}
 
-// ── RENDER ────────────────────────────────────────────
+// ── RENDER ──────────────────────────────────────────
 function r(){
+  Object.values(charts).forEach(c=>{try{c.destroy();}catch(e){}});charts={};
   const app=document.getElementById('app');
-  app.innerHTML=`<div class="fade">${renderPage()}</div>`;
-  setTimeout(drawCharts,80);
+  app.innerHTML='<div class="fade">'+rPage()+'</div>';
+  setTimeout(drawAll,80);
 }
-function renderPage(){
-  if(page==='home')return renderHome();
-  if(page==='calls')return renderCalls();
-  if(page==='universe')return renderUniverse();
-  if(page==='company')return renderCompany();
-  if(page==='record')return renderRecord();
+function rPage(){
+  if(page==='home')return rHome();
+  if(page==='signals')return rSignals();
+  if(page==='research')return rResearch();
+  if(page==='company')return rCompany();
+  if(page==='record')return rRecord();
   return '';
 }
 
-// ── HELPERS ───────────────────────────────────────────
-const sigC=s=>({BUY:'var(--forest)',HOLD:'var(--navy)',WATCH:'var(--amber2)',AVOID:'var(--crimson)'}[s]||'var(--ink2)');
-const sigCls=s=>({BUY:'b-buy',HOLD:'b-hold',WATCH:'b-watch',AVOID:'b-avoid'}[s]||'');
+// ── HELPERS ─────────────────────────────────────────
+const sC=s=>({BUY:'var(--green)',HOLD:'var(--navy)',WATCH:'var(--amber2)',AVOID:'var(--red)'}[s]||'var(--ink3)');
+const sCls=s=>({BUY:'b-buy',HOLD:'b-hold',WATCH:'b-watch',AVOID:'b-avoid'}[s]||'');
 const bdg=(l,c)=>`<span class="badge ${c}">${l}</span>`;
-const fmtCr=n=>{if(n==null)return'—';const a=Math.abs(n);const s=a>=100000?`${(a/100000).toFixed(1)}L Cr`:a>=1000?`${(a/1000).toFixed(0)}K Cr`:`${Math.round(a)} Cr`;return(n<0?'−₹':'₹')+s;};
-const pn=v=>{if(v==null)return null;if(typeof v==='number')return v;return parseFloat(String(v).replace('%','').replace(',',''))||null;};
-const lN=(obj,n)=>{if(!obj)return[];return Object.values(obj).slice(-n).map(pn).filter(v=>v!=null);};
-const sb=(l,v,c)=>`<div class="srow"><div class="shead"><span class="slb">${l}</span><span class="svl" style="color:${c}">${v}/100</span></div><div class="strk"><div class="sfil" style="width:${v}%;background:${c}"></div></div></div>`;
-const fmtDate=d=>{if(!d)return'—';const [y,m,dy]=d.split('-');const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return`${dy} ${months[parseInt(m)-1]} ${y}`;};
-const evmedNum=v=>{if(!v)return null;return parseInt(String(v).replace('+',''));};
+const fCr=n=>{if(n==null)return'—';const a=Math.abs(n);const s=a>=100000?`${(a/100000).toFixed(1)}L Cr`:a>=1000?`${(a/1000).toFixed(0)}K Cr`:`${Math.round(a)} Cr`;return(n<0?'−₹':'₹')+s;};
+const pn=v=>{if(v==null)return null;if(typeof v==='number')return v;return parseFloat(String(v).replace(/%/g,'').replace(/,/g,''))||null;};
+const lN=(o,n)=>{if(!o)return[];return Object.values(o).slice(-n).map(pn).filter(v=>v!=null);};
+const fDate=d=>{if(!d)return'—';const[y,m,dy]=d.split('-');const mo='Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split(' ');return`${dy} ${mo[+m-1]} ${y}`;};
+const ev=v=>{if(!v)return null;return parseInt(String(v).replace('+',''));};
+const pct=v=>v!=null?v+'%':'—';
+const sBar=(l,v,c,w=100)=>`<div class="sbar"><div class="sbar-row"><span class="sbar-label">${l}</span><span class="sbar-val" style="color:${c}">${v}/${w}</span></div><div class="sbar-track"><div class="sbar-fill" style="width:${(v/w)*100}%;background:${c}"></div></div></div>`;
+const iTip=(title,body)=>`<span class="itip"><span class="itip-btn">i</span><span class="itip-box"><strong>${title}</strong>${body}</span></span>`;
+const signalLabel=s=>({BUY:'Strong Buy',HOLD:'Hold',WATCH:'Watch',AVOID:'Avoid'}[s]||s);
 
-// ── HOME ──────────────────────────────────────────────
-function renderHome(){
-  const activeCalls = HISTORY.activeCalls || [];
-  const snap = (HISTORY.dailySnapshots||[]).slice(-1)[0] || {};
-  const lastUpdated = HISTORY.lastUpdated || 'Not yet run';
-  const topCall = activeCalls[0] ? INDEX[activeCalls[0].id] : null;
-  const callMeta = activeCalls[0] || null;
+// ── SECTOR FILTER HELPER ─────────────────────────────
+function getFiltered(){
+  return [...COS].filter(c=>{
+    if(uF.q&&!c.name.toLowerCase().includes(uF.q.toLowerCase())&&!c.id.includes(uF.q))return false;
+    if(uF.sig&&c.signal!==uF.sig)return false;
+    if(uF.sec&&c.sector!==uF.sec)return false;
+    return true;
+  }).sort((a,b)=>{
+    const av=a[srtK]??-9999,bv=b[srtK]??-9999;
+    if(typeof av==='string')return av.localeCompare(bv)*srtD;
+    return(bv-av)*-srtD;
+  });
+}
+
+// ── SHAREHOLDING HEADERS FIX ─────────────────────────
+function getQtrShHeaders(full){
+  const all=full?.shareholding?.headers||[];
+  const sepIdx=all.findIndex(h=>!h||!h.trim());
+  return(sepIdx===-1?all:all.slice(0,sepIdx)).filter(h=>h&&h.trim()&&/[A-Z][a-z]+ \d{4}/.test(h));
+}
+
+/* ══════════════════════════════════════════════════════
+   HOME PAGE
+══════════════════════════════════════════════════════ */
+function rHome(){
+  const active=HIST.activeCalls||[];
+  const updated=HIST.lastUpdated||'Not yet updated';
+  const top=active[0]?IDX[active[0].id]:null;
+  const meta=active[0]||null;
+  const nearMiss=COS.filter(c=>c.signal==='BUY'&&c.qScore>=50&&c.ccs>=58).slice(0,5);
+  const sectors=[...new Set(COS.map(c=>c.sector))].filter(Boolean);
+  const sectorCounts=sectors.reduce((acc,s)=>{acc[s]=(COS.filter(c=>c.sector===s).length);return acc;},{});
+  const topSectors=Object.entries(sectorCounts).sort(([,a],[,b])=>b-a).slice(0,5);
 
   return `<div class="page">
-    <div style="display:grid;grid-template-columns:1fr 380px;gap:48px;margin-bottom:52px;align-items:start">
+    <div style="display:grid;grid-template-columns:1fr 380px;gap:52px;margin-bottom:56px;align-items:start">
       <div>
-        ${topCall && callMeta ? `
-          <div style="display:flex;gap:8px;align-items:center;margin-bottom:18px;flex-wrap:wrap">
-            <div style="width:8px;height:8px;border-radius:50%;background:var(--forest2)"></div>
-            ${bdg(activeCalls.length+' Active Call'+(activeCalls.length!==1?'s':''),'b-call')}
+        ${top&&meta?`
+          <div style="display:flex;gap:8px;align-items:center;margin-bottom:20px;flex-wrap:wrap">
+            <div style="width:8px;height:8px;border-radius:50%;background:#4ADE80;animation:navpulse 2.5s infinite"></div>
+            ${bdg(active.length+' Active Signal'+(active.length!==1?'s':''),'b-signal')}
           </div>
-          <h1 style="font-family:var(--serif);font-size:56px;font-weight:500;line-height:1.06;color:var(--ink);margin-bottom:18px;letter-spacing:-.025em">${topCall.name}<span style="color:var(--forest2)">.</span></h1>
-          <div style="font-size:13px;color:var(--ink2);margin-bottom:8px">${topCall.sector} · BSE ${topCall.id}</div>
-          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px">
-            ${[['Q-Score',callMeta.entryScores.qScore,'var(--forest2)'],['V-Score',callMeta.entryScores.vScore,'var(--navy)'],['M-Score',callMeta.entryScores.mScore,'#7C3AED'],['CCS',callMeta.entryScores.ccs,sigC(topCall.signal)]].map(([l,v,c])=>`
-              <div class="sbox"><div class="slbl">${l}</div><div class="sval" style="color:${c}">${v}</div></div>`).join('')}
+          <h1 class="heading hero-title" style="font-size:52px;margin-bottom:14px">${top.name}<span style="color:var(--green2)">.</span></h1>
+          <div style="font-size:13px;color:var(--ink3);margin-bottom:22px">${top.sector} &nbsp;·&nbsp; BSE ${top.id} &nbsp;·&nbsp; Data updated ${updated}</div>
+          <div class="g4" style="margin-bottom:26px">
+            ${[['Quality Score',meta.entryScores?.qScore||top.qScore,'var(--green2)','How durable and consistent the business is'],['Value Score',meta.entryScores?.vScore||top.vScore,'var(--navy)','How undervalued the stock is relative to earnings'],['Momentum',meta.entryScores?.mScore||top.mScore,'#6D28D9','Institutional buying activity and earnings trend'],['Conviction',meta.entryScores?.ccs||top.ccs,sC(top.signal),'The combined score driving the signal']].map(([l,v,c,d])=>`
+              <div class="stat"><div class="stat-label" title="${d}">${l}</div><div class="stat-val" style="color:${c}">${v}</div><div class="stat-sub">out of 100</div></div>`).join('')}
           </div>
           <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <button onclick="go('calls')" style="padding:11px 24px;background:var(--ink);color:#fff;border-radius:7px;font-size:13px;font-weight:600">View all calls &rarr;</button>
-            <button onclick="goC('${topCall.id}')" style="padding:11px 20px;background:transparent;color:var(--ink);border:1px solid var(--bd);border-radius:7px;font-size:13px">Deep dive &amp; charts</button>
+            <button onclick="go('signals')" style="padding:11px 26px;background:var(--ink);color:#fff;border-radius:var(--r8);font-size:13px;font-weight:600;transition:opacity .15s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">See full breakdown →</button>
+            <button onclick="goC('${top.id}')" style="padding:11px 20px;background:transparent;color:var(--ink);border:1.5px solid var(--bd);border-radius:var(--r8);font-size:13px;transition:border-color .15s" onmouseover="this.style.borderColor='var(--ink3)'" onmouseout="this.style.borderColor='var(--bd)'">Charts &amp; financials</button>
           </div>
-        ` : `
-          <div class="slabel" style="margin-bottom:16px">Current stance</div>
-          <div class="heronum" style="color:var(--bd);margin-bottom:14px">0<span style="opacity:.4">.</span></div>
-          <p class="body" style="max-width:440px;font-size:14px;margin-bottom:16px">
-            No stocks currently meet all conviction thresholds simultaneously. The engine is scanning <strong>${COS_LIST.length.toLocaleString()}</strong> companies. 
-            ${COS_LIST.filter(c=>c.signal==='WATCH').length} are on watch. None have cleared every bar yet.
+        `:`
+          <div class="label" style="margin-bottom:18px">Today's position</div>
+          <h1 class="heading hero-title" style="font-size:56px;line-height:1.05;margin-bottom:14px;color:var(--ink)">Watching.<br>Not buying.</h1>
+          <p style="font-size:14px;color:var(--ink2);line-height:1.78;max-width:460px;margin-bottom:18px">
+            We score ${COS.length.toLocaleString()} companies every day against four strict criteria. Right now, none pass all four simultaneously. This is not unusual — it reflects current market conditions where quality stocks are mostly fairly priced.
           </p>
-          <p class="body" style="max-width:440px;font-size:13px;color:var(--ink3)">
-            Conviction thresholds: Signal = BUY · Q-Score ≥ 60 · CCS ≥ 65 · EV-MED ≥ +5. All four must align simultaneously.
-          </p>
+          <div class="insight insight-blue" style="margin-bottom:22px;max-width:460px">
+            <strong style="font-size:13px">What we are watching:</strong><br>
+            ${nearMiss.length} stocks carry a BUY rating and score above 50 on quality — they are close, but the valuation gap is not yet large enough to be a clear opportunity. You can explore them in Research.
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button onclick="go('research')" style="padding:11px 26px;background:var(--ink);color:#fff;border-radius:var(--r8);font-size:13px;font-weight:600">Browse all companies →</button>
+            <button onclick="go('signals')" style="padding:11px 20px;background:transparent;color:var(--ink);border:1.5px solid var(--bd);border-radius:var(--r8);font-size:13px">Past signals</button>
+          </div>
         `}
       </div>
       <div>
-        ${topCall && callMeta ? `
+        ${top&&meta?`
         <div class="card">
-          <div class="slabel" style="margin-bottom:6px">Engine signal</div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-            <span style="font-family:var(--serif);font-size:15px;font-weight:600">${topCall.name}</span>
-            ${bdg(topCall.signal,sigCls(topCall.signal))}
+          <div class="label" style="margin-bottom:8px">Signal breakdown</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <span style="font-family:var(--serif);font-size:15px;font-weight:600">${top.name}</span>
+            ${bdg(signalLabel(top.signal),sCls(top.signal))}
           </div>
-          ${sb('Q-Score — Quality',callMeta.entryScores.qScore,'var(--forest2)')}
-          ${sb('V-Score — Value',callMeta.entryScores.vScore,'var(--navy)')}
-          ${sb('M-Score — Momentum',callMeta.entryScores.mScore,'#7C3AED')}
-          <div style="border-top:1px solid var(--bd2);padding-top:11px;margin-top:4px;display:flex;justify-content:space-between;align-items:center">
-            <span style="font-size:12px;color:var(--ink2)">Conviction Score (CCS)</span>
-            <span style="font-family:var(--mono);font-size:24px;font-weight:600;color:${sigC(topCall.signal)}">${callMeta.entryScores.ccs}<span style="font-size:10px;opacity:.4">/100</span></span>
+          ${sBar('Quality — business strength',meta.entryScores?.qScore||top.qScore,'var(--green2)')}
+          ${sBar('Value — how underpriced',meta.entryScores?.vScore||top.vScore,'var(--navy)')}
+          ${sBar('Momentum — institutional activity',meta.entryScores?.mScore||top.mScore,'#6D28D9')}
+          <div style="border-top:1px solid var(--bd2);padding-top:12px;margin-top:4px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <span style="font-size:12px;color:var(--ink2)">Conviction Score</span>
+            <span style="font-family:var(--mono);font-size:26px;font-weight:600;color:${sC(top.signal)}">${meta.entryScores?.ccs||top.ccs}<span style="font-size:10px;opacity:.4">/100</span></span>
           </div>
-          <div class="g2" style="margin-top:11px">
-            <div class="sbox"><div class="slbl">EV-MED</div><div class="sval" style="color:var(--forest2)">${callMeta.entryScores.evmed||'—'}</div><div class="ssb">Earnings vs Price gap</div></div>
-            <div class="sbox"><div class="slbl">Call opened</div><div class="sval" style="font-size:13px">${fmtDate(callMeta.entryDate)}</div><div class="ssb">Auto-detected</div></div>
+          <div class="g2">
+            <div class="stat"><div class="stat-label">Earnings vs Price</div><div class="stat-val" style="color:var(--green2)">${meta.entryScores?.evmed||top.evmed||'—'}</div><div class="stat-sub">Gap over 5 years</div></div>
+            <div class="stat"><div class="stat-label">Signal detected</div><div class="stat-val" style="font-size:13px">${fDate(meta.entryDate)}</div><div class="stat-sub">Auto by engine</div></div>
           </div>
-        </div>` : `
+        </div>`:`
         <div class="card">
-          <div class="slabel" style="margin-bottom:12px">Highest conviction — Watch list</div>
-          ${COS_LIST.filter(c=>c.signal==='WATCH'||c.signal==='BUY').slice(0,5).map(c=>`
-            <div onclick="goC('${c.id}')" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd2);cursor:pointer">
-              <div><div style="font-size:13px;font-weight:500">${c.name}</div><div style="font-size:10px;color:var(--ink3)">${c.sector}</div></div>
-              <div style="display:flex;align-items:center;gap:8px">${bdg(c.signal,sigCls(c.signal))}<span style="font-family:var(--mono);font-weight:600;color:${sigC(c.signal)}">${c.ccs}</span></div>
+          <div class="label" style="margin-bottom:4px">Closest to a signal today</div>
+          <div style="font-size:12px;color:var(--ink2);margin-bottom:14px;line-height:1.6">Stocks with BUY ratings and Quality Score above 50 — strong businesses where we are watching for a better entry.</div>
+          ${nearMiss.map(c=>`
+            <div onclick="goC('${c.id}')" class="card-hover" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd2);cursor:pointer">
+              <div><div style="font-size:13px;font-weight:500">${c.name}</div><div style="font-size:10px;color:var(--ink3);margin-top:2px">${c.sector} · Q: ${c.qScore} · V: ${c.vScore}</div></div>
+              <div style="display:flex;align-items:center;gap:8px">${bdg(signalLabel(c.signal),sCls(c.signal))}<span class="mono" style="font-weight:600;font-size:13px;color:${sC(c.signal)}">${c.ccs}</span></div>
             </div>`).join('')}
-          <div style="padding-top:10px;font-size:11px;color:var(--ink3)">Updated ${lastUpdated}. Engine re-scores daily.</div>
+          ${!nearMiss.length?'<div style="font-size:12px;color:var(--ink3);padding:16px 0;text-align:center">Nothing close right now. The engine checks every day.</div>':''}
+          <div style="padding-top:10px;font-size:11px;color:var(--ink3)">Updated ${updated} · Rescored nightly</div>
         </div>`}
       </div>
     </div>
 
-    <!-- WISDOM -->
-    <div class="wstrip" style="margin-bottom:48px">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+    <!-- WHAT IS NIVESIFY -->
+    <div style="background:var(--paper2);border:1px solid var(--bd);border-radius:var(--r12);padding:28px 30px;margin-bottom:52px">
+      <div class="label" style="margin-bottom:14px">What is Nivesify?</div>
+      <div class="g3">
         ${[
-          ['"Price is what you pay. Value is what you get."','Warren Buffett','The EV-MED metric quantifies this. When profit CAGR exceeds price CAGR by 5%+ over 5 years, value is accumulating unseen.'],
-          ['"The market is a voting machine short-term, a weighing machine long-term."','Benjamin Graham','The V-Score measures the divergence. A high positive divergence between earnings growth and price growth is the signal.'],
-          ['"All you need for a lifetime of successful investing is a few big winners."','Peter Lynch','That is why conviction calls are rare. The engine waits for all four thresholds to align simultaneously. Most days the answer is zero.']
-        ].map(([q,a,n])=>`<div><p style="font-family:var(--serif);font-style:italic;font-size:14px;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:7px">${q}</p><div style="font-size:10px;font-weight:600;color:rgba(255,255,255,.35);letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px">— ${a}</div><div style="font-size:11px;color:rgba(255,255,255,.38);line-height:1.6;padding-top:7px;border-top:1px solid rgba(255,255,255,.07)">${n}</div></div>`).join('')}
+          ['Research on 1,400+ Indian stocks — free','Every BSE-listed company is scored daily using independently calculated measures of business quality, valuation, and institutional activity.'],
+          ['Signals, not tips','When a stock scores highly across all measures simultaneously, it becomes a conviction signal. You see all the data behind it. The decision stays with you.'],
+          ['Honest track record','Every signal the engine has ever generated is logged permanently — opened, closed, and why. No selective memory.']
+        ].map(([t,d])=>`<div><div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px">${t}</div><div style="font-size:12px;color:var(--ink2);line-height:1.65">${d}</div></div>`).join('')}
       </div>
     </div>
 
-    <!-- LIVE STATS -->
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px">
-      <div><div class="slabel">Live Coverage</div><div class="stitle" style="font-size:21px">${COS_LIST.length.toLocaleString()} companies · Updated ${lastUpdated}</div></div>
-      <button onclick="go('universe')" style="padding:7px 15px;background:transparent;border:1px solid var(--bd);border-radius:6px;font-size:12px;color:var(--ink)">Full research table &rarr;</button>
+    <!-- LIVE UNIVERSE SNAPSHOT -->
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+      <div><div class="label">Live universe</div><div class="heading" style="font-size:22px">${COS.length.toLocaleString()} companies · Updated ${updated}</div></div>
+      <button onclick="go('research')" style="padding:8px 16px;background:transparent;border:1px solid var(--bd);border-radius:var(--r6);font-size:12px;color:var(--ink);transition:border-color .15s" onmouseover="this.style.borderColor='var(--ink3)'" onmouseout="this.style.borderColor='var(--bd)'">Full research table →</button>
     </div>
-    <div class="g4" style="margin-bottom:28px">
+    <div class="g4" style="margin-bottom:26px">
       ${[
-        ['BUY signals',COS_LIST.filter(c=>c.signal==='BUY').length,'var(--forest2)','Meets quality threshold'],
-        ['WATCH list',COS_LIST.filter(c=>c.signal==='WATCH').length,'var(--amber2)','Building toward a call'],
-        ['AVOID',COS_LIST.filter(c=>c.signal==='AVOID').length,'var(--crimson)','Below quality bar'],
-        ['Active calls',(HISTORY.activeCalls||[]).length,'var(--forest2)','Passes all 4 thresholds'],
-      ].map(([l,v,c,s])=>`<div class="sbox"><div class="slbl">${l}</div><div class="sval" style="color:${c}">${v}</div><div class="ssb">${s}</div></div>`).join('')}
+        ['Strong Buy','High quality AND undervalued',COS.filter(c=>c.signal==='BUY').length,'var(--green)'],
+        ['Hold','Good businesses, fairly priced',COS.filter(c=>c.signal==='HOLD').length,'var(--navy)'],
+        ['Watch','Building toward a signal',COS.filter(c=>c.signal==='WATCH').length,'var(--amber2)'],
+        ['Avoid','Below quality or value bar',COS.filter(c=>c.signal==='AVOID').length,'var(--red)'],
+      ].map(([l,d,v,c])=>`
+        <div class="stat card-hover" onclick="uF.sig='${'BUY,HOLD,WATCH,AVOID'.split(',')[['Strong Buy','Hold','Watch','Avoid'].indexOf(l)]}';go('research')">
+          <div class="stat-label">${l}</div>
+          <div class="stat-val" style="color:${c}">${v}</div>
+          <div class="stat-sub">${d}</div>
+        </div>`).join('')}
     </div>
 
-    <!-- TOP 10 -->
-    <div class="card" style="padding:0;overflow:hidden;margin-bottom:36px">
-      <div style="padding:12px 18px;background:var(--paper2);border-bottom:1px solid var(--bd2);font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:.07em;text-transform:uppercase">Top 10 by Conviction Score — Live</div>
-      <div style="overflow-x:auto">
+    <!-- TOP 10 TABLE -->
+    <div class="card" style="padding:0;overflow:hidden;margin-bottom:52px">
+      <div style="padding:13px 18px;background:var(--paper2);border-bottom:1px solid var(--bd2);display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:11px;font-weight:600;color:var(--ink3);letter-spacing:.07em;text-transform:uppercase">Top 10 by Conviction Score — today</div>
+        <button onclick="go('research')" style="font-size:12px;color:var(--green2);background:none;padding:0">View all →</button>
+      </div>
+      <div class="tbl-wrap">
         <table class="tbl">
-          <thead><tr><th>Company</th><th>Sector</th><th>Q</th><th>V</th><th>M</th><th>CCS</th><th>Signal</th><th>EV-MED</th><th>ROE</th><th>Price CAGR 1Y</th></tr></thead>
+          <thead><tr>
+            <th style="min-width:180px">Company</th>
+            <th>Sector</th>
+            <th>Quality ${iTip('Quality Score','Measures how durable and consistent the business is over 8 years. Looks at return on equity/capital, earnings growth, cash flow quality, and for banks: bad loan (NPA) trend.<br><em>Example: A company with 18% ROE for 8 straight years scores high.</em>')}</th>
+            <th>Value ${iTip('Value Score','Measures how undervalued the stock is. The main input is the gap between how fast profits grew vs how fast the stock price moved. When earnings grow faster than price for years, value accumulates unseen.<br><em>Example: Profits up 19% p.a., stock flat for 5 years = high value score.</em>')}</th>
+            <th class="hide-m">Momentum ${iTip('Momentum Score','Tracks whether foreign and domestic institutional investors are buying or selling, and whether quarterly earnings are growing or shrinking.<br><em>Example: FII holding rising 3 quarters in a row = positive momentum.</em>')}</th>
+            <th>Score ${iTip('Conviction Score (CCS)','The combined verdict: Quality×45% + Value×35% + Momentum×20%. A higher weight on quality ensures cheap bad businesses never rank highly.<br><em>Example: Q=75, V=80, M=55 → CCS = 72.</em>')}</th>
+            <th>Signal</th>
+            <th class="hide-m">Earn. gap ${iTip('Earnings vs Price Gap (EV-MED)','5-year profit growth rate minus 5-year stock price growth rate. A large positive number means profits have grown much faster than the stock price — a potential undervaluation signal.<br><em>Example: Profits CAGR +19%, Price CAGR 0% → gap = +19.</em>')}</th>
+            <th class="hide-m">Profit 5Y</th>
+            <th>ROE ${iTip('Return on Equity','Net profit divided by shareholders equity. Tells you how efficiently a company generates profit from money invested by shareholders. Higher is better; consistent is important.<br><em>Example: ROE of 18% means the company earns ₹18 for every ₹100 of shareholder money.</em>')}</th>
+          </tr></thead>
           <tbody>
-          ${COS_LIST.slice(0,10).map((c,i)=>`
-            <tr class="hov" onclick="goC('${c.id}')" style="background:${i%2===0?'var(--card)':'#FDFCF8'}">
-              <td><div style="font-weight:600;font-size:13px">${c.name}</div><div style="font-family:var(--mono);font-size:10px;color:var(--ink3)">${c.id}</div></td>
-              <td><span style="font-size:10px;padding:1px 7px;border-radius:10px;background:var(--bd2);color:var(--ink2)">${c.sector}</span></td>
-              <td><b style="color:var(--forest2)">${c.qScore}</b></td>
+          ${COS.slice(0,10).map((c,i)=>`
+            <tr class="row-hover" onclick="goC('${c.id}')" style="background:${i%2===0?'var(--card)':'#FAF8F3'}">
+              <td><div style="font-weight:600;font-size:13px">${c.name}</div><div class="mono" style="font-size:10px;color:var(--ink3)">${c.id}</div></td>
+              <td>${bdg(c.sector,'b-sector')}</td>
+              <td><b style="color:var(--green2)">${c.qScore}</b></td>
               <td><b style="color:var(--navy)">${c.vScore}</b></td>
-              <td><b style="color:#7C3AED">${c.mScore}</b></td>
-              <td><b style="font-size:16px;color:${sigC(c.signal)}">${c.ccs}</b></td>
-              <td>${bdg(c.signal,sigCls(c.signal))}</td>
-              <td><span style="font-family:var(--mono);font-weight:600;color:${c.evmed&&c.evmed.toString().startsWith('-')?'var(--crimson)':'var(--forest2)'}">${c.evmed||'—'}</span></td>
-              <td><span style="font-family:var(--mono)">${c.roe!=null?c.roe+'%':'—'}</span></td>
-              <td><span style="font-family:var(--mono);color:${c.pricagr1<0?'var(--crimson)':'var(--forest2)'}">${c.pricagr1!=null?c.pricagr1+'%':'—'}</span></td>
+              <td class="hide-m"><b style="color:#6D28D9">${c.mScore}</b></td>
+              <td><b class="mono" style="font-size:17px;color:${sC(c.signal)}">${c.ccs}</b></td>
+              <td>${bdg(signalLabel(c.signal),sCls(c.signal))}</td>
+              <td class="hide-m"><span class="mono" style="font-weight:600;color:${c.evmed&&c.evmed.toString().startsWith('-')?'var(--red)':'var(--green2)'}">${c.evmed||'—'}</span></td>
+              <td class="hide-m"><span class="mono">${c.pcagr5!=null?c.pcagr5+'%':'—'}</span></td>
+              <td><span class="mono">${c.roe!=null?c.roe+'%':'—'}</span></td>
             </tr>`).join('')}
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- ENGINE EXPLANATION -->
-    <div style="background:var(--paper2);border:1px solid var(--bd);border-radius:12px;padding:26px 30px">
-      <div class="slabel" style="margin-bottom:10px">How the engine identifies conviction calls</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+    <!-- SECTOR BREAKDOWN -->
+    <div style="margin-bottom:52px">
+      <div class="label" style="margin-bottom:14px">Coverage by sector</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px">
+        ${topSectors.map(([s,n])=>`
+          <div class="card card-hover" onclick="uF.sec='${s}';go('research')" style="padding:12px 14px">
+            <div style="font-size:12px;font-weight:500;margin-bottom:4px">${s}</div>
+            <div class="mono" style="font-size:20px;font-weight:600;color:var(--ink)">${n}</div>
+            <div style="font-size:10px;color:var(--ink3);margin-top:2px">companies</div>
+          </div>`).join('')}
+        ${topSectors.length<sectors.length?`<div class="card" style="padding:12px 14px;display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="go('research')"><div style="font-size:12px;color:var(--ink3)">+${sectors.length-5} more sectors →</div></div>`:''}
+      </div>
+    </div>
+
+    <!-- PHILOSOPHY -->
+    <div class="phil">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:36px">
         ${[
-          ['1. Quality Screen (Q ≥ 60)','ROE/ROCE consistency over 8 years. OPM stability. Earnings never declined. Banks: NPA trajectory. Non-banks: ROCE + OPM.'],
-          ['2. Value Screen (EV-MED ≥ +5)','Profit CAGR minus Price CAGR over 5 years. When earnings grow faster than price for years, a gap opens. That gap is the opportunity.'],
-          ['3. Conviction Score (CCS ≥ 65)','Weighted composite: Q×45% + V×35% + M×20%. Must cross 65 with quality as the anchor. A cheap bad business never qualifies.'],
-          ['4. Auto-tracked daily','When all thresholds align → call opens. When any breaks → call closes. history.json records every transition permanently.'],
-        ].map(([t,d])=>`<div><div style="font-size:12px;font-weight:600;margin-bottom:5px">${t}</div><div style="font-size:12px;color:var(--ink2);line-height:1.65">${d}</div></div>`).join('')}
+          ['"Price is what you pay. Value is what you get."','Warren Buffett','Our Value Score measures exactly this — the gap between what the market charges and what the business earns. When earnings grow at 19% but the stock goes nowhere for 5 years, something is mispriced.'],
+          ['"In the short run the market is a voting machine. In the long run, it is a weighing machine."','Benjamin Graham','We measure the weighing machine — earnings, cash flow, return on capital — not the voting machine (sentiment, momentum, tips).'],
+          ['"The key to investing is not assessing how much an industry is going to affect society, but rather determining the competitive advantage of any given company."','Warren Buffett','That is what the Quality Score measures: sustainable competitive advantage, expressed in consistent returns on capital over years.']
+        ].map(([q,a,n])=>`
+          <div>
+            <p style="font-family:var(--serif);font-style:italic;font-size:14px;line-height:1.78;color:rgba(255,255,255,.83);margin-bottom:8px">${q}</p>
+            <div style="font-size:10px;font-weight:600;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">— ${a}</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.36);line-height:1.65;padding-top:8px;border-top:1px solid rgba(255,255,255,.07)">${n}</div>
+          </div>`).join('')}
       </div>
     </div>
   </div>`;
 }
 
-// ── CALLS PAGE ────────────────────────────────────────
-function renderCalls(){
-  const activeCalls = HISTORY.activeCalls || [];
-  const closedCalls = HISTORY.closedCalls || [];
-
-  return `<div class="pgm">
-    <div style="margin-bottom:26px">
-      <div class="slabel">Engine Output</div>
-      <div class="stitle">Conviction Calls</div>
-      <div class="ssub">Auto-detected when a stock simultaneously passes all four thresholds. No human selection. Opens and closes based purely on data. Every transition is logged permanently.</div>
+/* ══════════════════════════════════════════════════════
+   SIGNALS PAGE
+══════════════════════════════════════════════════════ */
+function rSignals(){
+  const active=HIST.activeCalls||[];
+  const closed=HIST.closedCalls||[];
+  return `<div class="pg-narrow">
+    <div style="margin-bottom:28px">
+      <div class="label">Engine output</div>
+      <div class="heading" style="font-size:30px;margin-bottom:8px">Conviction Signals</div>
+      <div class="sub">A signal appears when a company simultaneously passes all four criteria below. No human picks these — the engine scores every company every night and flags what qualifies.</div>
+    </div>
+    <div style="background:var(--paper2);border:1px solid var(--bd);border-radius:var(--r8);padding:14px 18px;margin-bottom:24px">
+      <div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:10px">Four criteria — all must pass at the same time:</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        ${[
+          ['Signal rating = Strong Buy','The combined conviction score places it in the top category'],
+          ['Quality Score ≥ 60','The business has proven consistency over 8+ years'],
+          ['Conviction Score ≥ 65','The weighted composite score crosses the conviction bar'],
+          ['Earnings growing faster than price','The earnings vs price gap (EV-MED) is +5 or above'],
+        ].map(([t,d])=>`<div style="display:flex;gap:8px;font-size:12px"><span style="color:var(--green2);flex-shrink:0;margin-top:1px">✓</span><div><strong>${t}</strong><br><span style="color:var(--ink2)">${d}</span></div></div>`).join('')}
+      </div>
     </div>
     <div class="tabs">
-      ${[['active',`Active (${activeCalls.length})`],['closed',`Closed (${closedCalls.length})`]].map(([k,l])=>
-        `<button class="tbtn${callTab===k?' on':''}" onclick="setCallTab('${k}')">${l}</button>`).join('')}
+      ${[['active','Active ('+active.length+')'],['closed','Past signals ('+closed.length+')']].map(([k,l])=>
+        `<button class="tbtn${sigTab===k?' on':''}" onclick="setSigTab('${k}')">${l}</button>`).join('')}
     </div>
-    ${callTab==='active' ? renderActiveCalls(activeCalls) : renderClosedCalls(closedCalls)}
+    ${sigTab==='active'?rActiveSignals(active):rClosedSignals(closed)}
   </div>`;
 }
 
-function renderActiveCalls(activeCalls){
-  if(!activeCalls.length) return `
-    <div style="text-align:center;padding:80px 0">
-      <div class="heronum" style="color:var(--bd2);font-size:110px">0.</div>
-      <div style="font-size:15px;color:var(--ink2);margin-top:14px;margin-bottom:10px">No stocks currently pass all conviction thresholds.</div>
-      <div style="font-size:13px;color:var(--ink3);max-width:400px;margin:0 auto;line-height:1.7">
-        Thresholds: Signal=BUY · Q-Score≥60 · CCS≥65 · EV-MED≥+5<br>
-        ${COS_LIST.filter(c=>c.signal==='BUY').length} stocks are BUY signals. 
-        ${COS_LIST.filter(c=>c.qScore>=60&&c.signal==='BUY').length} also pass Q-Score≥60.<br>
-        The engine is checking all criteria daily.
+function rActiveSignals(active){
+  if(!active.length) return `
+    <div style="text-align:center;padding:60px 20px">
+      <div style="font-family:var(--serif);font-size:56px;font-weight:400;color:var(--bd);margin-bottom:16px;line-height:1">No active signals.</div>
+      <div style="font-size:15px;color:var(--ink2);margin-bottom:14px;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.75">
+        ${COS.filter(c=>c.signal==='BUY').length} companies currently carry a Strong Buy rating, but none simultaneously clear all four conviction criteria.
       </div>
+      <div style="display:inline-block;text-align:left;padding:18px 22px;background:var(--paper2);border-radius:var(--r8);border:1px solid var(--bd);font-size:13px;color:var(--ink2);max-width:400px;margin-bottom:26px">
+        <div style="font-weight:600;color:var(--ink);margin-bottom:10px">What the engine is checking every night:</div>
+        ${['Business quality consistent over 8+ years','Earnings growing significantly faster than price','Overall conviction score above 65','For banks: bad loan ratio under 3%'].map(t=>`<div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--green2)">✓</span>${t}</div>`).join('')}
+      </div>
+      <br>
+      <button onclick="go('research')" style="padding:10px 24px;background:var(--ink);color:#fff;border-radius:var(--r8);font-size:13px;font-weight:600">Explore all ${COS.length.toLocaleString()} companies →</button>
     </div>`;
 
-  return activeCalls.map(meta => {
-    const co = INDEX[meta.id];
-    if(!co) return '';
-    const scores = meta.entryScores || {};
-    return `
-    <div class="card" style="margin-bottom:16px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+  return active.map(meta=>{
+    const co=IDX[meta.id];if(!co)return'';
+    return `<div class="card" style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:10px">
         <div>
           <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap">
-            ${bdg('Active Call','b-call')}
-            ${bdg(co.signal,sigCls(co.signal))}
-            <span style="font-family:var(--mono);font-size:10px;color:var(--ink3)">Opened ${fmtDate(meta.entryDate)}</span>
+            ${bdg('Active Signal','b-signal')} ${bdg(signalLabel(co.signal),sCls(co.signal))}
+            <span style="font-size:11px;color:var(--ink3)">Detected ${fDate(meta.entryDate)}</span>
           </div>
-          <div style="font-family:var(--serif);font-size:28px;font-weight:600;margin-bottom:3px">${co.name}</div>
+          <div class="heading" style="font-size:26px;margin-bottom:3px">${co.name}</div>
           <div style="font-size:12px;color:var(--ink2)">${co.sector} · BSE ${co.id}</div>
         </div>
-        <button onclick="goC('${co.id}')" style="padding:8px 15px;background:var(--paper2);border:1px solid var(--bd);border-radius:6px;font-size:12px;color:var(--ink)">Deep dive &rarr;</button>
+        <button onclick="goC('${co.id}')" style="padding:8px 16px;background:var(--paper2);border:1px solid var(--bd);border-radius:var(--r6);font-size:12px;color:var(--ink)">Full analysis →</button>
       </div>
-
       <div class="g2" style="margin-bottom:14px">
         <div>
-          <div class="slabel" style="margin-bottom:10px">Scores at call open</div>
-          ${sb('Q-Score — Quality',scores.qScore||co.qScore,'var(--forest2)')}
-          ${sb('V-Score — Value',scores.vScore||co.vScore,'var(--navy)')}
-          ${sb('M-Score — Momentum',scores.mScore||co.mScore,'#7C3AED')}
-          <div style="background:var(--paper2);border-radius:7px;padding:10px 12px;margin-top:5px;display:flex;justify-content:space-between;align-items:center">
-            <span style="font-size:12px;color:var(--ink2)">Conviction Score (CCS)</span>
+          ${sBar('Quality — business strength',meta.entryScores?.qScore||co.qScore,'var(--green2)')}
+          ${sBar('Value — degree of undervaluation',meta.entryScores?.vScore||co.vScore,'var(--navy)')}
+          ${sBar('Momentum — institutional activity',meta.entryScores?.mScore||co.mScore,'#6D28D9')}
+          <div style="background:var(--paper2);border-radius:var(--r6);padding:10px 12px;margin-top:5px;display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:12px;color:var(--ink2)">Conviction Score</span>
             <div style="display:flex;align-items:center;gap:8px">
-              <span style="font-family:var(--mono);font-size:22px;font-weight:700;color:${sigC(co.signal)}">${scores.ccs||co.ccs}</span>
-              ${bdg(co.signal,sigCls(co.signal))}
+              <span class="mono" style="font-size:22px;font-weight:700;color:${sC(co.signal)}">${meta.entryScores?.ccs||co.ccs}</span>
+              ${bdg(signalLabel(co.signal),sCls(co.signal))}
             </div>
           </div>
         </div>
-        <div>
-          <div class="slabel" style="margin-bottom:10px">Key metrics</div>
-          <div class="g2">
-            <div class="sbox"><div class="slbl">EV-MED</div><div class="sval" style="color:var(--forest2)">${scores.evmed||co.evmed||'—'}</div><div class="ssb">Earnings vs Price</div></div>
-            <div class="sbox"><div class="slbl">ROE</div><div class="sval">${meta.roe!=null?meta.roe+'%':'—'}</div><div class="ssb">Return on equity</div></div>
-            <div class="sbox"><div class="slbl">Price CAGR 1Y</div><div class="sval" style="color:${(meta.priceCagr1Y||0)<0?'var(--crimson)':'var(--ink)'}">${meta.priceCagr1Y!=null?meta.priceCagr1Y+'%':'—'}</div><div class="ssb">Market reaction</div></div>
-            ${meta.isBank?`<div class="sbox"><div class="slbl">Gross NPA</div><div class="sval" style="color:${(meta.gnpa||5)>2?'var(--crimson)':'var(--forest2)'}">${meta.gnpa!=null?meta.gnpa+'%':'—'}</div><div class="ssb">Asset quality</div></div>`:
-            `<div class="sbox"><div class="slbl">Sector</div><div class="sval" style="font-size:13px">${co.sector}</div></div>`}
-          </div>
-          <div style="margin-top:12px;padding:10px 12px;background:var(--forestl);border-radius:7px;font-size:12px;color:var(--forest2);line-height:1.6">
-            <strong>Why this passed:</strong> All four thresholds met simultaneously — Signal=BUY, Q≥60, CCS≥65, EV-MED≥+5${meta.isBank?' and NPA controlled':''}.
-          </div>
+        <div class="g2">
+          <div class="stat"><div class="stat-label">Earnings vs Price gap</div><div class="stat-val" style="color:var(--green2)">${meta.entryScores?.evmed||co.evmed||'—'}</div><div class="stat-sub">Profits outrunning price</div></div>
+          <div class="stat"><div class="stat-label">Return on equity</div><div class="stat-val">${meta.roe!=null?meta.roe+'%':'—'}</div><div class="stat-sub">Last year</div></div>
+          <div class="stat"><div class="stat-label">Stock price 1 year</div><div class="stat-val" style="color:${(meta.priceCagr1Y||0)<0?'var(--red)':'var(--ink)'}">${meta.priceCagr1Y!=null?meta.priceCagr1Y+'%':'—'}</div><div class="stat-sub">Price change</div></div>
+          ${co.isBank?`<div class="stat"><div class="stat-label">Bad loans (NPA)</div><div class="stat-val" style="color:${(meta.gnpa||5)>2?'var(--red)':'var(--green2)'}">${meta.gnpa!=null?meta.gnpa+'%':'—'}</div><div class="stat-sub">Gross NPA ratio</div></div>`:
+          `<div class="stat"><div class="stat-label">Profit CAGR 5Y</div><div class="stat-val">${co.pcagr5!=null?co.pcagr5+'%':'—'}</div><div class="stat-sub">5-year growth</div></div>`}
         </div>
       </div>
-
-      <div style="padding:12px 14px;background:var(--paper2);border-radius:7px;font-size:12px;color:var(--ink2)">
-        <strong>Invalidation: </strong>Call closes automatically if signal drops from BUY, Q-Score falls below 60, CCS falls below 65, or EV-MED turns negative. No manual intervention.
-      </div>
+      <div class="insight insight-green"><strong>Why this passed:</strong> All four criteria were met simultaneously on ${fDate(meta.entryDate)}. The signal closes automatically the day any criterion breaks.</div>
     </div>`;
   }).join('');
 }
 
-function renderClosedCalls(closedCalls){
-  if(!closedCalls.length) return `
-    <div style="text-align:center;padding:60px 0">
-      <div style="font-size:15px;color:var(--ink2);margin-bottom:8px">No closed calls yet.</div>
-      <div style="font-size:13px;color:var(--ink3)">When an active call's stock moves out of BUY signal, it will appear here with the full transition record.</div>
-    </div>`;
-
+function rClosedSignals(closed){
+  if(!closed.length)return`<div style="text-align:center;padding:50px 20px"><div style="font-size:14px;color:var(--ink2);margin-bottom:8px">No past signals yet.</div><div style="font-size:12px;color:var(--ink3);max-width:360px;margin:0 auto">When an active signal drops below any threshold, it will be recorded here automatically with the full data.</div></div>`;
   return `<div>
-    <div style="margin-bottom:14px;padding:10px 13px;background:var(--forestl);border-radius:7px;font-size:12px;color:var(--forest)">
-      Every closed call is auto-logged with entry date, exit date, scores at both points, and exit reason derived from the data.
-    </div>
-    ${[...closedCalls].reverse().map((c,i)=>`
+    <div class="insight insight-green" style="margin-bottom:16px">Every signal that has opened and closed, with entry date, exit date, scores at both points, and the reason for closing — all automatically logged.</div>
+    ${[...closed].reverse().map((c,i)=>`
       <div class="card" style="margin-bottom:10px">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
           <div>
-            <div style="display:flex;gap:7px;align-items:center;margin-bottom:6px">${bdg('Closed','b-closed')}</div>
-            <div style="font-family:var(--serif);font-size:20px;font-weight:600">${c.name}</div>
+            <div style="display:flex;gap:7px;align-items:center;margin-bottom:5px">${bdg('Signal Closed','b-closed')}</div>
+            <div class="heading" style="font-size:18px">${c.name}</div>
             <div style="font-size:11px;color:var(--ink3)">${c.sector} · BSE ${c.id}</div>
           </div>
-          <div style="text-align:right">
-            <div style="font-family:var(--mono);font-size:11px;color:var(--ink3)">${fmtDate(c.entryDate)} → ${fmtDate(c.exitDate)}</div>
-            ${c.exitScores?.signal ? bdg(c.exitScores.signal,sigCls(c.exitScores.signal)) : ''}
-          </div>
+          <div style="text-align:right"><div class="mono" style="font-size:11px;color:var(--ink3)">${fDate(c.entryDate)} → ${fDate(c.exitDate)}</div>${c.exitScores?.signal?bdg(signalLabel(c.exitScores.signal),sCls(c.exitScores.signal)):''}</div>
         </div>
-        <div class="g2" style="margin-bottom:10px">
-          <div class="sbox"><div class="slbl">CCS at entry</div><div class="sval">${c.entryScores?.ccs||'—'}</div></div>
-          <div class="sbox"><div class="slbl">CCS at exit</div><div class="sval" style="color:${(c.exitScores?.ccs||0)<(c.entryScores?.ccs||0)?'var(--crimson)':'var(--forest2)'}">${c.exitScores?.ccs||'—'}</div></div>
-          <div class="sbox"><div class="slbl">EV-MED at entry</div><div class="sval">${c.entryScores?.evmed||'—'}</div></div>
-          <div class="sbox"><div class="slbl">Price CAGR 1Y at exit</div><div class="sval" style="color:${(c.priceCagr1YAtExit||0)>0?'var(--forest2)':'var(--crimson)'}">${c.priceCagr1YAtExit!=null?c.priceCagr1YAtExit+'%':'—'}</div></div>
+        <div class="g4" style="margin-bottom:10px">
+          <div class="stat"><div class="stat-label">Score at open</div><div class="stat-val">${c.entryScores?.ccs||'—'}/100</div></div>
+          <div class="stat"><div class="stat-label">Score at close</div><div class="stat-val" style="color:${(c.exitScores?.ccs||0)<(c.entryScores?.ccs||0)?'var(--red)':'var(--green2)'}">${c.exitScores?.ccs||'—'}/100</div></div>
+          <div class="stat"><div class="stat-label">Earnings gap at open</div><div class="stat-val">${c.entryScores?.evmed||'—'}</div></div>
+          <div class="stat"><div class="stat-label">Price trend at close</div><div class="stat-val" style="color:${(c.priceCagr1YAtExit||0)>0?'var(--green2)':'var(--red)'}">${c.priceCagr1YAtExit!=null?c.priceCagr1YAtExit+'%':'—'}</div></div>
         </div>
-        <div style="font-size:12px;color:var(--ink2);padding:9px 11px;background:var(--paper2);border-radius:7px">
-          <strong>Exit reason: </strong>${c.exitReason||'Signal changed'}
-        </div>
+        <div style="font-size:12px;color:var(--ink2);padding:9px 12px;background:var(--paper2);border-radius:var(--r6)"><strong>Why it closed: </strong>${c.exitReason||'Signal rating changed'}</div>
       </div>`).join('')}
   </div>`;
 }
 
-// ── UNIVERSE PAGE ─────────────────────────────────────
-function renderUniverse(){
-  const filtered = COS_LIST.filter(c=>{
-    if(uniF.q&&!c.name.toLowerCase().includes(uniF.q.toLowerCase())&&!c.id.includes(uniF.q))return false;
-    if(uniF.signal&&c.signal!==uniF.signal)return false;
-    if(uniF.sector&&c.sector!==uniF.sector)return false;
-    return true;
-  });
-  const totalPages = Math.ceil(filtered.length/PER);
-  const slice = filtered.slice((uniPage-1)*PER, uniPage*PER);
-  const sectors = [...new Set(COS_LIST.map(c=>c.sector))].sort();
+/* ══════════════════════════════════════════════════════
+   RESEARCH PAGE
+══════════════════════════════════════════════════════ */
+function rResearch(){
+  const filtered=getFiltered();
+  const total=filtered.length;
+  const totalPages=Math.ceil(total/PER);
+  const slice=filtered.slice((uP-1)*PER,uP*PER);
+  const sectors=[...new Set(COS.map(c=>c.sector))].filter(Boolean).sort();
+  const sa=k=>srtK===k?(srtD>0?' ↑':' ↓'):'';
+  const thS=(k,l)=>`<th class="sortable${srtK===k?' sorted':''}" onclick="srt('${k}')">${l}${sa(k)}</th>`;
 
   return `<div class="page">
     <div style="margin-bottom:22px">
-      <div class="slabel">Research Database</div>
-      <div class="stitle">The Universe</div>
-      <div class="ssub">${COS_LIST.length.toLocaleString()} companies. Scores computed daily from live BSE data. Click any row for charts and full analysis.</div>
+      <div class="label">Research Database</div>
+      <div class="heading" style="font-size:28px;margin-bottom:6px">All Companies</div>
+      <div class="sub">${COS.length.toLocaleString()} Indian companies, scored daily. Click any column header to sort. Click any row for the full deep-dive.</div>
     </div>
-    <div class="g4" style="margin-bottom:16px">
-      ${[['BUY',COS_LIST.filter(c=>c.signal==='BUY').length,'var(--forest2)'],
-         ['HOLD',COS_LIST.filter(c=>c.signal==='HOLD').length,'var(--navy)'],
-         ['WATCH',COS_LIST.filter(c=>c.signal==='WATCH').length,'var(--amber2)'],
-         ['AVOID',COS_LIST.filter(c=>c.signal==='AVOID').length,'var(--crimson)']
-      ].map(([l,v,c])=>`<div class="sbox"><div class="slbl">${l} signals</div><div class="sval" style="color:${c}">${v}</div></div>`).join('')}
+    <div class="g4" style="margin-bottom:18px">
+      ${[['Strong Buy',COS.filter(c=>c.signal==='BUY').length,'var(--green)','BUY'],['Hold',COS.filter(c=>c.signal==='HOLD').length,'var(--navy)','HOLD'],['Watch',COS.filter(c=>c.signal==='WATCH').length,'var(--amber2)','WATCH'],['Avoid',COS.filter(c=>c.signal==='AVOID').length,'var(--red)','AVOID']].map(([l,v,c,sig])=>`
+        <div class="stat card-hover" onclick="uF.sig=uF.sig==='${sig}'?'':'${sig}';uP=1;r()">
+          <div class="stat-label">${l}${uF.sig===sig?' ✕':''}</div>
+          <div class="stat-val" style="color:${c}">${v}</div>
+          <div class="stat-sub">Click to filter</div>
+        </div>`).join('')}
     </div>
-    <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
-      <input class="sinp" placeholder="Search name or BSE code..." value="${uniF.q}" oninput="uniF.q=this.value;uniPage=1;r()">
-      <select class="ssel" onchange="uniF.signal=this.value;uniPage=1;r()">
+    <div class="srch-bar">
+      <input class="srch-inp" placeholder="Search company name or BSE code..." value="${uF.q}" oninput="uF.q=this.value;uP=1;r()">
+      <select class="srch-sel" onchange="uF.sig=this.value;uP=1;r()">
         <option value="">All signals</option>
-        ${['BUY','HOLD','WATCH','AVOID'].map(s=>`<option value="${s}"${uniF.signal===s?' selected':''}>${s}</option>`).join('')}
+        ${['BUY','HOLD','WATCH','AVOID'].map(s=>`<option value="${s}"${uF.sig===s?' selected':''}>${signalLabel(s)}</option>`).join('')}
       </select>
-      <select class="ssel" onchange="uniF.sector=this.value;uniPage=1;r()">
+      <select class="srch-sel" onchange="uF.sec=this.value;uP=1;r()">
         <option value="">All sectors</option>
-        ${sectors.map(s=>`<option value="${s}"${uniF.sector===s?' selected':''}>${s}</option>`).join('')}
+        ${sectors.map(s=>`<option value="${s}"${uF.sec===s?' selected':''}>${s}</option>`).join('')}
       </select>
-      <span style="font-size:12px;color:var(--ink3)">${filtered.length.toLocaleString()} results</span>
+      <span class="srch-count">${total.toLocaleString()} results</span>
+      ${uF.q||uF.sig||uF.sec?`<button class="clear-btn" onclick="uF={q:'',sig:'',sec:''};uP=1;r()">Clear ×</button>`:''}
     </div>
     <div class="card" style="padding:0;overflow:hidden;margin-bottom:14px">
-      <div style="overflow-x:auto">
+      <div class="tbl-wrap">
         <table class="tbl">
           <thead><tr>
-            <th>Company</th><th>Sector</th>
-            <th>Q-Score</th><th>V-Score</th><th>M-Score</th><th>CCS</th>
-            <th>Signal</th><th>EV-MED</th><th>Profit CAGR 5Y</th><th>ROE</th><th>Price 1Y</th>
+            ${thS('name','Company')}
+            ${thS('sector','Sector')}
+            <th class="sortable${srtK==='qScore'?' sorted':''}" onclick="srt('qScore')">
+              Quality${sa('qScore')} ${iTip('Quality Score','Measures how durable and consistent the business is. Looks at ROE/ROCE over 8 years, earnings growth, cash flow quality, and NPA trend for banks.<br><em>Higher is better. Anything above 65 is a high-quality business.</em>')}
+            </th>
+            <th class="sortable${srtK==='vScore'?' sorted':''}" onclick="srt('vScore')">
+              Value${sa('vScore')} ${iTip('Value Score','How underpriced the stock is vs its earnings power. Key driver: profit growth rate vs stock price growth rate over 5 years. Large positive gap = potential opportunity.<br><em>Above 65 suggests meaningful undervaluation.</em>')}
+            </th>
+            <th class="sortable${srtK==='mScore'?' sorted':''} hide-m" onclick="srt('mScore')">
+              Momentum${sa('mScore')} ${iTip('Momentum Score','Whether institutional investors (FII and DII) are net buyers or sellers, and whether quarterly earnings are growing.<br><em>Rising FII + growing EPS = positive momentum.</em>')}
+            </th>
+            <th class="sortable${srtK==='ccs'?' sorted':''}" onclick="srt('ccs')">
+              Score${sa('ccs')} ${iTip('Conviction Score','Quality×45% + Value×35% + Momentum×20%. A conviction signal requires this to be 65+ with quality above 60.<br><em>Think of it as a composite grade out of 100.</em>')}
+            </th>
+            <th>Signal</th>
+            <th class="sortable${srtK==='evmed'?' sorted':''} hide-m" onclick="srt('evmed')">
+              Earn. gap${sa('evmed')} ${iTip('Earnings vs Price Gap','5-year profit CAGR minus 5-year price CAGR. A large positive number means profits are growing much faster than the stock price — a potential undervaluation signal.<br><em>+15 means profits grew 15 percentage points faster than price.</em>')}
+            </th>
+            <th class="sortable${srtK==='pcagr5'?' sorted':''} hide-m" onclick="srt('pcagr5')">Profit 5Y${sa('pcagr5')}</th>
+            <th class="sortable${srtK==='roe'?' sorted':''}" onclick="srt('roe')">
+              ROE${sa('roe')} ${iTip('Return on Equity','Net profit ÷ shareholders equity. How efficiently the company generates profit from money invested. Above 15% is good; consistent 15%+ over many years is excellent.<br><em>A company with ROE 20% for 10 years is a compounding machine.</em>')}
+            </th>
+            <th class="sortable${srtK==='pricagr1'?' sorted':''} hide-m" onclick="srt('pricagr1')">Price 1Y${sa('pricagr1')}</th>
           </tr></thead>
           <tbody>
           ${slice.map((c,i)=>`
-            <tr class="hov" onclick="goC('${c.id}')" style="background:${i%2===0?'var(--card)':'#FDFCF8'}">
-              <td><div style="font-weight:600">${c.name}</div><div style="font-family:var(--mono);font-size:10px;color:var(--ink3)">${c.id}</div></td>
-              <td><span style="font-size:10px;padding:1px 7px;border-radius:10px;background:var(--bd2);color:var(--ink2)">${c.sector}</span></td>
-              <td><b style="color:var(--forest2)">${c.qScore}</b></td>
+            <tr class="row-hover" onclick="goC('${c.id}')" style="background:${i%2===0?'var(--card)':'#FAF8F3'}">
+              <td><div style="font-weight:600">${c.name}</div><div class="mono" style="font-size:10px;color:var(--ink3)">${c.id}</div></td>
+              <td>${bdg(c.sector,'b-sector')}</td>
+              <td><b style="color:var(--green2)">${c.qScore}</b></td>
               <td><b style="color:var(--navy)">${c.vScore}</b></td>
-              <td><b style="color:#7C3AED">${c.mScore}</b></td>
-              <td><b style="font-size:16px;color:${sigC(c.signal)}">${c.ccs}</b></td>
-              <td>${bdg(c.signal,sigCls(c.signal))}</td>
-              <td><span style="font-family:var(--mono);font-weight:600;color:${c.evmed&&c.evmed.toString().startsWith('-')?'var(--crimson)':'var(--forest2)'}">${c.evmed||'—'}</span></td>
-              <td><span style="font-family:var(--mono)">${c.pcagr5!=null?c.pcagr5+'%':'—'}</span></td>
-              <td><span style="font-family:var(--mono)">${c.roe!=null?c.roe+'%':'—'}</span></td>
-              <td><span style="font-family:var(--mono);color:${(c.pricagr1||0)<0?'var(--crimson)':'var(--forest2)'}">${c.pricagr1!=null?c.pricagr1+'%':'—'}</span></td>
+              <td class="hide-m"><b style="color:#6D28D9">${c.mScore}</b></td>
+              <td><b class="mono" style="font-size:17px;color:${sC(c.signal)}">${c.ccs}</b></td>
+              <td>${bdg(signalLabel(c.signal),sCls(c.signal))}</td>
+              <td class="hide-m"><span class="mono" style="font-weight:600;color:${c.evmed&&c.evmed.toString().startsWith('-')?'var(--red)':'var(--green2)'}">${c.evmed||'—'}</span></td>
+              <td class="hide-m"><span class="mono">${c.pcagr5!=null?c.pcagr5+'%':'—'}</span></td>
+              <td><span class="mono">${c.roe!=null?c.roe+'%':'—'}</span></td>
+              <td class="hide-m"><span class="mono" style="color:${(c.pricagr1||0)<0?'var(--red)':'var(--ink)'}">${c.pricagr1!=null?c.pricagr1+'%':'—'}</span></td>
             </tr>`).join('')}
           </tbody>
         </table>
       </div>
     </div>
-    ${totalPages>1?`<div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap">
-      <button class="pbtn" onclick="uniPage=Math.max(1,uniPage-1);r()" ${uniPage===1?'disabled':''}>← Prev</button>
-      ${Array.from({length:Math.min(7,totalPages)},(_,i)=>{const p=Math.max(1,Math.min(totalPages-6,uniPage-3))+i;return p<1||p>totalPages?'':`<button class="pbtn${p===uniPage?' on':''}" onclick="uniPage=${p};r()">${p}</button>`;}).join('')}
-      <button class="pbtn" onclick="uniPage=Math.min(totalPages,uniPage+1);r()" ${uniPage===totalPages?'disabled':''}>Next →</button>
-      <span style="font-size:11px;color:var(--ink3);align-self:center">Page ${uniPage} of ${totalPages}</span>
+    ${totalPages>1?`<div class="pag">
+      <button class="pbtn" onclick="uP=Math.max(1,uP-1);r()" ${uP===1?'disabled':''}>← Prev</button>
+      ${Array.from({length:Math.min(7,totalPages)},(_,i)=>{const p=Math.max(1,Math.min(totalPages-6,uP-3))+i;return p<1||p>totalPages?'':`<button class="pbtn${p===uP?' on':''}" onclick="uP=${p};r()">${p}</button>`;}).join('')}
+      <button class="pbtn" onclick="uP=Math.min(totalPages,uP+1);r()" ${uP===totalPages?'disabled':''}>Next →</button>
+      <span style="font-size:11px;color:var(--ink3);margin-left:6px">Page ${uP} of ${totalPages} · ${total.toLocaleString()} results</span>
     </div>`:''}
+    <div style="margin-top:16px;padding:12px 16px;background:var(--paper2);border-radius:var(--r8);font-size:12px;color:var(--ink2)">
+      <strong>Note on sector distribution:</strong> Financial sector companies (banks, NBFCs) currently dominate the top of this list. This reflects the data: many quality Indian financial businesses have seen stock prices stagnate while earnings grew strongly, creating large value gaps. This is what the scoring engine finds, not an editorial choice.
+    </div>
   </div>`;
 }
 
-// ── COMPANY PAGE ──────────────────────────────────────
-function renderCompany(){
-  const co = INDEX[coId];
-  if(!co)return '<div class="page"><p>Loading...</p></div>';
-  const full = coData;
-  const pl=full?.profitLoss?.data||{};
-  const cf=full?.cashFlow?.data||{};
-  const qs=full?.quarters?.data||{};
-  const ra=full?.ratios?.data||{};
-  const sh=full?.shareholding?.data||{};
-  const cag=full?.CAGRs||{};
+/* ══════════════════════════════════════════════════════
+   COMPANY PAGE
+══════════════════════════════════════════════════════ */
+function rCompany(){
+  const co=IDX[coId];if(!co)return'<div class="page"><p>Loading...</p></div>';
+  const full=coData;
   const isBank=full?._scores?.isBank||co.isBank||false;
-  const annKeys=full?.profitLoss?.headers||[];
-  const qKeys=full?.quarters?.headers||[];
-  const shKeys=(full?.shareholding?.headers||[]).filter(h=>h&&h.trim());
-  const cfKeys=full?.cashFlow?.headers||[];
-  const isCall=(HISTORY.activeCalls||[]).some(c=>c.id===coId);
+  const isCall=(HIST.activeCalls||[]).some(c=>c.id===coId);
+  const callR=(HIST.activeCalls||[]).find(c=>c.id===coId);
 
   return `<div class="page">
-    <button onclick="go('universe')" style="font-size:12px;color:var(--ink3);background:none;padding:0;margin-bottom:16px">&larr; Back to Universe</button>
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+    <button onclick="go('research')" style="font-size:12px;color:var(--ink3);background:none;padding:0;margin-bottom:18px;display:flex;align-items:center;gap:4px;transition:color .15s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink3)'">← Back to Research</button>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:14px">
       <div>
-        <div style="display:flex;gap:7px;align-items:center;margin-bottom:8px;flex-wrap:wrap">
-          ${bdg(co.signal,sigCls(co.signal)+' ')}
-          ${isCall?bdg('Active Call','b-call'):''}
-          <span style="font-family:var(--mono);font-size:10px;color:var(--ink3)">BSE ${co.id}</span>
-          ${!full?`<span style="font-size:11px;color:var(--ink3)">Loading detailed data...</span>`:''}
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:9px;flex-wrap:wrap">
+          ${bdg(signalLabel(co.signal),sCls(co.signal)+' ')}
+          ${isCall?bdg('Active Signal','b-signal'):''}
+          <span class="mono" style="font-size:10px;color:var(--ink3)">BSE ${co.id}</span>
+          ${!full?'<span style="font-size:11px;color:var(--ink3);font-style:italic">Loading detailed data...</span>':''}
         </div>
-        <div style="font-family:var(--serif);font-size:36px;font-weight:600;letter-spacing:-.02em;margin-bottom:3px">${co.name}</div>
-        <div style="font-size:12px;color:var(--ink2)">${co.sector}</div>
+        <div class="heading" style="font-size:34px;margin-bottom:4px">${co.name}</div>
+        <div style="font-size:12px;color:var(--ink2)">${co.sector} · ${isBank?'Banking / NBFC':'Non-financial'} · Scored ${HIST.lastUpdated||'—'}</div>
       </div>
-      <div class="g2" style="min-width:240px">
-        ${[['CCS Score',co.ccs+'/100'],['Q-Score',co.qScore+'/100'],['V-Score',co.vScore+'/100'],['M-Score',co.mScore+'/100']].map(([l,v])=>`<div class="sbox"><div class="slbl">${l}</div><div class="sval">${v}</div></div>`).join('')}
+      <div class="g2" style="min-width:250px">
+        ${[['Conviction Score',co.ccs+'/100'],['Quality',co.qScore+'/100'],['Value',co.vScore+'/100'],['Momentum',co.mScore+'/100']].map(([l,v])=>`<div class="stat"><div class="stat-label">${l}</div><div class="stat-val">${v}</div></div>`).join('')}
       </div>
     </div>
-    <div class="card" style="margin-bottom:20px">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 190px;gap:18px;align-items:center">
-        ${[['Q-Score — Quality',co.qScore,'var(--forest2)'],['V-Score — Value',co.vScore,'var(--navy)'],['M-Score — Momentum',co.mScore,'#7C3AED']].map(([l,v,c])=>`
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:11px;color:var(--ink2)">${l}</span><span style="font-family:var(--mono);font-weight:600;color:${c}">${v}</span></div><div class="strk"><div class="sfil" style="width:${v}%;background:${c}"></div></div></div>`).join('')}
-        <div style="text-align:center;border-left:1px solid var(--bd2);padding-left:18px">
+    <!-- SCORE BAR -->
+    <div class="card" style="margin-bottom:22px">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 200px;gap:20px;align-items:center">
+        ${[['Quality Score',co.qScore,'var(--green2)','Business strength & consistency over 8+ years'],['Value Score',co.vScore,'var(--navy)','Degree of undervaluation vs earnings power'],['Momentum Score',co.mScore,'#6D28D9','Institutional buying activity & EPS trend']].map(([l,v,c,d])=>`
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+              <span style="font-size:11px;color:var(--ink2)">${l}</span>
+              <span class="mono" style="font-weight:600;color:${c}">${v}</span>
+            </div>
+            <div style="font-size:10px;color:var(--ink3);margin-bottom:5px">${d}</div>
+            <div class="sbar-track"><div class="sbar-fill" style="width:${v}%;background:${c}"></div></div>
+          </div>`).join('')}
+        <div style="text-align:center;border-left:1px solid var(--bd2);padding-left:20px">
           <div style="font-size:10px;color:var(--ink3);margin-bottom:3px">Conviction Score</div>
-          <div style="font-family:var(--serif);font-size:34px;font-weight:600;color:${sigC(co.signal)};line-height:1;margin-bottom:5px">${co.ccs}</div>
-          ${bdg(co.signal,sigCls(co.signal))}
+          <div class="heading" style="font-size:36px;color:${sC(co.signal)};line-height:1;margin-bottom:6px">${co.ccs}</div>
+          ${bdg(signalLabel(co.signal),sCls(co.signal))}
         </div>
       </div>
     </div>
@@ -618,80 +782,150 @@ function renderCompany(){
       ${[['overview','Overview'],['financials','Financials'],['ownership','Ownership'],['documents','Documents']].map(([k,l])=>
         `<button class="tbtn${coTab===k?' on':''}" onclick="setCoTab('${k}')">${l}</button>`).join('')}
     </div>
-    ${coTab==='overview'?renderCoOv(co,full,isBank,qKeys,qs,pl,ra,cag,isCall):''}
-    ${coTab==='financials'?renderCoFin(co,full,annKeys,pl,ra,cf,cfKeys,isBank):''}
-    ${coTab==='ownership'?renderCoOwn(co,shKeys,sh):''}
-    ${coTab==='documents'?renderCoDocs(full?.documents||{}):''}
+    ${coTab==='overview'?rCoOv(co,full,isBank,isCall,callR):''}
+    ${coTab==='financials'?rCoFin(co,full,isBank):''}
+    ${coTab==='ownership'?rCoOwn(co,full):''}
+    ${coTab==='documents'?rCoDocs(full?.documents||{}):''}
   </div>`;
 }
 
-function renderCoOv(co,full,isBank,qKeys,qs,pl,ra,cag,isCall){
-  if(!full)return'<p class="body" style="padding:20px 0">Loading data...</p>';
+function rCoOv(co,full,isBank,isCall,callR){
+  if(!full)return'<div style="padding:40px;text-align:center;color:var(--ink3);font-style:italic">Loading detailed data...</div>';
+  const qs=full.quarters?.data||{};
+  const qKeys=full.quarters?.headers||[];
   const qEPS=qKeys.map(h=>pn(qs['EPS in Rs']?.[h]));
   const qOPM=isBank?qKeys.map(h=>pn(qs['Financing Margin %']?.[h])):qKeys.map(h=>pn(qs['OPM %']?.[h]));
   const qGNPA=isBank?qKeys.map(h=>pn(qs['Gross NPA %']?.[h])):[];
   const qNNPA=isBank?qKeys.map(h=>pn(qs['Net NPA %']?.[h])):[];
+  const cag=full.CAGRs||{};
+  const pros=full.analysis?.pros||[];
+  const cons=full.analysis?.cons||[];
+  const pl=full.profitLoss?.data||{};
+  const ra=full.ratios?.data||{};
+  const cf=full.cashFlow?.data||{};
+  const bs=full.balanceSheet?.data||{};
+
   const latEPS=qEPS.filter(v=>v!=null).slice(-1)[0];
   const prevEPS=qEPS.filter(v=>v!=null).slice(-5,-4)[0];
   const epsYoY=(latEPS!=null&&prevEPS!=null&&prevEPS!==0)?((latEPS-prevEPS)/Math.abs(prevEPS)*100).toFixed(1)+'%':'—';
-  const pros=full?.analysis?.pros||[];
-  const cons=full?.analysis?.cons||[];
-  const callRecord=(HISTORY.activeCalls||[]).find(c=>c.id===co.id);
 
-  return `<div class="g2" style="margin-bottom:14px">
+  // Compute extra investor metrics
+  const npArr=Object.values(pl['Net Profit']||{}).map(pn).filter(v=>v!=null);
+  const posYears=npArr.filter((v,i)=>i>0&&v>npArr[i-1]).length;
+  const earnCon=npArr.length>1?Math.round((posYears/(npArr.length-1))*100)+'%':'—';
+
+  const cfoArr=Object.values(cf['Cash from Operating Activity']||{}).slice(-5).map(pn).filter(v=>v!=null);
+  const np5Arr=Object.values(pl['Net Profit']||{}).slice(-5).map(pn).filter(v=>v!=null);
+  let cfii='—';
+  if(cfoArr.length&&np5Arr.length){
+    const ratios=cfoArr.map((c,i)=>np5Arr[i]&&np5Arr[i]!==0?c/np5Arr[i]:null).filter(v=>v!=null);
+    if(ratios.length)cfii=(ratios.reduce((a,b)=>a+b,0)/ratios.length).toFixed(2);
+  }
+
+  const roeVals=Object.values(ra['ROE %']||{}).map(pn).filter(v=>v!=null);
+  const roeRecent=roeVals.slice(-3);
+  const roePrior=roeVals.slice(-6,-3);
+  const roeTrend=roeRecent.length&&roePrior.length?(roeRecent.reduce((a,b)=>a+b)/roeRecent.length)>(roePrior.reduce((a,b)=>a+b)/roePrior.length)?'Improving':'Declining':'—';
+
+  const latGNPA=qGNPA.filter(v=>v!=null).slice(-1)[0];
+  const latNNPA=qNNPA.filter(v=>v!=null).slice(-1)[0];
+
+  return `<div class="g2" style="margin-bottom:16px">
     <div class="card">
-      <div class="slabel" style="margin-bottom:8px">Quarterly EPS — ₹</div>
-      <div style="position:relative;height:140px"><canvas id="co-qeps"></canvas></div>
-      <div class="g3" style="margin-top:10px">
-        <div class="sbox"><div class="slbl">Latest EPS</div><div class="sval">₹${latEPS||'—'}</div></div>
-        <div class="sbox"><div class="slbl">YoY Growth</div><div class="sval" style="color:${parseFloat(epsYoY)>0?'var(--forest2)':'var(--crimson)'}">${epsYoY}</div></div>
-        <div class="sbox"><div class="slbl">EV-MED</div><div class="sval" style="color:${co.evmed&&co.evmed.toString().startsWith('-')?'var(--crimson)':'var(--forest2)'}">${co.evmed||'—'}</div></div>
+      <div class="label" style="margin-bottom:8px">Earnings per share — quarterly (₹) ${iTip('Quarterly EPS','Profit earned per share in each 3-month period. A steadily rising line shows consistent earnings growth. Flat or declining means earnings are stalling.')}</div>
+      <div class="chart-box"><canvas id="co-qeps" style="height:140px"></canvas></div>
+      <div class="g3" style="margin-top:12px">
+        <div class="stat"><div class="stat-label">Latest quarter EPS</div><div class="stat-val">₹${latEPS||'—'}</div></div>
+        <div class="stat"><div class="stat-label">Year-on-year growth</div><div class="stat-val" style="color:${parseFloat(epsYoY)>0?'var(--green2)':'var(--red)'}">${epsYoY}</div></div>
+        <div class="stat"><div class="stat-label">Earnings vs Price gap</div><div class="stat-val" style="color:${co.evmed&&co.evmed.toString().startsWith('-')?'var(--red)':'var(--green2)'}">${co.evmed||'—'}</div></div>
       </div>
     </div>
     <div class="card">
-      <div class="slabel" style="margin-bottom:8px">${isBank?'NPA Trend — %':'Operating Margin — %'}</div>
-      <div style="position:relative;height:140px"><canvas id="co-margin"></canvas></div>
-      ${isBank?`<div class="g2" style="margin-top:10px">
-        <div class="sbox" style="background:var(--amberl)"><div class="slbl" style="color:var(--amber2)">Gross NPA</div><div class="sval" style="color:var(--amber2)">${co.gnpa!=null?co.gnpa+'%':'—'}</div></div>
-        <div class="sbox" style="background:var(--forestl)"><div class="slbl" style="color:var(--forest)">Net NPA</div><div class="sval" style="color:var(--forest)">${qNNPA.filter(v=>v!=null).slice(-1)[0]!=null?qNNPA.filter(v=>v!=null).slice(-1)[0]+'%':'—'}</div></div>
-      </div>`:`<div class="g2" style="margin-top:10px">
-        <div class="sbox"><div class="slbl">Latest OPM</div><div class="sval">${qOPM.filter(v=>v!=null).slice(-1)[0]!=null?qOPM.filter(v=>v!=null).slice(-1)[0]+'%':'—'}</div></div>
-        <div class="sbox"><div class="slbl">ROE</div><div class="sval">${co.roe!=null?co.roe+'%':'—'}</div></div>
+      <div class="label" style="margin-bottom:8px">${isBank?'Bad loan (NPA) trend — %':'Operating profit margin — %'} ${isBank?iTip('NPA Trend','NPA = Non-Performing Assets = bad loans. A declining NPA ratio means the bank is recovering or avoiding bad debts. Gross NPA is total bad loans; Net NPA is after provisions.<br><em>Below 1.5% Net NPA is excellent for an Indian bank.</em>'):iTip('Operating Margin','What percentage of revenue becomes operating profit after all operating costs. A stable or rising margin over years shows pricing power and cost discipline.')}</div>
+      <div class="chart-box"><canvas id="co-margin" style="height:140px"></canvas></div>
+      ${isBank?`<div class="g2" style="margin-top:12px">
+        <div class="stat" style="background:var(--amberl)"><div class="stat-label" style="color:var(--amber2)">Gross bad loans</div><div class="stat-val" style="color:var(--amber2)">${latGNPA!=null?latGNPA+'%':'—'}</div><div class="stat-sub">Latest quarter</div></div>
+        <div class="stat" style="background:var(--greenl)"><div class="stat-label" style="color:var(--green)">Net bad loans</div><div class="stat-val" style="color:var(--green)">${latNNPA!=null?latNNPA+'%':'—'}</div><div class="stat-sub">After provisions</div></div>
+      </div>`:`<div class="g2" style="margin-top:12px">
+        <div class="stat"><div class="stat-label">Latest margin</div><div class="stat-val">${qOPM.filter(v=>v!=null).slice(-1)[0]!=null?qOPM.filter(v=>v!=null).slice(-1)[0]+'%':'—'}</div></div>
+        <div class="stat"><div class="stat-label">Return on equity</div><div class="stat-val">${co.roe!=null?co.roe+'%':'—'}</div></div>
       </div>`}
     </div>
   </div>
-  <div class="card" style="margin-bottom:14px">
-    <div class="slabel" style="margin-bottom:12px">Compounded Growth Rates</div>
+
+  <!-- EXTRA INVESTOR METRICS -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="label" style="margin-bottom:14px">Key investor metrics ${iTip('Why these metrics?','These go beyond headline numbers. Earnings consistency shows if a company has ever had a loss year. Cash conversion shows if profits are real (backed by actual cash). ROE trend shows if returns are improving or declining.')}</div>
+    <div class="g4">
+      <div class="stat">
+        <div class="stat-label">Earnings consistency ${iTip('Earnings Consistency','What % of years did net profit grow vs the prior year. 100% means every single year showed profit growth — a mark of a truly durable business.<br><em>80%+ over 10 years is rare and valuable.</em>')}</div>
+        <div class="stat-val" style="color:${parseInt(earnCon)>=80?'var(--green2)':parseInt(earnCon)>=60?'var(--amber2)':'var(--red)'}">${earnCon}</div>
+        <div class="stat-sub">Years with profit growth</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Cash flow integrity ${iTip('Cash Flow Integrity (CFII)','5-year average ratio of operating cash flow to net profit. A ratio close to 1.0 means profits are backed by real cash. Below 0.6 is a warning sign that earnings may be overstated.<br><em>1.0 = profits and cash are in sync.</em>')}</div>
+        <div class="stat-val" style="color:${parseFloat(cfii)>=0.8?'var(--green2)':parseFloat(cfii)>=0.6?'var(--amber2)':'var(--red)'}">${cfii}</div>
+        <div class="stat-sub">CFO ÷ Net profit (5Y avg)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">ROE trend ${iTip('Return on Equity Trend','Comparing ROE of the last 3 years vs the 3 years before that. Improving = the business is getting more efficient. Declining = watch carefully.')}</div>
+        <div class="stat-val" style="font-size:14px;color:${roeTrend==='Improving'?'var(--green2)':'var(--red)'}">${roeTrend}</div>
+        <div class="stat-sub">Last 3Y vs prior 3Y</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Return on equity ${iTip('Return on Equity (ROE)','Net profit ÷ total equity. The higher and more consistent over time, the better. Consistent 15%+ ROE over many years signals a compounding machine.')}</div>
+        <div class="stat-val">${co.roe!=null?co.roe+'%':'—'}</div>
+        <div class="stat-sub">Latest year</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROWTH RATES -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="label" style="margin-bottom:12px">Compounded annual growth rates ${iTip('CAGR','Compounded Annual Growth Rate — the smoothed year-on-year growth rate over a period. Revenue and profit CAGR should be positive and ideally above 12%. When profit CAGR far exceeds price CAGR, a valuation opportunity may exist.')}</div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0">
-      ${[['Revenue CAGR',cag['Compounded Sales Growth']||{}],['Profit CAGR',cag['Compounded Profit Growth']||{}],['Price CAGR',cag['Stock Price CAGR']||{}],['Return on Equity',cag['Return on Equity']||{}]].map(([grp,d],gi)=>`
+      ${[['Revenue growth',cag['Compounded Sales Growth']||{}],['Profit growth',cag['Compounded Profit Growth']||{}],['Stock price growth',cag['Stock Price CAGR']||{}],['Return on equity',cag['Return on Equity']||{}]].map(([grp,d],gi)=>`
         <div style="padding:0 18px;border-right:${gi<3?'1px solid var(--bd2)':'none'}">
-          <div style="font-size:11px;font-weight:600;color:var(--ink2);margin-bottom:9px">${grp}</div>
-          ${Object.entries(d).map(([k,v])=>`<div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:11px;color:var(--ink3)">${k}</span><span style="font-family:var(--mono);font-size:12px;font-weight:600;color:${v&&String(v).startsWith('-')?'var(--crimson)':'var(--ink)'}">${v||'—'}</span></div>`).join('')}
+          <div style="font-size:11px;font-weight:600;color:var(--ink2);margin-bottom:10px">${grp}</div>
+          ${Object.entries(d).map(([k,v])=>`
+            <div style="display:flex;justify-content:space-between;margin-bottom:7px">
+              <span style="font-size:11px;color:var(--ink3)">${k}</span>
+              <span class="mono" style="font-size:12px;font-weight:600;color:${v&&String(v).startsWith('-')?'var(--red)':'var(--ink)'}">${v||'—'}</span>
+            </div>`).join('')}
         </div>`).join('')}
     </div>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr${isCall?' 1fr':''};gap:12px">
+
+  <!-- PROS / CONS -->
+  <div style="display:grid;grid-template-columns:1fr 1fr${isCall?' 1fr':''};gap:14px">
     <div class="card">
-      <div class="slabel" style="color:var(--forest2);margin-bottom:9px">Strengths</div>
-      ${pros.map(p=>`<div style="display:flex;gap:6px;margin-bottom:8px;font-size:12px;line-height:1.55"><span style="color:var(--forest2);flex-shrink:0">✓</span>${p}</div>`).join('') || '<div style="font-size:12px;color:var(--ink3)">Data loading...</div>'}
+      <div class="label" style="color:var(--green2);margin-bottom:10px">What the data says in its favour</div>
+      ${pros.length?pros.map(p=>`<div style="display:flex;gap:7px;margin-bottom:9px;font-size:12px;line-height:1.55;color:var(--ink)"><span style="color:var(--green2);flex-shrink:0;margin-top:1px">✓</span>${p}</div>`).join(''):'<div style="font-size:12px;color:var(--ink3);font-style:italic">No qualitative data available from screener.in for this company.</div>'}
     </div>
     <div class="card">
-      <div class="slabel" style="color:var(--crimson);margin-bottom:9px">Risks &amp; Concerns</div>
-      ${cons.map(c=>`<div style="display:flex;gap:6px;margin-bottom:8px;font-size:12px;line-height:1.55"><span style="color:var(--crimson);flex-shrink:0">⚠</span>${c}</div>`).join('') || '<div style="font-size:12px;color:var(--ink3)">Data loading...</div>'}
+      <div class="label" style="color:var(--red);margin-bottom:10px">Risks to be aware of</div>
+      ${cons.length?cons.map(c=>`<div style="display:flex;gap:7px;margin-bottom:9px;font-size:12px;line-height:1.55;color:var(--ink)"><span style="color:var(--red);flex-shrink:0;margin-top:1px">⚠</span>${c}</div>`).join(''):'<div style="font-size:12px;color:var(--ink3);font-style:italic">No risk data available from screener.in for this company.</div>'}
     </div>
-    ${isCall&&callRecord?`<div class="card" style="background:var(--ink);border-color:var(--ink)">
-      <div style="font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:9px">Active Call — auto-detected ${fmtDate(callRecord.entryDate)}</div>
+    ${isCall&&callR?`<div class="card-dark">
+      <div class="mono" style="font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px">Active Signal · Since ${fDate(callR.entryDate)}</div>
       <div class="g2" style="margin-bottom:12px">
-        <div style="padding:8px;background:rgba(255,255,255,.06);border-radius:6px"><div style="font-size:10px;color:rgba(255,255,255,.4);margin-bottom:2px">CCS at open</div><div style="font-family:var(--mono);font-weight:700;color:#22C55E">${callRecord.entryScores?.ccs||'—'}</div></div>
-        <div style="padding:8px;background:rgba(255,255,255,.06);border-radius:6px"><div style="font-size:10px;color:rgba(255,255,255,.4);margin-bottom:2px">EV-MED at open</div><div style="font-family:var(--mono);font-weight:700;color:#22C55E">${callRecord.entryScores?.evmed||'—'}</div></div>
+        <div style="padding:10px;background:rgba(255,255,255,.07);border-radius:var(--r6)"><div style="font-size:10px;color:rgba(255,255,255,.4);margin-bottom:3px">Score when detected</div><div class="mono" style="font-weight:700;color:#4ADE80;font-size:22px">${callR.entryScores?.ccs||'—'}</div></div>
+        <div style="padding:10px;background:rgba(255,255,255,.07);border-radius:var(--r6)"><div style="font-size:10px;color:rgba(255,255,255,.4);margin-bottom:3px">Earnings vs price gap</div><div class="mono" style="font-weight:700;color:#4ADE80;font-size:22px">${callR.entryScores?.evmed||'—'}</div></div>
       </div>
-      <div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.65">All thresholds met: Signal=BUY · Q≥60 · CCS≥65 · EV-MED≥+5. Will auto-close when any threshold breaks.</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.38);line-height:1.65">Passes all four criteria. Closes automatically if any threshold breaks.</div>
     </div>`:''}
   </div>`;
 }
 
-function renderCoFin(co,full,annKeys,pl,ra,cf,cfKeys,isBank){
-  if(!full)return'<p class="body" style="padding:20px 0">Loading...</p>';
+function rCoFin(co,full,isBank){
+  if(!full)return'<div style="padding:40px;text-align:center;color:var(--ink3);font-style:italic">Loading...</div>';
+  const pl=full.profitLoss?.data||{};
+  const cf=full.cashFlow?.data||{};
+  const ra=full.ratios?.data||{};
+  const annKeys=full.profitLoss?.headers||[];
+  const cfKeys=full.cashFlow?.headers||[];
+  const disp=k=>k.replace('Mar ','FY');
+
   const annRev=annKeys.map(y=>pn((isBank?pl['Revenue']:pl['Sales'])?.[y]));
   const annNP=annKeys.map(y=>pn(pl['Net Profit']?.[y]));
   const annEPS=annKeys.map(y=>pn(pl['EPS in Rs']?.[y]));
@@ -701,32 +935,31 @@ function renderCoFin(co,full,annKeys,pl,ra,cf,cfKeys,isBank){
   const annDiv=annKeys.map(y=>pn(pl['Dividend Payout %']?.[y]));
   const cfoArr=cfKeys.map(y=>pn(cf['Cash from Operating Activity']?.[y]));
   const fcfArr=cfKeys.map(y=>pn(cf['Free Cash Flow']?.[y]));
-  const disp=k=>k.replace('Mar ','FY');
 
-  return `<div class="g2" style="margin-bottom:14px">
+  return `<div class="g2" style="margin-bottom:16px">
     <div class="card">
-      <div class="slabel" style="margin-bottom:8px">${isBank?'Revenue':'Sales'} &amp; Net Profit — ₹ Cr</div>
-      <div style="position:relative;height:170px"><canvas id="co-revnp"></canvas></div>
+      <div class="label" style="margin-bottom:8px">${isBank?'Revenue':'Sales'} &amp; Net Profit — ₹ Cr (annual) ${iTip('Revenue vs Profit','Revenue is total income. Net Profit is what remains after all costs and taxes. Ideally profit should grow at least as fast as revenue — if margins are stable or expanding.')}</div>
+      <div class="chart-box"><canvas id="co-revnp" style="height:170px"></canvas></div>
     </div>
     <div class="card">
-      <div class="slabel" style="margin-bottom:8px">Cash Flow — ₹ Cr</div>
-      <div style="position:relative;height:170px"><canvas id="co-cf"></canvas></div>
-      <div class="g2" style="margin-top:10px">
-        <div class="sbox"><div class="slbl">Latest CFO</div><div class="sval" style="font-size:14px">${fmtCr(cfoArr.filter(v=>v!=null).slice(-1)[0])}</div></div>
-        <div class="sbox"><div class="slbl">Latest FCF</div><div class="sval" style="font-size:14px">${fmtCr(fcfArr.filter(v=>v!=null).slice(-1)[0])}</div></div>
+      <div class="label" style="margin-bottom:8px">Cash flow — ₹ Cr (annual) ${iTip('Cash Flow','Operating Cash Flow = cash actually generated from the business. Free Cash Flow = after capital expenditure. Consistent positive FCF is a strong quality signal.')}</div>
+      <div class="chart-box"><canvas id="co-cf" style="height:170px"></canvas></div>
+      <div class="g2" style="margin-top:12px">
+        <div class="stat"><div class="stat-label">Operating cash (latest)</div><div class="stat-val" style="font-size:14px">${fCr(cfoArr.filter(v=>v!=null).slice(-1)[0])}</div></div>
+        <div class="stat"><div class="stat-label">Free cash (latest)</div><div class="stat-val" style="font-size:14px">${fCr(fcfArr.filter(v=>v!=null).slice(-1)[0])}</div></div>
       </div>
     </div>
   </div>
   <div class="card">
-    <div class="slabel" style="margin-bottom:12px">Annual P&amp;L Summary</div>
-    <div style="overflow-x:auto">
+    <div class="label" style="margin-bottom:14px">Annual financials — ₹ Crore</div>
+    <div class="tbl-wrap">
       <table class="tbl">
         <thead><tr><th>Metric</th>${annKeys.map(y=>`<th style="text-align:right">${disp(y)}</th>`).join('')}</tr></thead>
         <tbody>
-          ${[[isBank?'Revenue':'Sales',annRev,'cr'],['Net Profit',annNP,'cr'],['EPS ₹',annEPS,'eps'],isBank?['Fin. Margin %',annFM,'pct']:['OPM %',annOPM,'pct'],['ROE %',annROE,'pct'],['Div Payout %',annDiv,'pct']].map(([l,d,t],ri)=>`
-          <tr style="background:${ri%2===0?'var(--card)':'#FDFCF8'}">
-            <td style="font-weight:500;color:var(--ink2)">${l}</td>
-            ${(d||[]).map(v=>`<td style="text-align:right;font-family:var(--mono);font-size:11px;color:${v==null?'var(--ink3)':v<0?'var(--crimson)':'var(--ink)'}">${v==null?'—':t==='cr'?fmtCr(v):t==='eps'?'₹'+v:v+'%'}</td>`).join('')}
+          ${[[isBank?'Revenue':'Sales',annRev,'cr'],['Net Profit',annNP,'cr'],['Earnings per share ₹',annEPS,'eps'],isBank?['Net margin %',annFM,'pct']:['Operating margin %',annOPM,'pct'],['Return on equity %',annROE,'pct'],['Dividend payout %',annDiv,'pct']].map(([l,d,t],ri)=>`
+          <tr style="background:${ri%2===0?'var(--card)':'#FAF8F3'}">
+            <td style="font-weight:500;color:var(--ink2);font-size:12px">${l}</td>
+            ${(d||[]).map(v=>`<td style="text-align:right;font-family:var(--mono);font-size:11px;color:${v==null?'var(--ink3)':v<0?'var(--red)':'var(--ink)'}">${v==null?'—':t==='cr'?fCr(v):t==='eps'?'₹'+v:v+'%'}</td>`).join('')}
           </tr>`).join('')}
         </tbody>
       </table>
@@ -734,205 +967,242 @@ function renderCoFin(co,full,annKeys,pl,ra,cf,cfKeys,isBank){
   </div>`;
 }
 
-function renderCoOwn(co,shKeys,sh){
+function rCoOwn(co,full){
+  if(!full)return'<div style="padding:40px;text-align:center;color:var(--ink3);font-style:italic">Loading...</div>';
+  const sh=full.shareholding?.data||{};
+  // FIX: only use quarterly headers (before the empty separator)
+  const shKeys=getQtrShHeaders(full);
   const shFII=shKeys.map(h=>pn(sh['FIIs']?.[h]));
   const shDII=shKeys.map(h=>pn(sh['DIIs']?.[h]));
   const shProm=shKeys.map(h=>pn(sh['Promoters']?.[h]));
+  const shPub=shKeys.map(h=>pn(sh['Public']?.[h]));
   const latFII=shFII.filter(v=>v!=null).slice(-1)[0];
   const f0=shFII.filter(v=>v!=null)[0];
   const latDII=shDII.filter(v=>v!=null).slice(-1)[0];
   const d0=shDII.filter(v=>v!=null)[0];
   const latProm=shProm.filter(v=>v!=null).slice(-1)[0];
   const p0=shProm.filter(v=>v!=null)[0];
-  const delta=(a,b)=>{if(a==null||b==null)return'—';const d=(a-b).toFixed(2);return`<span style="color:${d>0?'var(--forest2)':'var(--crimson)'}">${d>0?'+':''}${d}%</span>`;};
+  const delta=(a,b)=>{if(a==null||b==null)return'—';const d=(a-b).toFixed(2);return`<span style="color:${+d>0?'var(--green2)':'var(--red)'}">${+d>0?'+':''}${d}%</span>`;};
 
-  return `<div class="g2" style="margin-bottom:14px">
+  return `<div class="g2" style="margin-bottom:16px">
     <div class="card">
-      <div class="slabel" style="margin-bottom:8px">Institutional Ownership — %</div>
-      <div style="position:relative;height:160px"><canvas id="co-own"></canvas></div>
-      <div style="display:flex;gap:14px;margin-top:10px">
-        ${[['FII','#1E3A8A'],['DII','#0A4A2E'],['Promoter','#7C3AED']].map(([l,c])=>`<span style="display:flex;align-items:center;gap:4px;font-size:11px"><span style="width:10px;height:3px;background:${c};border-radius:2px;display:inline-block"></span><span style="color:var(--ink3)">${l}</span></span>`).join('')}
+      <div class="label" style="margin-bottom:8px">Who owns this stock — % of shares ${iTip('Institutional Ownership','FII = Foreign Institutional Investors (global funds). DII = Domestic Institutional Investors (Indian mutual funds, insurance). Promoters = founding family/group. Rising FII + rising DII = institutions are buying.')}</div>
+      <div class="chart-box"><canvas id="co-own" style="height:160px"></canvas></div>
+      <div style="display:flex;gap:16px;margin-top:12px;flex-wrap:wrap">
+        ${[['Foreign funds (FII)','#1A3680'],['Indian institutions (DII)','#0A4A2C'],['Promoters','#6D28D9']].map(([l,c])=>`<span style="display:flex;align-items:center;gap:5px;font-size:11px"><span style="width:12px;height:3px;background:${c};border-radius:2px;display:inline-block"></span><span style="color:var(--ink3)">${l}</span></span>`).join('')}
       </div>
     </div>
     <div class="card">
-      <div class="slabel" style="margin-bottom:12px">Latest vs earliest available</div>
-      ${[['FII',latFII,f0,'#1E3A8A'],['DII',latDII,d0,'#0A4A2E'],['Promoter',latProm,p0,'#7C3AED']].map(([l,v,prev,c])=>`
-        <div style="margin-bottom:12px">
-          <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+      <div class="label" style="margin-bottom:14px">Ownership change — latest vs earliest</div>
+      ${[['Foreign funds (FII)',latFII,f0,'#1A3680'],['Indian institutions (DII)',latDII,d0,'#0A4A2C'],['Promoters',latProm,p0,'#6D28D9']].map(([l,v,prev,c])=>`
+        <div style="margin-bottom:14px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
             <span style="font-size:13px;font-weight:500">${l}</span>
-            <div style="display:flex;gap:7px;align-items:center"><span style="font-size:11px;font-family:var(--mono)">${delta(v,prev)}</span><span style="font-family:var(--mono);font-weight:700;color:${c}">${v!=null?v+'%':'—'}</span></div>
+            <div style="display:flex;gap:8px;align-items:center"><span class="mono" style="font-size:11px">${delta(v,prev)}</span><span class="mono" style="font-weight:700;color:${c};font-size:15px">${v!=null?v+'%':'—'}</span></div>
           </div>
-          <div class="strk" style="height:5px"><div class="sfil" style="width:${v||0}%;background:${c};opacity:.75"></div></div>
+          <div class="sbar-track" style="height:5px"><div class="sbar-fill" style="width:${Math.min(100,v||0)}%;background:${c};opacity:.75"></div></div>
         </div>`).join('')}
-      <div style="padding:8px 10px;background:var(--paper2);border-radius:7px;font-size:12px;color:var(--ink2)">
-        <strong>FII signal: </strong>${delta(latFII,f0)} — ${(latFII||0)>(f0||0)?`<span style="color:var(--forest2)">Accumulation</span>`:`<span style="color:var(--crimson)">Distribution</span>`}
+      <div class="insight insight-${(latFII||0)>(f0||0)?'green':'amber'}" style="margin-top:4px">
+        <strong>Foreign fund verdict: </strong>${delta(latFII,f0)} — ${(latFII||0)>(f0||0)?'Accumulation: foreign funds are increasing their stake':'Distribution: foreign funds are reducing their stake'}
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="slabel" style="margin-bottom:10px">Quarterly History</div>
-    <div style="overflow-x:auto">
-      <table class="tbl">
-        <thead><tr><th>Quarter</th><th style="text-align:right">FII %</th><th style="text-align:right">DII %</th><th style="text-align:right">Promoter %</th><th style="text-align:right">FII ▲▼</th></tr></thead>
-        <tbody>${shKeys.map((h,i)=>`
-          <tr style="background:${i%2===0?'var(--card)':'#FDFCF8'}">
-            <td style="font-family:var(--mono);font-size:11px">${h}</td>
-            <td style="text-align:right;font-family:var(--mono);font-size:12px;color:${i>0&&shFII[i]!=null&&shFII[i-1]!=null?(shFII[i]>shFII[i-1]?'var(--forest2)':'var(--crimson)'):'var(--ink)'}">${shFII[i]!=null?shFII[i]+'%':'—'}</td>
-            <td style="text-align:right;font-family:var(--mono);font-size:12px">${shDII[i]!=null?shDII[i]+'%':'—'}</td>
-            <td style="text-align:right;font-family:var(--mono);font-size:12px">${shProm[i]!=null?shProm[i]+'%':'—'}</td>
-            <td style="text-align:right">${i>0&&shFII[i]!=null&&shFII[i-1]!=null?(shFII[i]>shFII[i-1]?'<span style="color:var(--forest2)">▲</span>':'<span style="color:var(--crimson)">▼</span>'):'—'}</td>
-          </tr>`).join('')}</tbody>
-      </table>
-    </div>
-  </div>`;
+  ${shKeys.length?`<div class="card">
+    <div class="label" style="margin-bottom:12px">Quarter-by-quarter ownership history</div>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Quarter</th><th style="text-align:right">Foreign funds %</th><th style="text-align:right">Indian institutions %</th><th style="text-align:right">Promoters %</th><th style="text-align:right">Trend</th></tr></thead>
+      <tbody>${shKeys.map((h,i)=>`
+        <tr style="background:${i%2===0?'var(--card)':'#FAF8F3'}">
+          <td class="mono" style="font-size:11px">${h}</td>
+          <td style="text-align:right;font-family:var(--mono);font-size:12px;color:${i>0&&shFII[i]!=null&&shFII[i-1]!=null?(shFII[i]>shFII[i-1]?'var(--green2)':'var(--red)'):'var(--ink)'}">${shFII[i]!=null?shFII[i]+'%':'—'}</td>
+          <td style="text-align:right;font-family:var(--mono);font-size:12px">${shDII[i]!=null?shDII[i]+'%':'—'}</td>
+          <td style="text-align:right;font-family:var(--mono);font-size:12px">${shProm[i]!=null?shProm[i]+'%':'—'}</td>
+          <td style="text-align:right;font-size:12px">${i>0&&shFII[i]!=null&&shFII[i-1]!=null?(shFII[i]>shFII[i-1]?'<span style="color:var(--green2)">▲ Buying</span>':'<span style="color:var(--red)">▼ Selling</span>'):'—'}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table></div>
+  </div>`:''}`;
 }
 
-function renderCoDocs(docs){
-  const dl=(href,label,icon)=>`<a href="${href}" target="_blank" class="dl"><span style="font-size:14px;opacity:.4;flex-shrink:0">${icon}</span><span style="font-size:13px;font-weight:500;color:var(--ink);flex:1">${label}</span><span style="font-size:10px;opacity:.3">↗</span></a>`;
+function rCoDocs(docs){
+  const dl=(href,label,icon)=>`<a href="${href}" target="_blank" class="doc-link"><span class="doc-link-icon">${icon}</span><span class="doc-link-text">${label}</span><span class="doc-link-arr">↗</span></a>`;
+  const none='<div style="font-size:12px;color:var(--ink3);padding:8px 0;font-style:italic">No documents available for this company.</div>';
   return `<div class="g2">
     <div>
-      <div style="font-family:var(--serif);font-size:17px;font-weight:600;margin-bottom:14px">Earnings Calls</div>
-      ${(docs.concalls||[]).slice(0,6).map(c=>`<div style="margin-bottom:10px"><div style="font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;margin-bottom:4px">${c.month||''}</div>${c.transcript?dl(c.transcript,'Transcript','📄'):''}${c.ppt?dl(c.ppt,'Presentation','📊'):''}${c.recording?dl(c.recording,'Recording','▶️'):''}</div>`).join('')||'<div class="body">No concalls available</div>'}
-      <div style="font-family:var(--serif);font-size:17px;font-weight:600;margin:20px 0 12px">Announcements</div>
-      ${(docs.announcements||[]).slice(0,4).map(a=>dl(a.link,a.title||'Announcement','📢')).join('')||'<div class="body">No announcements</div>'}
+      <div class="heading" style="font-size:17px;margin-bottom:14px">Earnings Calls</div>
+      ${(docs.concalls||[]).slice(0,6).map(c=>`<div style="margin-bottom:10px"><div class="mono" style="font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">${c.month||''}</div>${c.transcript?dl(c.transcript,'Transcript','📄'):''}${c.ppt?dl(c.ppt,'Investor Presentation','📊'):''}${c.recording?dl(c.recording,'Recording','▶️'):''}</div>`).join('')||none}
+      ${(docs.announcements||[]).length?`<div class="heading" style="font-size:17px;margin:20px 0 12px">Announcements</div>${(docs.announcements||[]).slice(0,4).map(a=>dl(a.link,a.title||'Announcement','📢')).join('')}`:''}
     </div>
     <div>
-      <div style="font-family:var(--serif);font-size:17px;font-weight:600;margin-bottom:14px">Annual Reports</div>
-      ${(docs.annualReports||[]).map(a=>dl(a.link,'Annual Report '+a.year,'📋')).join('')||'<div class="body">No reports available</div>'}
-      <div style="font-family:var(--serif);font-size:17px;font-weight:600;margin:20px 0 12px">Credit Ratings</div>
-      ${(docs.creditRatings||[]).map(r=>dl(r.link,(r.source||r.title||'Rating')+' — '+(r.date||''),'🏷')).join('')||'<div class="body">No ratings available</div>'}
+      <div class="heading" style="font-size:17px;margin-bottom:14px">Annual Reports</div>
+      ${(docs.annualReports||[]).map(a=>dl(a.link,'Annual Report — '+a.year,'📋')).join('')||none}
+      <div class="heading" style="font-size:17px;margin:20px 0 12px">Credit Ratings</div>
+      ${(docs.creditRatings||[]).map(r=>dl(r.link,(r.source||'Rating')+' — '+(r.date||''),'🏷')).join('')||none}
     </div>
   </div>`;
 }
 
-// ── RECORD PAGE ───────────────────────────────────────
-function renderRecord(){
-  const stats = HISTORY.stats || {};
-  const snapshots = HISTORY.dailySnapshots || [];
-  const activeCalls = HISTORY.activeCalls || [];
-  const closedCalls = HISTORY.closedCalls || [];
-  const lastUpdated = HISTORY.lastUpdated || '—';
+/* ══════════════════════════════════════════════════════
+   TRACK RECORD PAGE
+══════════════════════════════════════════════════════ */
+function rRecord(){
+  const active=HIST.activeCalls||[];
+  const closed=HIST.closedCalls||[];
+  const snaps=HIST.dailySnapshots||[];
+  const updated=HIST.lastUpdated||'—';
+  const vindicated=closed.filter(c=>c.exitScores?.signal==='HOLD'||(c.priceCagr1YAtExit!=null&&c.priceCagr1YAtExit>0)).length;
 
-  // Hit rate: closed calls where exit signal was not AVOID (price caught up = good exit)
-  const vindicated = closedCalls.filter(c =>
-    c.exitScores?.signal === 'HOLD' || c.priceCagr1YAtExit > 0
-  ).length;
-  const hitRate = closedCalls.length > 0
-    ? Math.round(vindicated / closedCalls.length * 100) + '%'
-    : '—';
-
-  // Spark data for last 30 days BUY count
-  const recentSnaps = snapshots.slice(-30);
-
-  return `<div class="pgm">
+  return `<div class="pg-narrow">
     <div style="margin-bottom:30px">
-      <div class="slabel">Audit Trail</div>
-      <div class="stitle">The Record</div>
-      <div class="ssub">Every signal transition logged automatically by the engine. No selective memory possible — the data pipeline writes history.json every single day. Last updated: ${lastUpdated}.</div>
+      <div class="label">Audit trail</div>
+      <div class="heading" style="font-size:30px;margin-bottom:8px">Track Record</div>
+      <div class="sub">Every signal this engine has ever generated, with full data. Every exit, with the reason. Nothing is added, removed, or edited by hand.</div>
     </div>
 
     <div class="g4" style="margin-bottom:28px">
-      ${[
-        ['Total calls triggered',stats.totalCallsEver||activeCalls.length+closedCalls.length,'Since tracking began'],
-        ['Currently active',activeCalls.length,'Passing all 4 thresholds today'],
-        ['Closed calls',closedCalls.length,'Auto-closed when signal broke'],
-        ['Vindicated exits',closedCalls.length>0?vindicated+'/'+closedCalls.length:'—','Price CAGR positive at exit'],
-      ].map(([l,v,s])=>`<div class="sbox"><div style="font-family:var(--serif);font-size:28px;font-weight:500;color:var(--forest2);margin-bottom:3px">${v}</div><div style="font-size:12px;font-weight:500;margin-bottom:2px">${l}</div><div class="ssb">${s}</div></div>`).join('')}
+      ${[[active.length+closed.length,'Total signals generated','Since tracking began'],
+         [active.length,'Currently active','Passing all criteria today'],
+         [closed.length,'Signals closed','Exited when criteria broke'],
+         [closed.length>0?vindicated+'/'+closed.length:'Pending','Positive exits','Stock trending up at close']
+      ].map(([v,l,s])=>`<div class="stat"><div class="heading" style="font-size:28px;color:var(--green2);margin-bottom:3px">${v}</div><div style="font-size:12px;font-weight:500;margin-bottom:2px">${l}</div><div class="stat-sub">${s}</div></div>`).join('')}
     </div>
 
-    ${recentSnaps.length > 1 ? `
-    <div class="card" style="margin-bottom:20px">
-      <div class="slabel" style="margin-bottom:12px">Daily signal history — last ${recentSnaps.length} days</div>
-      <div style="overflow-x:auto">
-        <table class="tbl">
-          <thead><tr><th>Date</th><th>Universe</th><th style="color:var(--forest2)">BUY</th><th style="color:var(--navy)">HOLD</th><th style="color:var(--amber2)">WATCH</th><th style="color:var(--crimson)">AVOID</th><th>Active Calls</th><th>Avg CCS</th></tr></thead>
-          <tbody>
-            ${[...recentSnaps].reverse().map((s,i)=>`
-              <tr style="background:${i%2===0?'var(--card)':'#FDFCF8'}">
-                <td style="font-family:var(--mono);font-size:11px">${s.date}</td>
-                <td style="font-family:var(--mono)">${s.totalCompanies}</td>
-                <td style="font-family:var(--mono);color:var(--forest2);font-weight:600">${s.buy}</td>
-                <td style="font-family:var(--mono);color:var(--navy)">${s.hold}</td>
-                <td style="font-family:var(--mono);color:var(--amber2)">${s.watch}</td>
-                <td style="font-family:var(--mono);color:var(--crimson)">${s.avoid}</td>
-                <td style="font-family:var(--mono);font-weight:600;color:${s.activeCalls>0?'var(--forest2)':'var(--ink3)'}">${s.activeCalls}</td>
-                <td style="font-family:var(--mono)">${s.avgCCS}</td>
-              </tr>`).join('')}
-          </tbody>
-        </table>
-      </div>
-    </div>` : `
-    <div class="card" style="margin-bottom:20px;padding:28px;text-align:center">
-      <div style="font-size:14px;color:var(--ink2);margin-bottom:8px">Daily history will appear here after the first automated run.</div>
-      <div style="font-size:12px;color:var(--ink3)">The GitHub Actions workflow logs every day's signal distribution into history.json. Run the workflow manually once to start building the record.</div>
+    ${snaps.length>1?`
+    <div class="card" style="margin-bottom:22px">
+      <div class="label" style="margin-bottom:14px">Daily signal history — ${snaps.length} days tracked</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr>
+          <th>Date</th>
+          <th>Companies</th>
+          <th style="color:var(--green)">Strong Buy</th>
+          <th style="color:var(--navy)">Hold</th>
+          <th style="color:var(--amber2)">Watch</th>
+          <th style="color:var(--red)">Avoid</th>
+          <th>Active Signals</th>
+          <th>Avg Score</th>
+        </tr></thead>
+        <tbody>${[...snaps].reverse().map((s,i)=>`
+          <tr style="background:${i%2===0?'var(--card)':'#FAF8F3'}">
+            <td class="mono" style="font-size:11px">${s.date}</td>
+            <td class="mono">${(s.totalCompanies||0).toLocaleString()}</td>
+            <td class="mono" style="color:var(--green);font-weight:600">${s.buy||0}</td>
+            <td class="mono" style="color:var(--navy)">${s.hold||0}</td>
+            <td class="mono" style="color:var(--amber2)">${s.watch||0}</td>
+            <td class="mono" style="color:var(--red)">${s.avoid||0}</td>
+            <td class="mono" style="font-weight:600;color:${(s.activeCalls||0)>0?'var(--green2)':'var(--ink3)'}">${s.activeCalls||0}</td>
+            <td class="mono">${s.avgCCS||'—'}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table></div>
+    </div>`:`
+    <div class="card" style="margin-bottom:22px;padding:28px;text-align:center">
+      <div style="font-size:13px;color:var(--ink2);margin-bottom:6px">Daily history builds up here over time.</div>
+      <div style="font-size:12px;color:var(--ink3)">The engine logs every day's signal distribution automatically. Check back after a few days of data collection.</div>
     </div>`}
 
-    ${closedCalls.length > 0 ? `
-    <div class="card" style="margin-bottom:20px">
-      <div class="slabel" style="margin-bottom:12px">Closed call transitions</div>
-      <table class="tbl">
-        <thead><tr><th>Company</th><th>Entry</th><th>Exit</th><th>CCS entry→exit</th><th>EV-MED at entry</th><th>Exit reason</th></tr></thead>
-        <tbody>
-          ${[...closedCalls].reverse().map((c,i)=>`
-            <tr style="background:${i%2===0?'var(--card)':'#FDFCF8'}">
-              <td><b>${c.name}</b><div style="font-family:var(--mono);font-size:10px;color:var(--ink3)">${c.id}</div></td>
-              <td style="font-family:var(--mono);font-size:11px">${fmtDate(c.entryDate)}</td>
-              <td style="font-family:var(--mono);font-size:11px">${fmtDate(c.exitDate)}</td>
-              <td style="font-family:var(--mono)">${c.entryScores?.ccs||'—'} → <span style="color:${(c.exitScores?.ccs||0)<(c.entryScores?.ccs||0)?'var(--crimson)':'var(--forest2)'}">${c.exitScores?.ccs||'—'}</span></td>
-              <td style="font-family:var(--mono)">${c.entryScores?.evmed||'—'}</td>
-              <td style="font-size:11px;color:var(--ink2);max-width:200px">${c.exitReason||'—'}</td>
-            </tr>`).join('')}
+    ${closed.length?`<div class="card" style="margin-bottom:22px">
+      <div class="label" style="margin-bottom:12px">Signal transitions — when and why they closed</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>Company</th><th>Opened</th><th>Closed</th><th>Score: open → close</th><th>Reason for closing</th></tr></thead>
+        <tbody>${[...closed].reverse().map((c,i)=>`
+          <tr style="background:${i%2===0?'var(--card)':'#FAF8F3'}">
+            <td><b>${c.name}</b><div class="mono" style="font-size:10px;color:var(--ink3)">${c.id}</div></td>
+            <td class="mono" style="font-size:11px">${fDate(c.entryDate)}</td>
+            <td class="mono" style="font-size:11px">${fDate(c.exitDate)}</td>
+            <td class="mono">${c.entryScores?.ccs||'—'} → <span style="color:${(c.exitScores?.ccs||0)<(c.entryScores?.ccs||0)?'var(--red)':'var(--green2)'}">${c.exitScores?.ccs||'—'}</span></td>
+            <td style="font-size:11px;color:var(--ink2);max-width:200px">${c.exitReason||'Signal rating changed'}</td>
+          </tr>`).join('')}
         </tbody>
-      </table>
-    </div>` : ''}
+      </table></div>
+    </div>`:''}
 
-    <div class="wstrip">
-      <div class="g2" style="gap:36px">
-        <div><div style="font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:10px">How the record is built</div><p style="font-size:13px;line-height:1.8;color:rgba(255,255,255,.72)">Every day, score_and_log.cjs compares today's signals against yesterday's. Any stock that newly passes all four thresholds is logged as an open call with the date and scores. Any stock that exits gets logged with the exit date, exit scores, and a derived exit reason. history.json accumulates this permanently — it is the immutable audit trail.</p></div>
-        <div><div style="font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:10px">What makes this honest</div>${['No human selects which calls appear — only the algorithm','No calls are retroactively removed or edited','The daily snapshot table shows every day\'s signal distribution','Exit reason is derived from the data, not written by hand','Price CAGR at exit is recorded as a factual outcome proxy'].map(it=>`<div style="display:flex;gap:7px;margin-bottom:7px;font-size:12px;color:rgba(255,255,255,.62);line-height:1.5"><span style="color:rgba(255,255,255,.25)">→</span>${it}</div>`).join('')}</div>
+    <div class="card-dark">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px">
+        <div>
+          <div class="heading" style="font-size:20px;color:#fff;margin-bottom:12px">How this record works</div>
+          <p style="font-size:13px;line-height:1.8;color:rgba(255,255,255,.7)">Every night the engine scores all ${COS.length.toLocaleString()} companies. A signal opens when all four criteria are met for the first time. It closes the day any criterion is no longer met. Both events are logged with the date and scores. Over time, this table becomes a complete and uneditable history of the engine's output.</p>
+        </div>
+        <div>
+          <div class="heading" style="font-size:20px;color:#fff;margin-bottom:12px">What makes this reliable</div>
+          ${['Signals open and close based purely on data — no human decides','Nothing is retroactively removed or backdated','Each exit includes the specific reason derived from the data','The daily snapshot shows every day\'s full signal distribution','The record is written automatically — nobody curates it'].map(it=>`<div style="display:flex;gap:8px;margin-bottom:8px;font-size:12px;color:rgba(255,255,255,.58);line-height:1.5"><span style="color:rgba(255,255,255,.22);flex-shrink:0">→</span>${it}</div>`).join('')}
+        </div>
       </div>
     </div>
   </div>`;
 }
 
-// ── CHARTS ────────────────────────────────────────────
-const COPT={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'#0C1220',titleColor:'rgba(255,255,255,.45)',bodyColor:'#fff',padding:9,cornerRadius:6}},scales:{x:{ticks:{color:'#7A8BA5',font:{size:9,family:'JetBrains Mono'}},grid:{display:false},border:{display:false}},y:{ticks:{color:'#7A8BA5',font:{size:9,family:'JetBrains Mono'}},grid:{color:'#EAE6D8'},border:{display:false}}}};
-function dc(id){if(charts[id]){try{charts[id].destroy();}catch(e){}delete charts[id];}}
-function mkL(id,labels,data,name,clr){const el=document.getElementById(id);if(!el)return;dc(id);charts[id]=new Chart(el,{type:'line',data:{labels,datasets:[{label:name,data,borderColor:clr,borderWidth:2.5,pointRadius:0,tension:.35,fill:true,backgroundColor:clr+'18'}]},options:{...COPT}});}
-function mkDual(id,labels,d1,n1,c1,d2,n2,c2){const el=document.getElementById(id);if(!el)return;dc(id);charts[id]=new Chart(el,{type:'line',data:{labels,datasets:[{label:n1,data:d1,borderColor:c1,borderWidth:2,pointRadius:0,tension:.35},{label:n2,data:d2,borderColor:c2,borderWidth:1.5,borderDash:[4,3],pointRadius:0,tension:.35}]},options:{...COPT}});}
-function mkBL(id,labels,bars,bN,line,lN){const el=document.getElementById(id);if(!el)return;dc(id);charts[id]=new Chart(el,{type:'bar',data:{labels,datasets:[{type:'bar',label:bN,data:bars,backgroundColor:'#DDD8C4',borderRadius:3,barPercentage:.6},{type:'line',label:lN,data:line,borderColor:'#0A4A2E',borderWidth:2.5,pointRadius:0,tension:.3,yAxisID:'y1'}]},options:{...COPT,scales:{...COPT.scales,y1:{position:'right',ticks:{color:'#0A4A2E',font:{size:9}},grid:{display:false},border:{display:false}}}}});}
-function mkBs(id,labels,d1,n1,d2,n2){const el=document.getElementById(id);if(!el)return;dc(id);charts[id]=new Chart(el,{type:'bar',data:{labels,datasets:[{label:n1,data:d1,backgroundColor:'#0A4A2E',borderRadius:3,barPercentage:.5},{label:n2,data:d2,backgroundColor:'#1A6B42',borderRadius:3,barPercentage:.5}]},options:{...COPT}});}
-function mkOwn(id,labels,fii,dii,prom){const el=document.getElementById(id);if(!el)return;dc(id);const ds=[{label:'FII %',data:fii,borderColor:'#1E3A8A',borderWidth:2,pointRadius:3,tension:.3},{label:'DII %',data:dii,borderColor:'#0A4A2E',borderWidth:2,pointRadius:3,tension:.3}];if(prom.some(v=>v!=null&&v>0))ds.push({label:'Promoter %',data:prom,borderColor:'#7C3AED',borderWidth:2,pointRadius:3,tension:.3});charts[id]=new Chart(el,{type:'line',data:{labels,datasets:ds},options:{...COPT}});}
+/* ══════════════════════════════════════════════════════
+   CHART ENGINE
+══════════════════════════════════════════════════════ */
+const CBASE={
+  responsive:true,maintainAspectRatio:false,
+  plugins:{legend:{display:false},tooltip:{backgroundColor:'#0B1D3A',titleColor:'rgba(255,255,255,.5)',bodyColor:'#fff',padding:10,cornerRadius:6,displayColors:false}},
+  scales:{
+    x:{ticks:{color:'#7A8FA8',font:{size:9,family:'JetBrains Mono'}},grid:{display:false},border:{display:false}},
+    y:{ticks:{color:'#7A8FA8',font:{size:9,family:'JetBrains Mono'}},grid:{color:'#E4DDD0'},border:{display:false}}
+  }
+};
 
-function drawCharts(){
-  Object.keys(charts).forEach(k=>{try{charts[k].destroy();}catch(e){}delete charts[k];});
+function mkLine(id,labels,data,name,color){
+  const el=document.getElementById(id);if(!el)return;
+  charts[id]=new Chart(el,{type:'line',data:{labels,datasets:[{label:name,data,borderColor:color,borderWidth:2.5,pointRadius:0,tension:.35,fill:true,backgroundColor:color+'15',pointHoverRadius:4,pointHoverBackgroundColor:color}]},options:{...CBASE}});
+}
+function mkDual(id,labels,d1,n1,c1,d2,n2,c2){
+  const el=document.getElementById(id);if(!el)return;
+  charts[id]=new Chart(el,{type:'line',data:{labels,datasets:[{label:n1,data:d1,borderColor:c1,borderWidth:2,pointRadius:0,tension:.35},{label:n2,data:d2,borderColor:c2,borderWidth:1.5,borderDash:[4,3],pointRadius:0,tension:.35}]},options:{...CBASE}});
+}
+function mkBarLine(id,labels,bars,bN,line,lN){
+  const el=document.getElementById(id);if(!el)return;
+  charts[id]=new Chart(el,{type:'bar',data:{labels,datasets:[{type:'bar',label:bN,data:bars,backgroundColor:'#D6CFBF',borderRadius:3,barPercentage:.6},{type:'line',label:lN,data:line,borderColor:'#0A4A2C',borderWidth:2.5,pointRadius:0,tension:.3,yAxisID:'y1'}]},options:{...CBASE,scales:{...CBASE.scales,y1:{position:'right',ticks:{color:'#0A4A2C',font:{size:9}},grid:{display:false},border:{display:false}}}}});
+}
+function mkBars(id,labels,d1,n1,d2,n2){
+  const el=document.getElementById(id);if(!el)return;
+  charts[id]=new Chart(el,{type:'bar',data:{labels,datasets:[{label:n1,data:d1,backgroundColor:'#0A4A2C',borderRadius:3,barPercentage:.5},{label:n2,data:d2,backgroundColor:'#1A6B40',borderRadius:3,barPercentage:.5}]},options:{...CBASE}});
+}
+function mkOwn(id,labels,fii,dii,prom){
+  const el=document.getElementById(id);if(!el)return;
+  const ds=[
+    {label:'FII %',data:fii,borderColor:'#1A3680',borderWidth:2,pointRadius:3,pointBackgroundColor:'#1A3680',tension:.35},
+    {label:'DII %',data:dii,borderColor:'#0A4A2C',borderWidth:2,pointRadius:3,pointBackgroundColor:'#0A4A2C',tension:.35}
+  ];
+  if(prom.some(v=>v!=null&&v>0))ds.push({label:'Promoter %',data:prom,borderColor:'#6D28D9',borderWidth:2,pointRadius:3,pointBackgroundColor:'#6D28D9',tension:.35});
+  charts[id]=new Chart(el,{type:'line',data:{labels,datasets:ds},options:{...CBASE}});
+}
+
+function drawAll(){
   if(page!=='company'||!coData)return;
   const full=coData;
   const qs=full.quarters?.data||{};
   const isBank=full._scores?.isBank||false;
   const qKeys=full.quarters?.headers||[];
-  const shKeys=(full.shareholding?.headers||[]).filter(h=>h&&h.trim());
+  const shKeys=getQtrShHeaders(full); // FIXED: only quarterly headers
   const sh=full.shareholding?.data||{};
   const pl=full.profitLoss?.data||{};
-  const ra=full.ratios?.data||{};
   const cf=full.cashFlow?.data||{};
   const annKeys=full.profitLoss?.headers||[];
   const cfKeys=full.cashFlow?.headers||[];
   const disp=k=>k.replace('Mar ','FY');
 
   if(coTab==='overview'){
-    mkL('co-qeps',qKeys,qKeys.map(h=>pn(qs['EPS in Rs']?.[h])),'EPS ₹','#0A4A2E');
-    if(isBank) mkDual('co-margin',qKeys,qKeys.map(h=>pn(qs['Gross NPA %']?.[h])),'Gross NPA %','#92400E',qKeys.map(h=>pn(qs['Net NPA %']?.[h])),'Net NPA %','#991B1B');
-    else mkL('co-margin',qKeys,qKeys.map(h=>pn(qs['OPM %']?.[h])),'OPM %','#1E3A8A');
+    mkLine('co-qeps',qKeys,qKeys.map(h=>pn(qs['EPS in Rs']?.[h])),'EPS ₹','#0A4A2C');
+    if(isBank) mkDual('co-margin',qKeys,qKeys.map(h=>pn(qs['Gross NPA %']?.[h])),'Gross NPA %','#B35000',qKeys.map(h=>pn(qs['Net NPA %']?.[h])),'Net NPA %','#8B1A1A');
+    else mkLine('co-margin',qKeys,qKeys.map(h=>pn(qs['OPM %']?.[h])),'OPM %','#1A3680');
   }
   if(coTab==='financials'){
-    mkBL('co-revnp',annKeys.map(disp),annKeys.map(y=>pn((isBank?pl['Revenue']:pl['Sales'])?.[y])),isBank?'Revenue':'Sales',annKeys.map(y=>pn(pl['Net Profit']?.[y])),'Net Profit');
-    mkBs('co-cf',cfKeys.map(disp),cfKeys.map(y=>pn(cf['Cash from Operating Activity']?.[y])),'CFO',cfKeys.map(y=>pn(cf['Free Cash Flow']?.[y])),'FCF');
+    mkBarLine('co-revnp',annKeys.map(disp),annKeys.map(y=>pn((isBank?pl['Revenue']:pl['Sales'])?.[y])),isBank?'Revenue':'Sales',annKeys.map(y=>pn(pl['Net Profit']?.[y])),'Profit');
+    mkBars('co-cf',cfKeys.map(disp),cfKeys.map(y=>pn(cf['Cash from Operating Activity']?.[y])),'Operating CF',cfKeys.map(y=>pn(cf['Free Cash Flow']?.[y])),'Free CF');
   }
-  if(coTab==='ownership') mkOwn('co-own',shKeys,shKeys.map(h=>pn(sh['FIIs']?.[h])),shKeys.map(h=>pn(sh['DIIs']?.[h])),shKeys.map(h=>pn(sh['Promoters']?.[h])));
+  if(coTab==='ownership'){
+    // FIXED: Use only quarterly shareholding headers
+    const fii=shKeys.map(h=>pn(sh['FIIs']?.[h]));
+    const dii=shKeys.map(h=>pn(sh['DIIs']?.[h]));
+    const prom=shKeys.map(h=>pn(sh['Promoters']?.[h]));
+    mkOwn('co-own',shKeys,fii,dii,prom);
+  }
 }
 
-window.go=go;window.goC=goC;window.setCoTab=setCoTab;window.setCallTab=setCallTab;
+// ── GLOBALS ──────────────────────────────────────
+window.go=go;window.goC=goC;window.setCoTab=setCoTab;window.setSigTab=setSigTab;window.srt=srt;
 boot();
 </script>
 </body>

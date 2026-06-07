@@ -1,4 +1,21 @@
 const fs = require('fs');
+
+// Name cleaner — strips trailing commas/semicolons, fixes ALL CAPS
+function cleanName(raw) {
+  if (!raw) return raw;
+  let n = String(raw).replace(/[,;]+\s*$/, '').trim();
+  if (n === n.toUpperCase() && n.length > 3) {
+    n = n.toLowerCase().replace(/\b(\w)/g, c => c.toUpperCase());
+    // Fix common Indian corporate suffixes
+    n = n.replace(/\bLtd\b/g, 'Ltd.').replace(/\bLtd\.\./g, 'Ltd.');
+  }
+  return n;
+}
+function cleanSector(raw) {
+  if (!raw) return 'General';
+  return String(raw).replace(/[,;]+\s*$/, '').trim() || 'General';
+}
+
 const path = require('path');
 
 console.log('Starting split process...');
@@ -254,7 +271,7 @@ for (const ticker of tickers) {
 
     index[ticker] = {
       id: ticker,
-      name: co.CompanyName || ticker,
+      name: cleanName(co.CompanyName || '') || ticker,
       sector,
       ...scores,
       pcagr5: parseFloat(String(cag['Compounded Profit Growth']?.['5 Years'] || '0').replace('%','')),
