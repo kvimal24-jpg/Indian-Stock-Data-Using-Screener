@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-12",
+  "lastUpdated": "2026-06-13",
   "previousSignals": {
     "500002": "WATCH",
     "500003": "WATCH",
@@ -275,7 +275,7 @@
     "507438": "AVOID",
     "507488": "AVOID",
     "507514": "WATCH",
-    "507526": "WATCH",
+    "507526": "AVOID",
     "507685": "WATCH",
     "507717": "WATCH",
     "507747": "AVOID",
@@ -340,7 +340,7 @@
     "513375": "WATCH",
     "513377": "AVOID",
     "513517": "WATCH",
-    "513519": "WATCH",
+    "513519": "AVOID",
     "513536": "AVOID",
     "513554": "WATCH",
     "513599": "HOLD",
@@ -459,7 +459,7 @@
     "524230": "AVOID",
     "524348": "WATCH",
     "524372": "AVOID",
-    "524394": "WATCH",
+    "524394": "HOLD",
     "524404": "WATCH",
     "524470": "AVOID",
     "524494": "WATCH",
@@ -549,8 +549,8 @@
     "531431": "WATCH",
     "531449": "AVOID",
     "531500": "AVOID",
-    "531508": "WATCH",
-    "531531": "AVOID",
+    "531508": "AVOID",
+    "531531": "WATCH",
     "531543": "WATCH",
     "531548": "WATCH",
     "531595": "HOLD",
@@ -587,7 +587,7 @@
     "532221": "AVOID",
     "532234": "WATCH",
     "532240": "WATCH",
-    "532256": "AVOID",
+    "532256": "WATCH",
     "532259": "AVOID",
     "532268": "WATCH",
     "532281": "WATCH",
@@ -629,7 +629,7 @@
     "532461": "HOLD",
     "532466": "AVOID",
     "532468": "WATCH",
-    "532477": "HOLD",
+    "532477": "BUY",
     "532478": "AVOID",
     "532482": "AVOID",
     "532483": "HOLD",
@@ -1008,7 +1008,7 @@
     "542066": "WATCH",
     "542141": "AVOID",
     "542216": "AVOID",
-    "542323": "HOLD",
+    "542323": "WATCH",
     "542333": "AVOID",
     "542399": "HOLD",
     "542460": "WATCH",
@@ -1705,6 +1705,24 @@
       "isBank": true,
       "gnpa": 2,
       "roe": 16
+    },
+    {
+      "id": "532477",
+      "name": "Union Bank of India",
+      "sector": "Banking",
+      "entryDate": "2026-06-13",
+      "entryScores": {
+        "qScore": 66,
+        "vScore": 60,
+        "mScore": 87,
+        "ccs": 68,
+        "evmed": "+10",
+        "signal": "BUY"
+      },
+      "priceCagr1Y": 16,
+      "isBank": true,
+      "gnpa": 2.82,
+      "roe": 15
     }
   ],
   "closedCalls": [
@@ -2019,11 +2037,21 @@
       "avoid": 708,
       "avgCCS": 45,
       "activeCalls": 15
+    },
+    {
+      "date": "2026-06-13",
+      "totalCompanies": 1433,
+      "buy": 18,
+      "hold": 112,
+      "watch": 594,
+      "avoid": 709,
+      "avgCCS": 45,
+      "activeCalls": 16
     }
   ],
   "stats": {
-    "totalCallsEver": 21,
-    "currentActiveCalls": 15,
+    "totalCallsEver": 22,
+    "currentActiveCalls": 16,
     "closedCalls": 6,
     "vindicatedCalls": 4
   }
