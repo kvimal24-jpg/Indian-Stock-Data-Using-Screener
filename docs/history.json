@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-04",
+  "lastUpdated": "2026-07-05",
   "previousSignals": {
     "500002": "WATCH",
     "500003": "WATCH",
@@ -73,7 +73,7 @@
     "500210": "WATCH",
     "500214": "AVOID",
     "500215": "AVOID",
-    "500219": "AVOID",
+    "500219": "WATCH",
     "500227": "AVOID",
     "500228": "AVOID",
     "500233": "WATCH",
@@ -119,7 +119,7 @@
     "500368": "AVOID",
     "500378": "AVOID",
     "500380": "WATCH",
-    "500387": "WATCH",
+    "500387": "AVOID",
     "500390": "AVOID",
     "500400": "WATCH",
     "500402": "WATCH",
@@ -269,7 +269,7 @@
     "506820": "WATCH",
     "506854": "AVOID",
     "506879": "AVOID",
-    "506943": "WATCH",
+    "506943": "AVOID",
     "507205": "AVOID",
     "507410": "AVOID",
     "507438": "AVOID",
@@ -326,7 +326,7 @@
     "512455": "HOLD",
     "512463": "AVOID",
     "512529": "AVOID",
-    "512573": "WATCH",
+    "512573": "AVOID",
     "512599": "AVOID",
     "513023": "AVOID",
     "513097": "WATCH",
@@ -370,7 +370,7 @@
     "517300": "HOLD",
     "517334": "WATCH",
     "517354": "WATCH",
-    "517380": "WATCH",
+    "517380": "AVOID",
     "517385": "WATCH",
     "517421": "WATCH",
     "517467": "AVOID",
@@ -409,7 +409,7 @@
     "522113": "WATCH",
     "522163": "AVOID",
     "522195": "WATCH",
-    "522205": "WATCH",
+    "522205": "AVOID",
     "522215": "AVOID",
     "522241": "WATCH",
     "522249": "WATCH",
@@ -820,7 +820,7 @@
     "533333": "AVOID",
     "533339": "AVOID",
     "533344": "WATCH",
-    "533398": "BUY",
+    "533398": "HOLD",
     "533519": "AVOID",
     "533520": "WATCH",
     "533552": "WATCH",
@@ -889,7 +889,7 @@
     "539302": "WATCH",
     "539309": "AVOID",
     "539332": "AVOID",
-    "539334": "WATCH",
+    "539334": "AVOID",
     "539336": "HOLD",
     "539404": "HOLD",
     "539437": "WATCH",
@@ -897,7 +897,7 @@
     "539450": "AVOID",
     "539469": "AVOID",
     "539523": "AVOID",
-    "539524": "WATCH",
+    "539524": "HOLD",
     "539533": "AVOID",
     "539542": "AVOID",
     "539551": "HOLD",
@@ -949,7 +949,7 @@
     "540596": "AVOID",
     "540611": "HOLD",
     "540642": "AVOID",
-    "540673": "AVOID",
+    "540673": "WATCH",
     "540678": "AVOID",
     "540680": "AVOID",
     "540691": "HOLD",
@@ -1723,24 +1723,6 @@
       "isBank": true,
       "gnpa": 2.82,
       "roe": 15
-    },
-    {
-      "id": "533398",
-      "name": "Muthoot Finance Limited",
-      "sector": "NBFC",
-      "entryDate": "2026-07-04",
-      "entryScores": {
-        "qScore": 74,
-        "vScore": 56,
-        "mScore": 87,
-        "ccs": 70,
-        "evmed": "+8",
-        "signal": "BUY"
-      },
-      "priceCagr1Y": 15,
-      "isBank": true,
-      "gnpa": 2.35,
-      "roe": 31
     }
   ],
   "closedCalls": [
@@ -2093,6 +2075,31 @@
       },
       "exitReason": "Fully valued — price caught up with earnings (signal: HOLD)",
       "priceCagr1YAtExit": 10
+    },
+    {
+      "id": "533398",
+      "name": "Muthoot Finance Limited",
+      "sector": "NBFC",
+      "entryDate": "2026-07-04",
+      "exitDate": "2026-07-05",
+      "entryScores": {
+        "qScore": 74,
+        "vScore": 56,
+        "mScore": 87,
+        "ccs": 70,
+        "evmed": "+8",
+        "signal": "BUY"
+      },
+      "exitScores": {
+        "qScore": 74,
+        "vScore": 54,
+        "mScore": 87,
+        "ccs": 70,
+        "evmed": "+7",
+        "signal": "HOLD"
+      },
+      "exitReason": "Fully valued — price caught up with earnings (signal: HOLD)",
+      "priceCagr1YAtExit": 15
     }
   ],
   "dailySnapshots": [
@@ -2475,12 +2482,22 @@
       "avoid": 714,
       "avgCCS": 45,
       "activeCalls": 17
+    },
+    {
+      "date": "2026-07-05",
+      "totalCompanies": 1433,
+      "buy": 17,
+      "hold": 120,
+      "watch": 578,
+      "avoid": 718,
+      "avgCCS": 45,
+      "activeCalls": 16
     }
   ],
   "stats": {
     "totalCallsEver": 31,
-    "currentActiveCalls": 17,
-    "closedCalls": 14,
-    "vindicatedCalls": 10
+    "currentActiveCalls": 16,
+    "closedCalls": 15,
+    "vindicatedCalls": 11
   }
 }
