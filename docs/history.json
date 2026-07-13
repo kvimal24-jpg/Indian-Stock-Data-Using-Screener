@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-12",
+  "lastUpdated": "2026-07-13",
   "previousSignals": {
     "500002": "WATCH",
     "500003": "WATCH",
@@ -110,7 +110,7 @@
     "500330": "AVOID",
     "500331": "HOLD",
     "500333": "AVOID",
-    "500335": "AVOID",
+    "500335": "WATCH",
     "500336": "WATCH",
     "500338": "AVOID",
     "500339": "AVOID",
@@ -174,7 +174,7 @@
     "500770": "WATCH",
     "500790": "WATCH",
     "500800": "WATCH",
-    "500820": "WATCH",
+    "500820": "HOLD",
     "500825": "WATCH",
     "500830": "WATCH",
     "500840": "HOLD",
@@ -266,7 +266,7 @@
     "506685": "WATCH",
     "506690": "AVOID",
     "506767": "WATCH",
-    "506820": "WATCH",
+    "506820": "AVOID",
     "506854": "AVOID",
     "506879": "AVOID",
     "506943": "AVOID",
@@ -340,7 +340,7 @@
     "513375": "WATCH",
     "513377": "AVOID",
     "513517": "WATCH",
-    "513519": "AVOID",
+    "513519": "WATCH",
     "513536": "AVOID",
     "513554": "WATCH",
     "513599": "HOLD",
@@ -409,7 +409,7 @@
     "522113": "WATCH",
     "522163": "AVOID",
     "522195": "WATCH",
-    "522205": "WATCH",
+    "522205": "AVOID",
     "522215": "AVOID",
     "522241": "WATCH",
     "522249": "WATCH",
@@ -590,7 +590,7 @@
     "532256": "WATCH",
     "532259": "AVOID",
     "532268": "WATCH",
-    "532281": "WATCH",
+    "532281": "HOLD",
     "532285": "AVOID",
     "532286": "AVOID",
     "532296": "AVOID",
@@ -621,7 +621,7 @@
     "532408": "WATCH",
     "532424": "WATCH",
     "532430": "AVOID",
-    "532432": "HOLD",
+    "532432": "WATCH",
     "532439": "HOLD",
     "532440": "WATCH",
     "532443": "WATCH",
@@ -794,7 +794,7 @@
     "533160": "AVOID",
     "533162": "WATCH",
     "533169": "AVOID",
-    "533179": "HOLD",
+    "533179": "WATCH",
     "533206": "WATCH",
     "533229": "AVOID",
     "533248": "HOLD",
@@ -1043,7 +1043,7 @@
     "543187": "WATCH",
     "543212": "WATCH",
     "543213": "WATCH",
-    "543214": "WATCH",
+    "543214": "HOLD",
     "543220": "WATCH",
     "543227": "WATCH",
     "543228": "AVOID",
@@ -1095,7 +1095,7 @@
     "543332": "WATCH",
     "543333": "AVOID",
     "543334": "WATCH",
-    "543335": "BUY",
+    "543335": "HOLD",
     "543336": "AVOID",
     "543349": "WATCH",
     "543350": "WATCH",
@@ -1327,7 +1327,7 @@
     "544344": "AVOID",
     "544350": "AVOID",
     "544355": "AVOID",
-    "544356": "WATCH",
+    "544356": "AVOID",
     "544362": "WATCH",
     "544367": "WATCH",
     "544379": "AVOID",
@@ -1687,24 +1687,6 @@
       "isBank": true,
       "gnpa": 2,
       "roe": 16
-    },
-    {
-      "id": "543335",
-      "name": "Aptus Value Housing Finance India Limited",
-      "sector": "NBFC",
-      "entryDate": "2026-06-20",
-      "entryScores": {
-        "qScore": 75,
-        "vScore": 88,
-        "mScore": 58,
-        "ccs": 76,
-        "evmed": "+14",
-        "signal": "BUY"
-      },
-      "priceCagr1Y": -14,
-      "isBank": true,
-      "gnpa": 1.29,
-      "roe": 17
     }
   ],
   "closedCalls": [
@@ -2132,6 +2114,31 @@
       },
       "exitReason": "Fully valued — price caught up with earnings (signal: HOLD)",
       "priceCagr1YAtExit": 14
+    },
+    {
+      "id": "543335",
+      "name": "Aptus Value Housing Finance India Limited",
+      "sector": "NBFC",
+      "entryDate": "2026-06-20",
+      "exitDate": "2026-07-13",
+      "entryScores": {
+        "qScore": 75,
+        "vScore": 88,
+        "mScore": 58,
+        "ccs": 76,
+        "evmed": "+14",
+        "signal": "BUY"
+      },
+      "exitScores": {
+        "qScore": 75,
+        "vScore": 40,
+        "mScore": 58,
+        "ccs": 59,
+        "evmed": null,
+        "signal": "HOLD"
+      },
+      "exitReason": "Fully valued — price caught up with earnings (signal: HOLD)",
+      "priceCagr1YAtExit": -17
     }
   ],
   "dailySnapshots": [
@@ -2594,12 +2601,22 @@
       "avoid": 719,
       "avgCCS": 45,
       "activeCalls": 15
+    },
+    {
+      "date": "2026-07-13",
+      "totalCompanies": 1433,
+      "buy": 15,
+      "hold": 122,
+      "watch": 576,
+      "avoid": 720,
+      "avgCCS": 45,
+      "activeCalls": 14
     }
   ],
   "stats": {
     "totalCallsEver": 32,
-    "currentActiveCalls": 15,
-    "closedCalls": 17,
+    "currentActiveCalls": 14,
+    "closedCalls": 18,
     "vindicatedCalls": 13
   }
 }
