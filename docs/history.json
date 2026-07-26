@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-25",
+  "lastUpdated": "2026-07-26",
   "previousSignals": {
     "500002": "WATCH",
     "500003": "WATCH",
@@ -18,7 +18,7 @@
     "500043": "WATCH",
     "500048": "AVOID",
     "500049": "WATCH",
-    "500052": "WATCH",
+    "500052": "AVOID",
     "500067": "AVOID",
     "500068": "WATCH",
     "500084": "AVOID",
@@ -47,7 +47,7 @@
     "500126": "WATCH",
     "500128": "AVOID",
     "500133": "WATCH",
-    "500135": "WATCH",
+    "500135": "AVOID",
     "500144": "WATCH",
     "500147": "AVOID",
     "500148": "AVOID",
@@ -110,7 +110,7 @@
     "500330": "AVOID",
     "500331": "HOLD",
     "500333": "AVOID",
-    "500335": "WATCH",
+    "500335": "AVOID",
     "500336": "WATCH",
     "500338": "AVOID",
     "500339": "AVOID",
@@ -200,7 +200,7 @@
     "502355": "WATCH",
     "502450": "AVOID",
     "502986": "AVOID",
-    "503100": "WATCH",
+    "503100": "AVOID",
     "503101": "WATCH",
     "503310": "AVOID",
     "503681": "AVOID",
@@ -280,7 +280,7 @@
     "507717": "WATCH",
     "507747": "AVOID",
     "507753": "WATCH",
-    "507789": "WATCH",
+    "507789": "HOLD",
     "507815": "HOLD",
     "507878": "AVOID",
     "507880": "AVOID",
@@ -418,7 +418,7 @@
     "522275": "WATCH",
     "522281": "WATCH",
     "522285": "WATCH",
-    "522287": "WATCH",
+    "522287": "AVOID",
     "522295": "WATCH",
     "523025": "WATCH",
     "523105": "AVOID",
@@ -441,7 +441,7 @@
     "523606": "AVOID",
     "523610": "AVOID",
     "523618": "WATCH",
-    "523630": "AVOID",
+    "523630": "WATCH",
     "523642": "HOLD",
     "523694": "WATCH",
     "523704": "AVOID",
@@ -474,7 +474,7 @@
     "524735": "AVOID",
     "524742": "HOLD",
     "524743": "AVOID",
-    "524774": "WATCH",
+    "524774": "AVOID",
     "524804": "AVOID",
     "524816": "WATCH",
     "524820": "AVOID",
@@ -629,7 +629,7 @@
     "532461": "HOLD",
     "532466": "WATCH",
     "532468": "WATCH",
-    "532477": "BUY",
+    "532477": "HOLD",
     "532478": "AVOID",
     "532482": "AVOID",
     "532483": "HOLD",
@@ -825,7 +825,7 @@
     "533520": "AVOID",
     "533552": "WATCH",
     "533553": "WATCH",
-    "533573": "AVOID",
+    "533573": "WATCH",
     "533581": "AVOID",
     "533644": "AVOID",
     "533655": "AVOID",
@@ -1038,7 +1038,7 @@
     "542907": "WATCH",
     "542919": "WATCH",
     "542920": "HOLD",
-    "543064": "WATCH",
+    "543064": "AVOID",
     "543066": "BUY",
     "543187": "WATCH",
     "543212": "WATCH",
@@ -1079,7 +1079,7 @@
     "543288": "WATCH",
     "543299": "AVOID",
     "543300": "HOLD",
-    "543306": "AVOID",
+    "543306": "WATCH",
     "543308": "AVOID",
     "543311": "WATCH",
     "543317": "WATCH",
@@ -1130,7 +1130,7 @@
     "543482": "WATCH",
     "543489": "WATCH",
     "543490": "AVOID",
-    "543498": "WATCH",
+    "543498": "AVOID",
     "543514": "AVOID",
     "543517": "WATCH",
     "543523": "HOLD",
@@ -1705,24 +1705,6 @@
       "isBank": true,
       "gnpa": 1.28,
       "roe": 13
-    },
-    {
-      "id": "532477",
-      "name": "Union Bank of India",
-      "sector": "Banking",
-      "entryDate": "2026-07-22",
-      "entryScores": {
-        "qScore": 65,
-        "vScore": 58,
-        "mScore": 92,
-        "ccs": 68,
-        "evmed": "+9",
-        "signal": "BUY"
-      },
-      "priceCagr1Y": 19,
-      "isBank": true,
-      "gnpa": 2.65,
-      "roe": 15
     },
     {
       "id": "541770",
@@ -2336,6 +2318,31 @@
       },
       "exitReason": "Fully valued — price caught up with earnings (signal: HOLD)",
       "priceCagr1YAtExit": -22
+    },
+    {
+      "id": "532477",
+      "name": "Union Bank of India",
+      "sector": "Banking",
+      "entryDate": "2026-07-22",
+      "exitDate": "2026-07-26",
+      "entryScores": {
+        "qScore": 65,
+        "vScore": 58,
+        "mScore": 92,
+        "ccs": 68,
+        "evmed": "+9",
+        "signal": "BUY"
+      },
+      "exitScores": {
+        "qScore": 65,
+        "vScore": 56,
+        "mScore": 92,
+        "ccs": 67,
+        "evmed": "+8",
+        "signal": "HOLD"
+      },
+      "exitReason": "Fully valued — price caught up with earnings (signal: HOLD)",
+      "priceCagr1YAtExit": 25
     }
   ],
   "dailySnapshots": [
@@ -2928,12 +2935,22 @@
       "avoid": 715,
       "avgCCS": 45,
       "activeCalls": 18
+    },
+    {
+      "date": "2026-07-26",
+      "totalCompanies": 1433,
+      "buy": 18,
+      "hold": 120,
+      "watch": 575,
+      "avoid": 720,
+      "avgCCS": 45,
+      "activeCalls": 17
     }
   ],
   "stats": {
     "totalCallsEver": 41,
-    "currentActiveCalls": 18,
-    "closedCalls": 23,
-    "vindicatedCalls": 15
+    "currentActiveCalls": 17,
+    "closedCalls": 24,
+    "vindicatedCalls": 16
   }
 }
