@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-19",
+  "lastUpdated": "2026-08-20",
   "previousSignals": {
     "500002": "WATCH",
     "500003": "WATCH",
@@ -79,7 +79,7 @@
     "500233": "WATCH",
     "500235": "AVOID",
     "500238": "WATCH",
-    "500241": "AVOID",
+    "500241": "WATCH",
     "500243": "AVOID",
     "500245": "WATCH",
     "500247": "BUY",
@@ -168,7 +168,7 @@
     "500674": "WATCH",
     "500680": "WATCH",
     "500690": "AVOID",
-    "500696": "WATCH",
+    "500696": "HOLD",
     "500710": "WATCH",
     "500730": "AVOID",
     "500770": "WATCH",
@@ -347,7 +347,7 @@
     "513683": "WATCH",
     "514043": "WATCH",
     "514162": "AVOID",
-    "514167": "WATCH",
+    "514167": "AVOID",
     "514211": "AVOID",
     "514234": "WATCH",
     "514440": "AVOID",
@@ -537,12 +537,12 @@
     "531147": "WATCH",
     "531162": "WATCH",
     "531179": "HOLD",
-    "531201": "WATCH",
+    "531201": "AVOID",
     "531209": "AVOID",
     "531213": "WATCH",
     "531266": "AVOID",
     "531335": "AVOID",
-    "531344": "WATCH",
+    "531344": "AVOID",
     "531349": "AVOID",
     "531358": "AVOID",
     "531381": "WATCH",
@@ -572,7 +572,7 @@
     "532150": "HOLD",
     "532155": "WATCH",
     "532156": "AVOID",
-    "532162": "WATCH",
+    "532162": "AVOID",
     "532163": "WATCH",
     "532174": "BUY",
     "532175": "HOLD",
@@ -767,7 +767,7 @@
     "532966": "AVOID",
     "532967": "AVOID",
     "532976": "WATCH",
-    "532977": "WATCH",
+    "532977": "AVOID",
     "532978": "WATCH",
     "532983": "WATCH",
     "533023": "WATCH",
@@ -820,7 +820,7 @@
     "533333": "AVOID",
     "533339": "AVOID",
     "533344": "WATCH",
-    "533398": "BUY",
+    "533398": "HOLD",
     "533519": "AVOID",
     "533520": "AVOID",
     "533552": "AVOID",
@@ -847,7 +847,7 @@
     "534758": "WATCH",
     "534804": "WATCH",
     "534809": "AVOID",
-    "534816": "WATCH",
+    "534816": "HOLD",
     "534976": "WATCH",
     "535136": "AVOID",
     "535322": "WATCH",
@@ -974,7 +974,7 @@
     "540774": "AVOID",
     "540776": "AVOID",
     "540777": "WATCH",
-    "540795": "AVOID",
+    "540795": "WATCH",
     "540797": "WATCH",
     "540879": "AVOID",
     "540900": "HOLD",
@@ -1037,7 +1037,7 @@
     "542905": "AVOID",
     "542907": "AVOID",
     "542919": "WATCH",
-    "542920": "WATCH",
+    "542920": "HOLD",
     "543064": "AVOID",
     "543066": "BUY",
     "543187": "WATCH",
@@ -1130,7 +1130,7 @@
     "543482": "WATCH",
     "543489": "WATCH",
     "543490": "AVOID",
-    "543498": "AVOID",
+    "543498": "WATCH",
     "543514": "AVOID",
     "543517": "WATCH",
     "543523": "HOLD",
@@ -1184,7 +1184,7 @@
     "543932": "AVOID",
     "543933": "AVOID",
     "543936": "AVOID",
-    "543940": "WATCH",
+    "543940": "HOLD",
     "543942": "WATCH",
     "543945": "WATCH",
     "543950": "WATCH",
@@ -1351,7 +1351,7 @@
     "544439": "WATCH",
     "544443": "WATCH",
     "544446": "AVOID",
-    "544447": "AVOID",
+    "544447": "WATCH",
     "544448": "AVOID",
     "544449": "AVOID",
     "544454": "AVOID",
@@ -1705,24 +1705,6 @@
       "isBank": true,
       "gnpa": 1.29,
       "roe": 17
-    },
-    {
-      "id": "533398",
-      "name": "Muthoot Finance Limited",
-      "sector": "NBFC",
-      "entryDate": "2026-08-14",
-      "entryScores": {
-        "qScore": 74,
-        "vScore": 62,
-        "mScore": 90,
-        "ccs": 73,
-        "evmed": "+8",
-        "signal": "BUY"
-      },
-      "priceCagr1Y": 3,
-      "isBank": true,
-      "gnpa": 2.35,
-      "roe": 31
     }
   ],
   "closedCalls": [
@@ -2700,6 +2682,31 @@
       },
       "exitReason": "Quality deteriorated — signal moved to AVOID",
       "priceCagr1YAtExit": null
+    },
+    {
+      "id": "533398",
+      "name": "Muthoot Finance Limited",
+      "sector": "NBFC",
+      "entryDate": "2026-08-14",
+      "exitDate": "2026-08-20",
+      "entryScores": {
+        "qScore": 74,
+        "vScore": 62,
+        "mScore": 90,
+        "ccs": 73,
+        "evmed": "+8",
+        "signal": "BUY"
+      },
+      "exitScores": {
+        "qScore": 69,
+        "vScore": 54,
+        "mScore": 95,
+        "ccs": 69,
+        "evmed": "+7",
+        "signal": "HOLD"
+      },
+      "exitReason": "Fully valued — price caught up with earnings (signal: HOLD)",
+      "priceCagr1YAtExit": 11
     }
   ],
   "dailySnapshots": [
@@ -3542,12 +3549,22 @@
       "avoid": 745,
       "avgCCS": 44,
       "activeCalls": 16
+    },
+    {
+      "date": "2026-08-20",
+      "totalCompanies": 1433,
+      "buy": 15,
+      "hold": 98,
+      "watch": 574,
+      "avoid": 746,
+      "avgCCS": 44,
+      "activeCalls": 15
     }
   ],
   "stats": {
     "totalCallsEver": 55,
-    "currentActiveCalls": 16,
-    "closedCalls": 39,
-    "vindicatedCalls": 19
+    "currentActiveCalls": 15,
+    "closedCalls": 40,
+    "vindicatedCalls": 20
   }
 }
