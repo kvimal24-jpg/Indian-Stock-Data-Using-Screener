@@ -2711,16 +2711,6 @@
   ],
   "dailySnapshots": [
     {
-      "date": "2026-06-01",
-      "totalCompanies": 1433,
-      "buy": 19,
-      "hold": 107,
-      "watch": 584,
-      "avoid": 723,
-      "avgCCS": 44,
-      "activeCalls": 17
-    },
-    {
       "date": "2026-06-02",
       "totalCompanies": 1433,
       "buy": 20,
@@ -3597,6 +3587,16 @@
       "hold": 99,
       "watch": 586,
       "avoid": 733,
+      "avgCCS": 44,
+      "activeCalls": 15
+    },
+    {
+      "date": "2026-08-29",
+      "totalCompanies": 1433,
+      "buy": 15,
+      "hold": 99,
+      "watch": 587,
+      "avoid": 732,
       "avgCCS": 44,
       "activeCalls": 15
     },
