@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-12",
+  "lastUpdated": "2026-09-13",
   "previousSignals": {
     "500002": "WATCH",
     "500003": "WATCH",
@@ -52,7 +52,7 @@
     "500147": "AVOID",
     "500148": "AVOID",
     "500150": "WATCH",
-    "500163": "AVOID",
+    "500163": "WATCH",
     "500164": "AVOID",
     "500165": "AVOID",
     "500168": "AVOID",
@@ -540,7 +540,7 @@
     "531201": "AVOID",
     "531209": "AVOID",
     "531213": "WATCH",
-    "531266": "WATCH",
+    "531266": "AVOID",
     "531335": "AVOID",
     "531344": "WATCH",
     "531349": "AVOID",
@@ -590,7 +590,7 @@
     "532256": "WATCH",
     "532259": "AVOID",
     "532268": "HOLD",
-    "532281": "WATCH",
+    "532281": "HOLD",
     "532285": "AVOID",
     "532286": "AVOID",
     "532296": "AVOID",
@@ -628,7 +628,7 @@
     "532454": "AVOID",
     "532461": "HOLD",
     "532466": "WATCH",
-    "532468": "WATCH",
+    "532468": "AVOID",
     "532477": "HOLD",
     "532478": "AVOID",
     "532482": "AVOID",
@@ -881,7 +881,7 @@
     "539151": "AVOID",
     "539177": "WATCH",
     "539199": "AVOID",
-    "539221": "AVOID",
+    "539221": "WATCH",
     "539254": "AVOID",
     "539268": "WATCH",
     "539289": "AVOID",
@@ -889,7 +889,7 @@
     "539302": "WATCH",
     "539309": "AVOID",
     "539332": "AVOID",
-    "539334": "WATCH",
+    "539334": "AVOID",
     "539336": "WATCH",
     "539404": "HOLD",
     "539437": "WATCH",
@@ -2747,16 +2747,6 @@
   ],
   "dailySnapshots": [
     {
-      "date": "2026-06-15",
-      "totalCompanies": 1433,
-      "buy": 17,
-      "hold": 114,
-      "watch": 584,
-      "avoid": 718,
-      "avgCCS": 45,
-      "activeCalls": 16
-    },
-    {
       "date": "2026-06-16",
       "totalCompanies": 1433,
       "buy": 16,
@@ -3643,6 +3633,16 @@
       "hold": 103,
       "watch": 599,
       "avoid": 714,
+      "avgCCS": 45,
+      "activeCalls": 17
+    },
+    {
+      "date": "2026-09-13",
+      "totalCompanies": 1433,
+      "buy": 17,
+      "hold": 104,
+      "watch": 597,
+      "avoid": 715,
       "avgCCS": 45,
       "activeCalls": 17
     }
