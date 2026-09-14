@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-13",
+  "lastUpdated": "2026-09-14",
   "previousSignals": {
     "500002": "WATCH",
     "500003": "WATCH",
@@ -767,7 +767,7 @@
     "532966": "AVOID",
     "532967": "AVOID",
     "532976": "WATCH",
-    "532977": "AVOID",
+    "532977": "WATCH",
     "532978": "WATCH",
     "532983": "WATCH",
     "533023": "WATCH",
@@ -1009,7 +1009,7 @@
     "542141": "AVOID",
     "542216": "AVOID",
     "542323": "WATCH",
-    "542333": "AVOID",
+    "542333": "WATCH",
     "542399": "WATCH",
     "542460": "WATCH",
     "542484": "AVOID",
@@ -2747,16 +2747,6 @@
   ],
   "dailySnapshots": [
     {
-      "date": "2026-06-16",
-      "totalCompanies": 1433,
-      "buy": 16,
-      "hold": 113,
-      "watch": 580,
-      "avoid": 724,
-      "avgCCS": 45,
-      "activeCalls": 15
-    },
-    {
       "date": "2026-06-17",
       "totalCompanies": 1433,
       "buy": 15,
@@ -3643,6 +3633,16 @@
       "hold": 104,
       "watch": 597,
       "avoid": 715,
+      "avgCCS": 45,
+      "activeCalls": 17
+    },
+    {
+      "date": "2026-09-14",
+      "totalCompanies": 1433,
+      "buy": 17,
+      "hold": 104,
+      "watch": 599,
+      "avoid": 713,
       "avgCCS": 45,
       "activeCalls": 17
     }
