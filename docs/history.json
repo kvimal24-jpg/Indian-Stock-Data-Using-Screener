@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-31",
+  "lastUpdated": "2026-11-01",
   "previousSignals": {
     "500002": "WATCH",
     "500003": "WATCH",
@@ -31,7 +31,7 @@
     "500097": "AVOID",
     "500101": "AVOID",
     "500103": "AVOID",
-    "500104": "WATCH",
+    "500104": "AVOID",
     "500106": "AVOID",
     "500108": "AVOID",
     "500109": "WATCH",
@@ -115,7 +115,7 @@
     "500338": "AVOID",
     "500339": "AVOID",
     "500355": "WATCH",
-    "500365": "WATCH",
+    "500365": "AVOID",
     "500368": "AVOID",
     "500378": "AVOID",
     "500380": "WATCH",
@@ -484,7 +484,7 @@
     "526247": "WATCH",
     "526299": "HOLD",
     "526367": "WATCH",
-    "526371": "WATCH",
+    "526371": "AVOID",
     "526433": "AVOID",
     "526506": "WATCH",
     "526570": "AVOID",
@@ -681,7 +681,7 @@
     "532684": "WATCH",
     "532686": "AVOID",
     "532689": "AVOID",
-    "532698": "WATCH",
+    "532698": "HOLD",
     "532699": "WATCH",
     "532702": "AVOID",
     "532705": "WATCH",
@@ -1035,7 +1035,7 @@
     "542867": "HOLD",
     "542904": "BUY",
     "542905": "AVOID",
-    "542907": "AVOID",
+    "542907": "WATCH",
     "542919": "WATCH",
     "542920": "HOLD",
     "543064": "WATCH",
@@ -2944,16 +2944,6 @@
   ],
   "dailySnapshots": [
     {
-      "date": "2026-08-03",
-      "totalCompanies": 1433,
-      "buy": 15,
-      "hold": 109,
-      "watch": 580,
-      "avoid": 729,
-      "avgCCS": 44,
-      "activeCalls": 15
-    },
-    {
       "date": "2026-08-04",
       "totalCompanies": 1433,
       "buy": 16,
@@ -3840,6 +3830,16 @@
       "hold": 116,
       "watch": 622,
       "avoid": 673,
+      "avgCCS": 46,
+      "activeCalls": 21
+    },
+    {
+      "date": "2026-11-01",
+      "totalCompanies": 1433,
+      "buy": 22,
+      "hold": 117,
+      "watch": 619,
+      "avoid": 675,
       "avgCCS": 46,
       "activeCalls": 21
     }
