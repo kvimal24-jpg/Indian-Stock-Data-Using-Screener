@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-13",
+  "lastUpdated": "2026-11-14",
   "previousSignals": {
     "500002": "WATCH",
     "500003": "WATCH",
@@ -31,7 +31,7 @@
     "500097": "AVOID",
     "500101": "AVOID",
     "500103": "AVOID",
-    "500104": "AVOID",
+    "500104": "WATCH",
     "500106": "AVOID",
     "500108": "AVOID",
     "500109": "WATCH",
@@ -48,7 +48,7 @@
     "500128": "AVOID",
     "500133": "WATCH",
     "500135": "WATCH",
-    "500144": "AVOID",
+    "500144": "WATCH",
     "500147": "AVOID",
     "500148": "AVOID",
     "500150": "WATCH",
@@ -183,7 +183,7 @@
     "500875": "WATCH",
     "500877": "WATCH",
     "500878": "AVOID",
-    "500940": "AVOID",
+    "500940": "WATCH",
     "501150": "AVOID",
     "501301": "WATCH",
     "501421": "AVOID",
@@ -200,7 +200,7 @@
     "502355": "WATCH",
     "502450": "AVOID",
     "502986": "WATCH",
-    "503100": "AVOID",
+    "503100": "WATCH",
     "503101": "WATCH",
     "503310": "AVOID",
     "503681": "AVOID",
@@ -218,7 +218,7 @@
     "504614": "WATCH",
     "504741": "AVOID",
     "504882": "AVOID",
-    "504918": "HOLD",
+    "504918": "WATCH",
     "504973": "WATCH",
     "505010": "WATCH",
     "505036": "AVOID",
@@ -268,7 +268,7 @@
     "506767": "WATCH",
     "506820": "WATCH",
     "506854": "AVOID",
-    "506879": "WATCH",
+    "506879": "AVOID",
     "506943": "AVOID",
     "507205": "WATCH",
     "507410": "AVOID",
@@ -484,7 +484,7 @@
     "526247": "WATCH",
     "526299": "HOLD",
     "526367": "WATCH",
-    "526371": "AVOID",
+    "526371": "WATCH",
     "526433": "AVOID",
     "526506": "WATCH",
     "526570": "AVOID",
@@ -632,7 +632,7 @@
     "532477": "BUY",
     "532478": "WATCH",
     "532482": "AVOID",
-    "532483": "BUY",
+    "532483": "HOLD",
     "532485": "WATCH",
     "532486": "AVOID",
     "532488": "WATCH",
@@ -645,7 +645,7 @@
     "532509": "WATCH",
     "532514": "WATCH",
     "532522": "WATCH",
-    "532523": "AVOID",
+    "532523": "WATCH",
     "532524": "AVOID",
     "532525": "BUY",
     "532527": "WATCH",
@@ -867,7 +867,7 @@
     "538734": "WATCH",
     "538835": "WATCH",
     "538836": "WATCH",
-    "538891": "AVOID",
+    "538891": "WATCH",
     "538920": "AVOID",
     "538962": "WATCH",
     "538979": "WATCH",
@@ -1130,7 +1130,7 @@
     "543482": "WATCH",
     "543489": "WATCH",
     "543490": "AVOID",
-    "543498": "AVOID",
+    "543498": "WATCH",
     "543514": "AVOID",
     "543517": "WATCH",
     "543523": "HOLD",
@@ -1178,13 +1178,13 @@
     "543812": "WATCH",
     "543896": "AVOID",
     "543904": "WATCH",
-    "543920": "WATCH",
+    "543920": "AVOID",
     "543923": "AVOID",
     "543929": "AVOID",
     "543932": "AVOID",
     "543933": "AVOID",
     "543936": "AVOID",
-    "543940": "WATCH",
+    "543940": "HOLD",
     "543942": "WATCH",
     "543945": "AVOID",
     "543950": "WATCH",
@@ -1192,7 +1192,7 @@
     "543953": "AVOID",
     "543957": "WATCH",
     "543959": "HOLD",
-    "543960": "WATCH",
+    "543960": "HOLD",
     "543965": "AVOID",
     "543971": "WATCH",
     "543972": "WATCH",
@@ -1723,24 +1723,6 @@
       "isBank": true,
       "gnpa": 2.65,
       "roe": 15
-    },
-    {
-      "id": "532483",
-      "name": "Canara Bank",
-      "sector": "Banking",
-      "entryDate": "2026-10-15",
-      "entryScores": {
-        "qScore": 60,
-        "vScore": 82,
-        "mScore": 62,
-        "ccs": 68,
-        "evmed": "+25",
-        "signal": "BUY"
-      },
-      "priceCagr1Y": -9,
-      "isBank": true,
-      "gnpa": 1.33,
-      "roe": 18
     },
     {
       "id": "500247",
@@ -2990,19 +2972,34 @@
       },
       "exitReason": "Fully valued — price caught up with earnings (signal: HOLD)",
       "priceCagr1YAtExit": 10
+    },
+    {
+      "id": "532483",
+      "name": "Canara Bank",
+      "sector": "Banking",
+      "entryDate": "2026-10-15",
+      "exitDate": "2026-11-14",
+      "entryScores": {
+        "qScore": 60,
+        "vScore": 82,
+        "mScore": 62,
+        "ccs": 68,
+        "evmed": "+25",
+        "signal": "BUY"
+      },
+      "exitScores": {
+        "qScore": 60,
+        "vScore": 82,
+        "mScore": 57,
+        "ccs": 67,
+        "evmed": "+26",
+        "signal": "HOLD"
+      },
+      "exitReason": "Fully valued — price caught up with earnings (signal: HOLD)",
+      "priceCagr1YAtExit": -10
     }
   ],
   "dailySnapshots": [
-    {
-      "date": "2026-08-16",
-      "totalCompanies": 1433,
-      "buy": 16,
-      "hold": 93,
-      "watch": 582,
-      "avoid": 742,
-      "avgCCS": 44,
-      "activeCalls": 16
-    },
     {
       "date": "2026-08-17",
       "totalCompanies": 1433,
@@ -3892,12 +3889,22 @@
       "avoid": 691,
       "avgCCS": 46,
       "activeCalls": 21
+    },
+    {
+      "date": "2026-11-14",
+      "totalCompanies": 1433,
+      "buy": 21,
+      "hold": 103,
+      "watch": 624,
+      "avoid": 685,
+      "avgCCS": 46,
+      "activeCalls": 20
     }
   ],
   "stats": {
     "totalCallsEver": 68,
-    "currentActiveCalls": 21,
-    "closedCalls": 47,
+    "currentActiveCalls": 20,
+    "closedCalls": 48,
     "vindicatedCalls": 24
   }
 }
